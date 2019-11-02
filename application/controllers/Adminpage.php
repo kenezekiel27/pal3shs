@@ -103,21 +103,108 @@ class Adminpage extends CI_Controller {
 
 	public function updateCourseData(){
 		$id = $_POST['id'];
-		$subjects = $_POST['subjects'];
-		$arr = array();
+		$removesubjects = $_POST['subjects'];
+		$year_level = $_POST['year_level'];
+		$semester = $_POST['semester'];
+		$status = $_POST['status'];
 		$data['course'] = $this->pal_model->update_course($id);
-
-		$new = json_decode($data['course']['subject_ids']);
-		foreach ($new as $value) {
-			array_push($arr, array('id' => $value->id));
-		}
-		for ($i=0; $i < count($subjects); $i++) { 
+		$onegrade11 = json_decode($data['course']['1stsemgrade11']);
+		$twograde11 = json_decode($data['course']['2ndsemgrade11']);
+		$onegrade12 = json_decode($data['course']['1stsemgrade12']);
+		$twograde12 = json_decode($data['course']['2ndsemgrade12']);
+		$arr = array();
+		$subjects = $this->pal_model->subject();
+		if(count($onegrade11) > 1){
+				foreach ($subjects as $key => $value) {
+					foreach ($onegrade11 as $value2) {
+						if ($value->id == $value2->id) {
+							unset($subjects[$key]);
+						}
+					}
+				}
+			}
+			if(count($twograde11) > 1){
+				foreach ($subjects as $key => $value) {
+					foreach ($twograde11 as $value2) {
+						if ($value->id == $value2->id) {
+							unset($subjects[$key]);
+						}
+					}
+				}
+			}
+			if(count($onegrade12) > 1){
+				foreach ($subjects as $key => $value) {
+					foreach ($onegrade12 as $value2) {
+						if ($value->id == $value2->id) {
+							unset($subjects[$key]);
+						}
+					}
+				}
+			}
+			if(count($twograde12) > 1){
+				foreach ($subjects as $key => $value) {
+					foreach ($twograde12 as $value2) {
+						if ($value->id == $value2->id) {
+							unset($subjects[$key]);
+						}
+					}
+				}
+			}
+			$this->data['subjects'] = $subjects;
+		// if($status == "1"){
 			
-			array_push($arr, array('id' => $subjects[$i]));
-		}
-		$this->data['msg'] = $arr;
-		$result = $this->pal_model->update_course_data($id, $arr);
+		// 	if(count($onegrade11) > 1){
+		// 		foreach ($subjects as $key => $value) {
+		// 			foreach ($onegrade11 as $value2) {
+		// 				if ($value->id == $value2->id) {
+		// 					unset($subjects[$key]);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	if(count($twograde11) > 1){
+		// 		foreach ($subjects as $key => $value) {
+		// 			foreach ($twograde11 as $value2) {
+		// 				if ($value->id == $value2->id) {
+		// 					unset($subjects[$key]);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	if(count($onegrade12) > 1){
+		// 		foreach ($subjects as $key => $value) {
+		// 			foreach ($onegrade12 as $value2) {
+		// 				if ($value->id == $value2->id) {
+		// 					unset($subjects[$key]);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	if(count($twograde12) > 1){
+		// 		foreach ($subjects as $key => $value) {
+		// 			foreach ($twograde12 as $value2) {
+		// 				if ($value->id == $value2->id) {
+		// 					unset($subjects[$key]);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	$this->data['subjects'] = $subjects;
+		// }
+		// if($status == "2"){
+			
+		// }
+		// if($status == "3"){
+			
+		// }
+		// if($status == "4"){
+			
+		// }
+		
+		
+		
 		echo json_encode($this->data);
+		
 	}
 	public function removeCourseData(){
 		$id = $_POST['id'];

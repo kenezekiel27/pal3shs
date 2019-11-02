@@ -65,23 +65,74 @@ $(document).ready(function(){
 			dataType: "json",
 			data:{
 				'id' : $('.id').val(),
-				'subjects' : $('.subjects').val()
+				'subjects' : $('.subjects').val(),
+				'year_level' : $('.yearlevel').val(),
+				'semester': $('.semester').val()
 			},
-			success: function (respone){
-				$(".saveBtn").prop("disabled",true);
-				$.toast({
-					text: 'Subject added.',
-					position: 'bottom-center',
-					loaderBg: '#ff6849',
-					icon: 'success',
-					hideAfter: 44000,
-					stack: 6
-              	});
-				setTimeout(function(){
-					window.location = base_url + 'course/'+id;
-				},2000);
+			success: function (response){
+				if(response.status == 'error'){
+					render_response('.addsubjecttocoursewarning','danger',response.msg);
+				}
+				else{
+					render_response('.addsubjecttocoursewarning','success',response.msg);
+					$(".saveBtn").prop("disabled",true);
+					$.toast({
+						text: 'Subject added.',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						icon: 'success',
+						hideAfter: 44000,
+						stack: 6
+	              	});
+					setTimeout(function(){
+						window.location = base_url + 'course/'+id;
+					},2123000);
+				}
+				
 			}
 		});
+	})
+	$('.semester').change(function(){
+		var yearlevel = $('.yearlevel').val();
+		var semester = $('.semester').val();
+		var forgrade11one = $('.forgrade11one');
+		var status = 0;
+		if(!yearlevel){
+			render_response('.addsubjecttocoursewarning','danger','Please select Year Level');
+		}
+		else{
+			$('.forgrade11one').show();
+			if(yearlevel == "Grade 11" && semester == "1st Sem"){
+				status = 1;
+				
+			}
+			else if(yearlevel == "Grade 11" && semester == "2nd Sem"){
+				status = 2;
+			}
+			$.ajax({
+				url: base_url + 'adminpage/updateCourseData',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'id' : $('.id').val(),
+					'subjects' : $('.subjects').val(),
+					'year_level' : $('.yearlevel').val(),
+					'semester': $('.semester').val(),
+					'status' : status
+				},
+				success: function(response){
+					$('.subjects').empty();
+					$.each(response.subjects, function(idx, obj) {
+						console.log(obj.id);
+						var option = $('<option value="'+obj.id+'">'+obj.id+'</option>');
+						$('.subjects').append(option);
+					});
+				}
+			});
+		}
+	});
+	$('.yearlevel').change(function(){
+		$('.addsubjecttocoursewarning').empty();
 	})
 	$('.btn-success').click(function(){
 		$(this).css({

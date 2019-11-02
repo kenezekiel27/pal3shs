@@ -31,7 +31,7 @@
 					</ul>
 					
 				</div>
-				<div class="coursesubject" style="display: nonse;">
+				<div class="coursesubject" style="display: none;">
 					<p>List of subject for this course</p>
 					<?php $data = json_decode($course['subject_ids'], true); ?>
 					<select class="removesubjects" name="removesubjects[]" multiple="multiple"  style="width: 100% !important">
@@ -52,9 +52,25 @@
 					<br><br>
 					<button class="btn btn-danger removeBtn" style="display: none;">Remove Subject</button>
 				</div>
-				<div class="subjectToAdd" style="display: none;">
-					<p>Add subject</p>
-					 <?php 
+				<div class="subjectToAdd" style="display: nsone;">
+					<br><br>
+					<div class="addsubjecttocoursewarning"></div>
+					<br>
+					<p>Grade</p>
+					<select class="form-control yearlevel" name="yearlevel"   style="width: 100% !important">
+						<option selected disabled >Select year level</option>
+						<option value="Grade 11">Grade 11</option>
+						<option value="Grade 12">Grade 12</option>
+					</select><br><br>
+					<p>Semester</p>
+					<select class="form-control semester" name="semester"   style="width: 100% !important">
+						<option selected disabled >Select semester</option>
+						<option value="1st Sem">1st Sem</option>
+						<option value="2nd Sem">2nd Sem</option>
+					</select>
+					<br><br>
+					
+					 <!-- <?php 
 					 	$data = json_decode($course['subject_ids'], true);
 					 	if(is_array($data)){
 					 		foreach ($data as $value) {
@@ -66,13 +82,20 @@
 						 	}
 						 	
 					 	}
-					  ?>
-
-					<select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
+					  ?> -->
+					 <div class="forgrade11one" style="display: none;">
+					 	<p>Available subject</p>
+					 	<select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
+							<!-- <?php foreach ($subjectsto as $value): ?>
+								<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo $value->id ?></option>
+							<?php endforeach ?> -->
+						</select>
+					 </div>
+					<!-- <select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
 						<?php foreach ($subjects as $value): ?>
 							<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo $value->subject_description ?></option>
 						<?php endforeach ?>
-					</select>
+					</select> -->
 					<br><br>
 					<button class="btn btn-success saveBtn" style="display: none;">Add Subject</button>
 				</div>

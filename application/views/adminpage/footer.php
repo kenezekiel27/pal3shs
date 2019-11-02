@@ -41,6 +41,7 @@
             $('.subjects').select2();
             $('.removesubjects').select2();
 
+            
             $('#example').DataTable();
             $('#example1').DataTable();
             $('#example2').DataTable();
