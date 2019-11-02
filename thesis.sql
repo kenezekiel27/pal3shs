@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2019 at 04:46 PM
+-- Generation Time: Nov 02, 2019 at 05:56 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -30,6 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `course_offer` (
   `id` int(11) NOT NULL,
+  `1stsemgrade11` text NOT NULL,
+  `2ndsemgrade11` text NOT NULL,
+  `1stsemgrade12` text NOT NULL,
+  `2ndsemgrade12` text NOT NULL,
   `course_name` varchar(250) NOT NULL,
   `academic_track` text NOT NULL,
   `academic_strand` text NOT NULL,
@@ -40,16 +44,17 @@ CREATE TABLE `course_offer` (
 -- Dumping data for table `course_offer`
 --
 
-INSERT INTO `course_offer` (`id`, `course_name`, `academic_track`, `academic_strand`, `subject_ids`) VALUES
-(1, 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\r\n    {\r\n        \"id\": \"6\"\r\n    },\r\n    {\r\n        \"id\": \"8\"\r\n    },\r\n    {\r\n        \"id\": \"9\"\r\n    },\r\n    {\r\n        \"id\": \"10\"\r\n    },\r\n    {\r\n        \"id\": \"11\"\r\n    },\r\n    {\r\n        \"id\": \"18\"\r\n    },\r\n    {\r\n        \"id\": \"19\"\r\n    },\r\n    {\r\n        \"id\": \"26\"\r\n    },\r\n    {\r\n        \"id\": \"27\"\r\n    },\r\n    {\r\n        \"id\": \"28\"\r\n    },\r\n    {\r\n        \"id\": \"29\"\r\n    },\r\n    {\r\n        \"id\": \"30\"\r\n    },\r\n    {\r\n        \"id\": \"32\"\r\n    },\r\n    {\r\n        \"id\": \"33\"\r\n    },\r\n    {\r\n        \"id\": \"34\"\r\n    },\r\n    {\r\n        \"id\": \"35\"\r\n    },\r\n    {\r\n        \"id\": \"36\"\r\n    },\r\n    {\r\n        \"id\": \"37\"\r\n    },\r\n    {\r\n        \"id\": \"38\"\r\n    },\r\n    {\r\n        \"id\": \"40\"\r\n    },\r\n    {\r\n        \"id\": \"41\"\r\n    },\r\n    {\r\n        \"id\": \"42\"\r\n    },\r\n    {\r\n        \"id\": \"43\"\r\n    },\r\n    {\r\n        \"id\": \"44\"\r\n    },\r\n    {\r\n        \"id\": \"45\"\r\n    },\r\n    {\r\n        \"id\": \"46\"\r\n    },\r\n    {\r\n        \"id\": \"47\"\r\n    },\r\n    {\r\n        \"id\": \"48\"\r\n    },\r\n    {\r\n        \"id\": \"71\"\r\n    },\r\n    {\r\n        \"id\": \"72\"\r\n    },\r\n    {\r\n        \"id\": \"73\"\r\n    },\r\n    {\r\n        \"id\": \"74\"\r\n    },\r\n    {\r\n        \"id\": \"75\"\r\n    },\r\n    {\r\n        \"id\": \"76\"\r\n    },\r\n    {\r\n        \"id\": \"77\"\r\n    },\r\n    {\r\n        \"id\": \"78\"\r\n    },\r\n    {\r\n        \"id\": \"79\"\r\n    },\r\n    {\r\n        \"id\": \"80\"\r\n    },\r\n    {\r\n        \"id\": \"81\"\r\n    },\r\n    {\r\n        \"id\": \"82\"\r\n    },\r\n    {\r\n        \"id\": \"83\"\r\n    },\r\n    {\r\n        \"id\": \"84\"\r\n    },\r\n    {\r\n        \"id\": \"85\"\r\n    },\r\n    {\r\n        \"id\": \"86\"\r\n    },\r\n    {\r\n        \"id\": \"87\"\r\n    },\r\n    {\r\n        \"id\": \"7\"\r\n    },\r\n    {\r\n        \"id\": \"89\"\r\n    },\r\n    {\r\n        \"id\": \"90\"\r\n    }\r\n]'),
-(2, 'Academic/General Academic Strand', 'Academic', 'General Academic Strand', '[\n    {\n        \"id\": 5\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"8\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"9\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
-(3, 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', ''),
-(4, 'Academic/Science and Technology, Engineering and Mathematics', 'Academic', 'Science and Technology, Engineering and Mathematics', ''),
-(5, 'TVL/Beauty Care, Hairdressing, Wellness Massage', 'TVL', 'Beauty Care, Hairdressing, Wellness Massage', ''),
-(6, 'TVL/Computer System Servicing', 'TVL', 'Computer System Servicing', ''),
-(7, 'TVL/Cookery, Bread and Pastries, Food and Beverage', 'TVL', 'Cookery, Bread and Pastries, Food and Beverage', ''),
-(8, 'TVL/Electrical Installation and Maintenance', 'TVL', 'Electrical Installation and Maintenance', ''),
-(9, 'TVL/Electronic Products Assembly and Servicing', 'TVL', 'Electronic Products Assembly and Servicing', '');
+INSERT INTO `course_offer` (`id`, `1stsemgrade11`, `2ndsemgrade11`, `1stsemgrade12`, `2ndsemgrade12`, `course_name`, `academic_track`, `academic_strand`, `subject_ids`) VALUES
+(1, '[\r\n    {\r\n        \"id\": \"10\"\r\n    },\r\n    {\r\n        \"id\": \"20\"\r\n    },\r\n    {\r\n        \"id\": \"11\"\r\n    },\r\n    {\r\n        \"id\": \"19\"\r\n    },\r\n    {\r\n        \"id\": \"18\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"32\"\r\n    },\r\n    {\r\n        \"id\": \"33\"\r\n    },\r\n    {\r\n        \"id\": \"34\"\r\n    },\r\n    {\r\n        \"id\": \"35\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"81\"\r\n    },\r\n    {\r\n        \"id\": \"82\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"83\"\r\n    },\r\n    {\r\n        \"id\": \"84\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"46\"\r\n    },\r\n    {\r\n        \"id\": \"47\"\r\n    }\r\n\r\n\r\n]', '[\r\n    {\r\n        \"id\": \"7\"\r\n    },\r\n    {\r\n        \"id\": \"8\"\r\n    },\r\n    {\r\n        \"id\": \"5\"\r\n    },\r\n    {\r\n        \"id\": \"6\"\r\n    }\r\n]', '[\r\n    {\r\n        \"id\": \"26\"\r\n    },\r\n    {\r\n        \"id\": \"27\"\r\n    },\r\n    {\r\n        \"id\": \"28\"\r\n    },\r\n    {\r\n        \"id\": \"29\"\r\n    },\r\n    {\r\n      \"id\": \"30\"\r\n    }\r\n]', '[\r\n    {\r\n        \"id\": \"70\"\r\n    },\r\n    {\r\n        \"id\": \"71\"\r\n    },\r\n    {\r\n        \"id\": \"72\"\r\n    },\r\n    {\r\n        \"id\": \"73\"\r\n    },\r\n    {\r\n      \"id\": \"74\"\r\n    },\r\n    {\r\n        \"id\": \"75\"\r\n    },\r\n    {\r\n        \"id\": \"76\"\r\n    },\r\n    {\r\n        \"id\": \"77\"\r\n    },\r\n    {\r\n      \"id\": \"78\"\r\n    },\r\n    {\r\n        \"id\": \"79\"\r\n    },\r\n    {\r\n        \"id\": \"85\"\r\n    },\r\n    {\r\n        \"id\": \"86\"\r\n    },\r\n    {\r\n      \"id\": \"87\"\r\n    },\r\n    {\r\n        \"id\": \"89\"\r\n    },\r\n    {\r\n        \"id\": \"90\"\r\n    },\r\n    {\r\n        \"id\": \"43\"\r\n    }\r\n]', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"6\"\n    }\n]'),
+(3, '[     {         \"id\": \"7\"     },     {         \"id\": \"8\"     } ]', '', '', '', 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
+(4, '', '', '', '', 'Academic/Science and Technology, Engineering and Mathematics', 'Academic', 'Science and Technology, Engineering and Mathematics', ''),
+(5, '', '', '', '', 'TVL/Beauty Care, Hairdressing, Wellness Massage', 'TVL', 'Beauty Care, Hairdressing, Wellness Massage', ''),
+(6, '', '', '', '', 'TVL/Computer System Servicing', 'TVL', 'Computer System Servicing', ''),
+(7, '', '', '', '', 'TVL/Cookery, Bread and Pastries, Food and Beverage', 'TVL', 'Cookery, Bread and Pastries, Food and Beverage', ''),
+(8, '', '', '', '', 'TVL/Electrical Installation and Maintenance', 'TVL', 'Electrical Installation and Maintenance', ''),
+(9, '', '', '', '', 'TVL/Electronic Products Assembly and Servicing', 'TVL', 'Electronic Products Assembly and Servicing', ''),
+(10, '', '', '', '', 'academic/asdasd', 'academic', 'asdasd', ''),
+(11, '', '', '', '', 'asd/asdqwe123x132', 'asd', 'asdqwe123x132', '');
 
 -- --------------------------------------------------------
 
@@ -239,7 +244,7 @@ ALTER TABLE `users_data`
 -- AUTO_INCREMENT for table `course_offer`
 --
 ALTER TABLE `course_offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `list_of_subject`
