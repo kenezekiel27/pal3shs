@@ -90,7 +90,7 @@
 						<ul class="nav" id="side-menu">
 							<li>
 								<a href="<?php echo base_url(); ?>course" class="waves-effect" style="left: 30px">Course</a>
-								<a href="subject.php" class="waves-effect" style="left: 30px">Subject</a>
+								<a href="<?php echo base_url(); ?>subject" class="waves-effect" style="left: 30px">Subject</a>
 							</li>
 						</ul>
 					</li>

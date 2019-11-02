@@ -141,4 +141,10 @@ class Adminpage extends CI_Controller {
 		$result = $this->pal_model->update_course_data($id, $arr);
 		echo json_encode($this->data);
 	}
+
+	public function subject(){
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/subject');
+		$this->load->view('adminpage/footer');
+	}
 }
