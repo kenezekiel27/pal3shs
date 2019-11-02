@@ -1,0 +1,27 @@
+$(document).ready(function(){
+	 $('.personalInfoBtn').click(function(){
+        $('.forPersonalInfo').show();
+        $('.forparentGuardian').hide()
+        $('.foreducationalBackground').hide();
+        $('.forenrollmentRecords').hide();
+    });
+    $('.parentGuardianBtn').click(function(){
+        $('.forPersonalInfo').hide();
+        $('.forparentGuardian').show()
+        $('.foreducationalBackground').hide();
+        $('.forenrollmentRecords').hide();
+    });
+    $('.educationalBackgroundBtn').click(function(){
+        $('.forPersonalInfo').hide();
+        $('.forparentGuardian').hide();
+        $('.foreducationalBackground').show();
+        $('.forenrollmentRecords').hide();
+    });
+    $('.enrollmentRecordsBtn').click(function(){
+        $('.forenrollmentRecords').show();
+        $('.forPersonalInfo').hide();
+        $('.forparentGuardian').hide();
+        $('.foreducationalBackground').hide();
+        
+    });
+})

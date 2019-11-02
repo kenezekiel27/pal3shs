@@ -1,0 +1,62 @@
+#sidebar-menu{
+	position: absolute;
+}
+
+#adminNavbarHeader{
+	background: #2f323e;
+    width: 100%;
+    position: fixed;
+    height: 10%;
+    z-index:1030;
+}
+#adminNavbarlogo{
+	height: 100%;
+}
+.logoBg{
+	position: absolute;
+    margin-left: 30px;
+}
+.alert-danger{
+	color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-success{
+	color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.btn-success{
+	color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover{
+	color: #fff;
+    background-color: #258e3d;
+    border-color: #258e3d;
+}
+.btn-danger{
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+.btn-danger:hover{
+    color:#fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+.courseUl{
+    list-style: none;
+}
+.courseUl li{
+    float: right;
+    padding: 0px 10px;
+}
+.toast-info{
+    background-color: #222222;
+    color:#FFFFFF;
+    background-image:none !important; /*Removes Pesky Default Toast Icon*/
+    padding: 15px 15px 15px 15px !important; /*Corrects Spacing for default icon*/
+    text-align:center;
+}
