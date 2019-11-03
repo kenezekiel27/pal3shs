@@ -38,5 +38,12 @@
 	        $this->db->where('id', $id);
         	$this->db->update('course_offer', $newData);
 		}
-		
+		public function update_course_name($id, $rowname, $course_name, $data){
+			$newData = [
+				'course_name' => $course_name,
+				$rowname => $data
+	        ];
+	        $this->db->where('id', $id);
+        	$this->db->update('course_offer', $newData);
+		}
 	}

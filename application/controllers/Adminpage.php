@@ -332,4 +332,61 @@ class Adminpage extends CI_Controller {
 		$this->data['status'] = "success";
 		echo json_encode($this->data);
 	}
+
+
+	public function updateCourseName(){
+		$id = $_POST['id'];
+		$strand = $_POST['strand'];
+		$description = $_POST['description'];
+		$status = $_POST['status'];
+		$originalStrand = $_POST['originalStrand'];
+		$originalDescription = $_POST['originalDescription'];
+		$newData = "";
+		$rowname = "";
+		$check = false;
+		if ($status == 'forstrand') {
+			if ($originalStrand == $strand) {
+				$this->data['status'] = 'danger';
+				$this->data['msg'] = "Please use different strand name.";
+			}
+			else{
+				$this->data['status'] = 'success';
+				$this->data['newData'] = $strand.'/'.$description;
+				$this->data['originalStrand'] = $strand;
+				
+				$newData = $strand;
+				$rowname = "academic_track";
+				$check = true;
+			}
+		}
+		else{
+			if ($originalDescription == $description) {
+				$this->data['status'] = 'danger';
+				$this->data['msg'] = "Please use different description.";
+			}
+			else{
+				$this->form_validation->set_message('is_unique', '%s already exist.');
+				$this->form_validation->set_rules('description', $description, 'required|is_unique[course_offer.academic_strand]');
+				if ($this->form_validation->run() == FALSE) {
+
+					$this->data['status'] = 'danger';
+					$this->data['msg'] = validation_errors();
+				}
+				else{
+					$this->data['status'] = 'success';
+					$this->data['newData'] = $strand.'/'.$description;
+					$this->data['originalDescription'] = $description;
+					$newData = $description;
+					$rowname = "academic_strand";
+					$check = true;
+				}
+			}
+		}
+		if($check){
+			$course_name = $strand.'/'.$description;
+			$result = $this->pal_model->update_course_name($id, $rowname, $course_name, $newData);
+		}
+		
+		echo json_encode($this->data);
+	}
 }

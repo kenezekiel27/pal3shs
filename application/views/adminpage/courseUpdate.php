@@ -24,7 +24,8 @@
 						<input readonly type="text" class="form-control courseDescription" id="courseDescription" value="<?php echo $course['course_name']; ?>">
 						
 						<input type="text" class="id" value="<?php echo $course['id'] ?>" hidden>
-
+						<input type="hidden" class="originalStrand" value="<?php echo $course['academic_track']?>">
+						<input type="hidden" class="originalDescription" value="<?php echo $course['academic_strand'] ?>">
 					</div>
 					<ul class="courseUl" >
 						<li><button class="btn btn-success viewAvailableSubjectBtn" >Add Subject</button></li>
@@ -32,16 +33,17 @@
 					</ul>
 					<br><br><br>
 					<div class="newCourse" id="newCourse" style="display: none;">
+						<p class="updatecoursenamewarning" id="newCourse" style="position: relative; z-index: 200"></p>
 						<p id="newCourse">Academic Strand</p>
-						<ul>
+						<ul class="forAcademicStrand">
 							<li><input id="newCourse" type="text" class="form-control newAcademicStrand" value="<?php echo $course['academic_track'] ?>"></li>
-							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm" ><i id="newCourse" class="fa fa-check	"></i></button></li>
+							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm saveStrand" ><i id="newCourse" class="fa fa-check	"></i></button></li>
 						</ul>
-						<br><br>
+						<br><br><br>
 						<p id="newCourse">Academic Description</p>
 						<ul>
-							<li><input id="newCourse" type="text" class="form-control" value="<?php echo $course['academic_strand'] ?>"></li>
-							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm" ><i id="newCourse" class="fa fa-check	"></i></button></li>
+							<li><input id="newCourse" type="text" class="form-control newAcademicDescription" value="<?php echo $course['academic_strand'] ?>"></li>
+							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm saveDescription" ><i id="newCourse" class="fa fa-check	"></i></button></li>
 						</ul>
 					</div>
 				</div>
@@ -101,7 +103,7 @@
 					<br><br>
 					<button class="btn btn-success saveBtn" style="display: none;">Add Subject</button>
 				</div>
-				
+				<button class="btn btn-danger removeCourse" style="float: right;" >Remove Course</button><br>
 			</div>
 			
 			<!-- end of Section 1 -->

@@ -80,6 +80,7 @@
 .newCourse ul li{
     float: left;
     width: 30vw;
+    padding: 0px 10px;
 }
 .courseUl{
     z-index: 1;

@@ -47,7 +47,7 @@
 										<td><p style="color: black;"><?php echo $value->course_name ?></p></td>
 										<td>
                             				<center>
-                            					<a href="<?php echo base_url();?>course/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                            					<a href="<?php echo base_url();?>course/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                             					<!-- <button title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn" id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" id="<?php echo $value->id ?>"></i></button> -->
                             					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
                             				</center>

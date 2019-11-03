@@ -11,6 +11,9 @@ $(document).ready(function(){
 		else{
 			$('.newCourse').hide();
 			$('.courseDescription').show();
+			$('.updatecoursenamewarning').empty();
+			$('.newAcademicStrand').val($('.originalStrand').val());
+			$('.newAcademicDescription').val($('.originalDescription').val());
 		}
 	});
 
@@ -279,6 +282,104 @@ $(document).ready(function(){
 		});
 	})
 
+	$('.removeCourse').click(function(){
+		var answer = confirm('Are you sure you want to remove this?');
+		if (answer){
+			 $.ajax({
+				url: base_url + 'adminpage/removeCourse',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'id' : $('.id').val(),
+				},
+				success: function(response){
+					window.location = base_url+ "course";
+				}
+			});
+		}
+	})
 
+	$('.saveStrand').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/updateCourseName',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'strand' : $('.newAcademicStrand').val(),
+				'description': $('.newAcademicDescription').val(),
+				'originalStrand' : $('.originalStrand').val(),
+				'originalDescription' : $('.originalDescription').val(),
+				'status': 'forstrand'
+			},
+			success: function(response){
+				if(response.status == "danger"){
+					render_response('.updatecoursenamewarning', response.status, response.msg);
+				}
+				else{
+					$.toast({
+						heading: 'Strand has been updated.',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 2000,
+						stack: 6,
+	              	});
+	              	setTimeout(function(){
+	              		$('.courseDescription').val(response.newData);
+			          	$('.newCourse').hide();
+						$('.courseDescription').show();
+						$('.updatecoursenamewarning').empty();
+	              	}, 2000);
+	              	$('.originalStrand').val(response.originalStrand);
+				}
+				
 
+			}
+		});
+	});
+
+	$('.saveDescription').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/updateCourseName',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'strand' : $('.newAcademicStrand').val(),
+				'description': $('.newAcademicDescription').val(),
+				'originalStrand' : $('.originalStrand').val(),
+				'originalDescription' : $('.originalDescription').val(),
+				'status': 'fordescription'
+			},
+			success: function(response){
+				if(response.status == "danger"){
+					render_response('.updatecoursenamewarning', response.status, response.msg);
+				}
+				else{
+					$.toast({
+						heading: 'Description has been updated.',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 2000,
+						stack: 6,
+	              	});
+	              	setTimeout(function(){
+	              		$('.courseDescription').val(response.newData);
+			          	$('.newCourse').hide();
+						$('.courseDescription').show();
+						$('.updatecoursenamewarning').empty();
+	              	}, 2000);
+	              	$('.originalDescription').val(response.originalDescription);
+				}
+				
+
+			}
+		});
+	});
 })
