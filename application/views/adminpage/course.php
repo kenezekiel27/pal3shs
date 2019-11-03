@@ -74,7 +74,7 @@
 						<center><label>Academic Track</label></center>
 			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter track">
 						<br><br><br>
-						<center><label>Subject Description</label></center>
+						<center><label>Academic Strand</label></center>
 						<input type="text" id="strand" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter description">
 						<br><br><br>
 						<center><button class="btn btn-success add_new_course" type="button" style="width: 40%;text-align: center;">Submit</button></center>

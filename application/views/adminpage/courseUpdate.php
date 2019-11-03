@@ -31,7 +31,14 @@
 					</ul>
 					
 				</div>
-				<div class="coursesubject" style="display: nonse;">
+				<div class="row">
+					<button class="btn btn-success">Grade11 1st Semester</button>
+					<button class="btn btn-success">Grade11 2nd Semester</button>
+					<button class="btn btn-success">Grade12 1st Semester</button>
+					<button class="btn btn-success">Grade12 2nd Semester</button>
+				</div>
+				<br>
+				<div class="coursesubject">
 					<p>List of subject for this course</p>
 					<?php $data = json_decode($course['subject_ids'], true); ?>
 					<select class="removesubjects" name="removesubjects[]" multiple="multiple"  style="width: 100% !important">
@@ -67,7 +74,7 @@
 						 	
 					 	}
 					  ?>
-
+					  
 					<select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
 						<?php foreach ($subjects as $value): ?>
 							<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo $value->subject_description ?></option>
