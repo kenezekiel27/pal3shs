@@ -60,3 +60,9 @@
     padding: 15px 15px 15px 15px !important; /*Corrects Spacing for default icon*/
     text-align:center;
 }
+.jq-toast-single{
+    text-align: left;
+    display: block;
+    width: 300px;
+}
+    

@@ -90,7 +90,46 @@ class Adminpage extends CI_Controller {
 
 		$data['course'] = $this->pal_model->update_course($id);
 		$data['subjects'] = $this->pal_model->subject();
-
+		$onegrade11 = json_decode($data['course']['1stsemgrade11']);
+		$twograde11 = json_decode($data['course']['2ndsemgrade11']);
+		$onegrade12 = json_decode($data['course']['1stsemgrade12']);
+		$twograde12 = json_decode($data['course']['2ndsemgrade12']);
+		if(count($onegrade11) > 0){
+			foreach ($data['subjects'] as $key => $value) {
+				foreach ($onegrade11 as $value2) {
+					if ($value->id == $value2->id) {
+						unset($data['subjects'][$key]);
+					}
+				}
+			}
+		}
+		if(count($twograde11) > 0){
+			foreach ($data['subjects'] as $key => $value) {
+				foreach ($twograde11 as $value2) {
+					if ($value->id == $value2->id) {
+						unset($data['subjects'][$key]);
+					}
+				}
+			}
+		}
+		if(count($onegrade12) > 0){
+			foreach ($data['subjects'] as $key => $value) {
+				foreach ($onegrade12 as $value2) {
+					if ($value->id == $value2->id) {
+						unset($data['subjects'][$key]);
+					}
+				}
+			}
+		}
+		if(count($twograde12) > 0){
+			foreach ($data['subjects'] as $key => $value) {
+				foreach ($twograde12 as $value2) {
+					if ($value->id == $value2->id) {
+						unset($data['subjects'][$key]);
+					}
+				}
+			}
+		}
 		if(empty($data['course'])){
 			show_404();
 		}
@@ -103,135 +142,194 @@ class Adminpage extends CI_Controller {
 
 	public function updateCourseData(){
 		$id = $_POST['id'];
-		$removesubjects = $_POST['subjects'];
-		$year_level = $_POST['year_level'];
-		$semester = $_POST['semester'];
+		$subjects = $_POST['subjects'];
 		$status = $_POST['status'];
 		$data['course'] = $this->pal_model->update_course($id);
-		$onegrade11 = json_decode($data['course']['1stsemgrade11']);
-		$twograde11 = json_decode($data['course']['2ndsemgrade11']);
-		$onegrade12 = json_decode($data['course']['1stsemgrade12']);
-		$twograde12 = json_decode($data['course']['2ndsemgrade12']);
-		$arr = array();
-		$subjects = $this->pal_model->subject();
-		if(count($onegrade11) > 1){
-				foreach ($subjects as $key => $value) {
-					foreach ($onegrade11 as $value2) {
-						if ($value->id == $value2->id) {
-							unset($subjects[$key]);
-						}
-					}
-				}
-			}
-			if(count($twograde11) > 1){
-				foreach ($subjects as $key => $value) {
-					foreach ($twograde11 as $value2) {
-						if ($value->id == $value2->id) {
-							unset($subjects[$key]);
-						}
-					}
-				}
-			}
-			if(count($onegrade12) > 1){
-				foreach ($subjects as $key => $value) {
-					foreach ($onegrade12 as $value2) {
-						if ($value->id == $value2->id) {
-							unset($subjects[$key]);
-						}
-					}
-				}
-			}
-			if(count($twograde12) > 1){
-				foreach ($subjects as $key => $value) {
-					foreach ($twograde12 as $value2) {
-						if ($value->id == $value2->id) {
-							unset($subjects[$key]);
-						}
-					}
-				}
-			}
-			$this->data['subjects'] = $subjects;
-		// if($status == "1"){
+		$rowname = '';
+		$newData = array();
+		if($status == 1){
+			$rowname = '1stsemgrade11';
 			
-		// 	if(count($onegrade11) > 1){
-		// 		foreach ($subjects as $key => $value) {
-		// 			foreach ($onegrade11 as $value2) {
-		// 				if ($value->id == $value2->id) {
-		// 					unset($subjects[$key]);
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// 	if(count($twograde11) > 1){
-		// 		foreach ($subjects as $key => $value) {
-		// 			foreach ($twograde11 as $value2) {
-		// 				if ($value->id == $value2->id) {
-		// 					unset($subjects[$key]);
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// 	if(count($onegrade12) > 1){
-		// 		foreach ($subjects as $key => $value) {
-		// 			foreach ($onegrade12 as $value2) {
-		// 				if ($value->id == $value2->id) {
-		// 					unset($subjects[$key]);
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// 	if(count($twograde12) > 1){
-		// 		foreach ($subjects as $key => $value) {
-		// 			foreach ($twograde12 as $value2) {
-		// 				if ($value->id == $value2->id) {
-		// 					unset($subjects[$key]);
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// 	$this->data['subjects'] = $subjects;
-		// }
-		// if($status == "2"){
+			$oldData = json_decode($data['course']['1stsemgrade11']);
+			if(count($oldData) > 0){
+				foreach ($oldData as $value) {
+					array_push($newData, array('id' => $value->id));
+				}	
+			}
+		}
+		else if($status == 2){
+			$rowname = '2ndsemgrade11';
 			
-		// }
-		// if($status == "3"){
+			$oldData = json_decode($data['course']['2ndsemgrade11']);
+			if(count($oldData) > 0){
+				foreach ($oldData as $value) {
+					array_push($newData, array('id' => $value->id));
+				}	
+			}
+		}
+		else if($status == 3){
+			$rowname = '1stsemgrade12';
 			
-		// }
-		// if($status == "4"){
+			$oldData = json_decode($data['course']['1stsemgrade12']);
+			if(count($oldData) > 0){
+				foreach ($oldData as $value) {
+					array_push($newData, array('id' => $value->id));
+				}	
+			}
+		}
+		else if($status == 4){
+			$rowname = '2ndsemgrade12';
 			
-		// }
-		
-		
-		
+			$oldData = json_decode($data['course']['2ndsemgrade12']);
+			if(count($oldData) > 0){
+				foreach ($oldData as $value) {
+					array_push($newData, array('id' => $value->id));
+				}	
+			}
+		}
+
+
+		for ($i=0; $i < count($subjects); $i++) { 
+					
+			array_push($newData, array('id' => $subjects[$i]));
+		}
+		$result = $this->pal_model->update_course_data($rowname, $id, $newData);
+		$this->data['status'] = "success";
+
+
 		echo json_encode($this->data);
 		
 	}
-	public function removeCourseData(){
-		$id = $_POST['id'];
-		$removesubjects = $_POST['removesubjects'];
-		$data['course'] = $this->pal_model->update_course($id);
-		$new = json_decode($data['course']['subject_ids']);
-		$arr = array();
-		
-		foreach ($new as $key => $value) {
-			for ($i=0; $i < count($removesubjects); $i++) {
-				if($value->id == $removesubjects[$i]){
-					unset($new[$key]);
-				}
-			}
-		}
-		foreach ($new as $key => $value){
-			array_push($arr, array('id' => $value->id));
-		}
-		
-		$this->data['removesubjects'] = $arr;
-		$result = $this->pal_model->update_course_data($id, $arr);
-		echo json_encode($this->data);
-	}
+	
 
 	public function subject(){
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/subject');
 		$this->load->view('adminpage/footer');
+	}
+	public function listofsubjectperlevel(){
+		$id = $_POST['id'];
+		$status = $_POST['status'];
+		$data['course'] = $this->pal_model->update_course($id);
+		$data['subjects'] = $this->pal_model->subject();
+		$arr = array();
+		if($status == 1){
+			$data['olddata'] = json_decode($data['course']['1stsemgrade11']);
+			if($data['subjects'] > 0 && $data['olddata'] > 0){
+				foreach ($data['subjects'] as $key => $value) {
+					foreach ($data['olddata'] as $value2) {
+						if($value2->id == $value->id){
+							array_push($arr, array("id" => $value->id, "subject_description" => $value->subject_description));	
+						}
+					}
+				}
+			}
+		}
+		else if($status == 2){
+			$data['olddata'] = json_decode($data['course']['2ndsemgrade11']);
+			if($data['subjects'] > 0 && $data['olddata'] > 0){
+				foreach ($data['subjects'] as $key => $value) {
+					foreach ($data['olddata'] as $value2) {
+						if($value2->id == $value->id){
+							array_push($arr, array("id" => $value->id, "subject_description" => $value->subject_description));	
+						}
+					}
+				}
+			}
+		}
+		else if($status == 3){
+			$data['olddata'] = json_decode($data['course']['1stsemgrade12']);
+			if($data['subjects'] > 0 && $data['olddata'] > 0){
+				foreach ($data['subjects'] as $key => $value) {
+					foreach ($data['olddata'] as $value2) {
+						if($value2->id == $value->id){
+							array_push($arr, array("id" => $value->id, "subject_description" => $value->subject_description));	
+						}
+					}
+				}
+			}
+		}
+		else if($status == 4){
+			$data['olddata'] = json_decode($data['course']['2ndsemgrade12']);
+			if($data['subjects'] > 0 && $data['olddata'] > 0){
+				foreach ($data['subjects'] as $key => $value) {
+					foreach ($data['olddata'] as $value2) {
+						if($value2->id == $value->id){
+							array_push($arr, array("id" => $value->id, "subject_description" => $value->subject_description));	
+						}
+					}
+				}
+			}
+		}
+		$this->data['listofsubject'] = $arr;
+		echo json_encode($this->data);
+	}
+	public function removeCourseData(){
+		$id = $_POST['id'];
+		$removesubjects = $_POST['removesubjects'];
+		$data['course'] = $this->pal_model->update_course($id);
+		$status = $_POST['status'];
+		$rowname = "";
+		$arr = array();
+		
+		if ($status == 1) {
+			$old = json_decode($data['course']['1stsemgrade11']);
+			$rowname = "1stsemgrade11";
+			foreach ($old as $key => $value) {
+				for ($i=0; $i < count($removesubjects); $i++) {
+					if($value->id == $removesubjects[$i]){
+						unset($old[$key]);
+					}
+				}
+			}
+			foreach ($old as $key => $value){
+				array_push($arr, array('id' => $value->id));
+			}
+		}
+		else if ($status == 2) {
+			$old = json_decode($data['course']['2ndsemgrade11']);
+			$rowname = "2ndsemgrade11";
+			foreach ($old as $key => $value) {
+				for ($i=0; $i < count($removesubjects); $i++) {
+					if($value->id == $removesubjects[$i]){
+						unset($old[$key]);
+					}
+				}
+			}
+			foreach ($old as $key => $value){
+				array_push($arr, array('id' => $value->id));
+			}
+		}
+		else if ($status == 3) {
+			$old = json_decode($data['course']['1stsemgrade12']);
+			$rowname = "1stsemgrade12";
+			foreach ($old as $key => $value) {
+				for ($i=0; $i < count($removesubjects); $i++) {
+					if($value->id == $removesubjects[$i]){
+						unset($old[$key]);
+					}
+				}
+			}
+			foreach ($old as $key => $value){
+				array_push($arr, array('id' => $value->id));
+			}
+		}
+		else if ($status == 4) {
+			$old = json_decode($data['course']['2ndsemgrade12']);
+			$rowname = "2ndsemgrade12";
+			foreach ($old as $key => $value) {
+				for ($i=0; $i < count($removesubjects); $i++) {
+					if($value->id == $removesubjects[$i]){
+						unset($old[$key]);
+					}
+				}
+			}
+			foreach ($old as $key => $value){
+				array_push($arr, array('id' => $value->id));
+			}
+		}
+		$result = $this->pal_model->update_course_data($rowname, $id, $arr);
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
 	}
 }

@@ -2,12 +2,25 @@ $(document).ready(function(){
 	$('.viewAvailableSubjectBtn').click(function(){
 		$('.subjectToAdd').show();
 		$('.coursesubject').hide();
+
+		$('.listofsubject').hide();
+		$('.viewsemester').val("default");
+		$('.viewyearlevel').val("default");
+		$('.addsubjecttocoursewarning2').empty();
+		$('.removeBtn').hide();
+		$('.removesubjects').select2("val",'');
 	})
 	$('.courseSubjectBtn').click(function(){
 
 		$('.subjectToAdd').hide();
 		$('.coursesubject').show();
 		
+		$('.listofavailablesubject').hide();
+		$('.semester').val("default");
+		$('.yearlevel').val("default");
+		$('.addsubjecttocoursewarning').empty();
+		$('.saveBtn').hide();
+		$('.subjects').select2("val",'');
 	})
 	$('.subjects').change(function(){
 		var subjects = $('.subjects').val();
@@ -31,34 +44,75 @@ $(document).ready(function(){
 	});
 	$('.removeBtn').click(function(){
 		var id = $('.id').val();
+		var yearlevel = $('.viewyearlevel').val();
+		var semester = $('.viewsemester').val();
+		var status = 0;
+		
+		if(yearlevel == "Grade 11" && semester == "1st Sem"){
+			status = 1;
+		}
+		else if(yearlevel == "Grade 11" && semester == "2nd Sem"){
+			status = 2;
+		}
+		else if(yearlevel == "Grade 12" && semester == "1st Sem"){
+			status = 3;
+		}
+		else if(yearlevel == "Grade 12" && semester == "2nd Sem"){
+			status = 4;
+		}
 		$.ajax({
 			url: base_url + 'adminpage/removeCourseData',
 			type: 'post',
 			dataType: "json",
 			data:{
 				'id' : $('.id').val(),
-				'removesubjects' : $('.removesubjects').val()
+				'removesubjects' : $('.removesubjects').val(),
+				'status' : status
 			},
-			success: function (respone){
-				$(".removeBtn").prop("disabled",true);
-				$.toast({
-					text: 'Subject removed.',
-					position: 'bottom-center',
-					loaderBg: '#ff6849',
-					icon: 'error',
-					hideAfter: 44000,
-					stack: 6
-		      	});
-				setTimeout(function(){
-					window.location = base_url + 'course/'+id;
-				},2000);
+			success: function (response){
+				if(response.status == 'error'){
+					render_response('.addsubjecttocoursewarning','danger',response.msg);
+				}
+				else{
+					//render_response('.addsubjecttocoursewarning','success',response.msg);
+					$(".removeBtn").prop("disabled",true);
+					$.toast({
+						heading: 'Subject removed from '+semester+' '+' of '+yearlevel+'',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#dc3545',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 4123000,
+						stack: 6,
+			      	});
+					setTimeout(function(){
+						window.location = base_url + 'course/'+id;
+					},2500);
+				}
+				
 			}
-		})
+		});
 		
 
 	});
 	$('.saveBtn').click(function(){
 		var id = $('.id').val();
+		var yearlevel = $('.yearlevel').val();
+		var semester = $('.semester').val();
+		var status = 0;
+		if(yearlevel == "Grade 11" && semester == "1st Sem"){
+			status = 1;
+		}
+		else if(yearlevel == "Grade 11" && semester == "2nd Sem"){
+			status = 2;
+		}
+		else if(yearlevel == "Grade 12" && semester == "1st Sem"){
+			status = 3;
+		}
+		else if(yearlevel == "Grade 12" && semester == "2nd Sem"){
+			status = 4;
+		}
 		$.ajax({
 			url: base_url + 'adminpage/updateCourseData',
 			type: 'post',
@@ -66,27 +120,28 @@ $(document).ready(function(){
 			data:{
 				'id' : $('.id').val(),
 				'subjects' : $('.subjects').val(),
-				'year_level' : $('.yearlevel').val(),
-				'semester': $('.semester').val()
+				'status' : status
 			},
 			success: function (response){
 				if(response.status == 'error'){
 					render_response('.addsubjecttocoursewarning','danger',response.msg);
 				}
 				else{
-					render_response('.addsubjecttocoursewarning','success',response.msg);
+					//render_response('.addsubjecttocoursewarning','success',response.msg);
 					$(".saveBtn").prop("disabled",true);
 					$.toast({
-						text: 'Subject added.',
+						heading: 'Subject added to '+semester+' '+' of '+yearlevel+'',
 						position: 'bottom-center',
 						loaderBg: '#ff6849',
-						icon: 'success',
-						hideAfter: 44000,
-						stack: 6
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 4123000,
+						stack: 6,
 	              	});
 					setTimeout(function(){
 						window.location = base_url + 'course/'+id;
-					},2123000);
+					},2500);
 				}
 				
 			}
@@ -94,45 +149,26 @@ $(document).ready(function(){
 	})
 	$('.semester').change(function(){
 		var yearlevel = $('.yearlevel').val();
-		var semester = $('.semester').val();
-		var forgrade11one = $('.forgrade11one');
-		var status = 0;
 		if(!yearlevel){
 			render_response('.addsubjecttocoursewarning','danger','Please select Year Level');
 		}
 		else{
-			$('.forgrade11one').show();
-			if(yearlevel == "Grade 11" && semester == "1st Sem"){
-				status = 1;
-				
-			}
-			else if(yearlevel == "Grade 11" && semester == "2nd Sem"){
-				status = 2;
-			}
-			$.ajax({
-				url: base_url + 'adminpage/updateCourseData',
-				type: 'post',
-				dataType: "json",
-				data:{
-					'id' : $('.id').val(),
-					'subjects' : $('.subjects').val(),
-					'year_level' : $('.yearlevel').val(),
-					'semester': $('.semester').val(),
-					'status' : status
-				},
-				success: function(response){
-					$('.subjects').empty();
-					$.each(response.subjects, function(idx, obj) {
-						console.log(obj.id);
-						var option = $('<option value="'+obj.id+'">'+obj.id+'</option>');
-						$('.subjects').append(option);
-					});
-				}
-			});
+			$('.listofavailablesubject').show();
+			$('.subjects').val("");
+			$('.subjects').select2('val','');
 		}
 	});
 	$('.yearlevel').change(function(){
-		$('.addsubjecttocoursewarning').empty();
+		var semester = $('.semester').val();
+		if(!semester){
+
+			//render_response('.addsubjecttocoursewarning','danger','Please select Year Level');
+		}
+		else{
+			$('.addsubjecttocoursewarning').empty();
+			$('.listofavailablesubject').show();
+			$('.subjects').select2('val','');
+		}
 	})
 	$('.btn-success').click(function(){
 		$(this).css({
@@ -140,5 +176,94 @@ $(document).ready(function(){
             "color": "#fff",
             "border-color" : "#28a745"
         });
+	});
+
+	$('.viewsemester').change(function(){
+		var yearlevel = $('.viewyearlevel').val();
+		var status = 0;
+		if(!yearlevel){
+			render_response('.addsubjecttocoursewarning2','danger','Please select Year Level');
+		}
+		else{
+			$('.listofsubjecttext').text("Subjects of " + yearlevel+' '+$(this).val());
+			$('.listofsubject').show();
+			$('.subjects').val("");
+			$('.subjects').select2('val','');
+
+
+		}
+		if(yearlevel == 'Grade 11' && $(this).val() == '1st Sem'){
+			status = 1;
+		}
+		else if(yearlevel == 'Grade 11' && $(this).val() == '2nd Sem'){
+			status = 2;
+		}
+		else if(yearlevel == 'Grade 12' && $(this).val() == '1st Sem'){
+			status = 3;
+		}
+		else if(yearlevel == 'Grade 12' && $(this).val() == '2nd Sem'){
+			status = 4;
+		}
+		$.ajax({
+			url: base_url + 'adminpage/listofsubjectperlevel',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'status' : status
+			},
+			success: function(response){
+				$('.removesubjects').empty();
+				$.each(response.listofsubject, function(idx, obj) {
+					console.log(obj.id);
+					var option = $('<option value="'+obj.id+'">'+obj.subject_description+'</option>');
+					$('.removesubjects').append(option);
+				});
+			}
+		});
+	});
+	$('.viewyearlevel').change(function(){
+		var semester = $('.viewsemester').val();
+		var status = 0;
+		if(!semester){
+		}
+		else{
+			$('.addsubjecttocoursewarning2').empty();
+			$('.listofsubjecttext').text("Subjects of " + $(this).val()+' '+semester);
+			$('.listofsubject').show();
+			$('.subjects').select2('val','');
+		}
+		if(semester == '1st Sem' && $(this).val() == 'Grade 11'){
+			status = 1;
+		}
+		else if(semester == '2nd Sem' && $(this).val() == 'Grade 11'){
+			status = 2;
+		}
+		else if(semester == '1st Sem' && $(this).val() == 'Grade 12'){
+			status = 3;
+		}
+		else if(semester == '2nd Sem' && $(this).val() == 'Grade 12'){
+			status = 4;
+		}
+		$.ajax({
+			url: base_url + 'adminpage/listofsubjectperlevel',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'status' : status
+			},
+			success: function(response){
+				$('.removesubjects').empty();
+				$.each(response.listofsubject, function(idx, obj) {
+					console.log(obj.id);
+					var option = $('<option value="'+obj.id+'">'+obj.subject_description+'</option>');
+					$('.removesubjects').append(option);
+				});
+			}
+		});
 	})
+
+
+
 })
