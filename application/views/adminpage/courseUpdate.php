@@ -20,16 +20,30 @@
 			<div class="white-box" >
 				<div class="row form-material">
 							
-					<div class="col-md-5 form-group">
-						<input style="font-weight: bold;" readonly type="text" class="form-control" value="<?php echo $course['course_name']; ?>">
+					<div class="col-md-5 form-group forCourse">
+						<input readonly type="text" class="form-control courseDescription" id="courseDescription" value="<?php echo $course['course_name']; ?>">
+						
 						<input type="text" class="id" value="<?php echo $course['id'] ?>" hidden>
 
 					</div>
-					<ul class="courseUl">
-						<li><button class="btn btn-success viewAvailableSubjectBtn" style="float: right; ">Add Subject</button></li>
-						<li><button  class="btn btn-success courseSubjectBtn" style="float: right;">Subjects</a></li>
+					<ul class="courseUl" >
+						<li><button class="btn btn-success viewAvailableSubjectBtn" >Add Subject</button></li>
+						<li><button  class="btn btn-success courseSubjectBtn">Subjects</a></li>
 					</ul>
-					
+					<br><br><br>
+					<div class="newCourse" id="newCourse" style="display: none;">
+						<p id="newCourse">Academic Strand</p>
+						<ul>
+							<li><input id="newCourse" type="text" class="form-control newAcademicStrand" value="<?php echo $course['academic_track'] ?>"></li>
+							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm" ><i id="newCourse" class="fa fa-check	"></i></button></li>
+						</ul>
+						<br><br>
+						<p id="newCourse">Academic Description</p>
+						<ul>
+							<li><input id="newCourse" type="text" class="form-control" value="<?php echo $course['academic_strand'] ?>"></li>
+							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm" ><i id="newCourse" class="fa fa-check	"></i></button></li>
+						</ul>
+					</div>
 				</div>
 				<div class="coursesubject" style="display: nosne;">
 					<h4><strong>List of Subjects</strong></h4>

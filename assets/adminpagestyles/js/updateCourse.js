@@ -1,4 +1,19 @@
 $(document).ready(function(){
+
+	$(document).click(function(e){
+		if(e.target.id == "newCourse"){
+
+		}
+		else if(e.target.id == "courseDescription"){
+			$('.courseDescription').hide();
+			$('.newCourse').show();
+		}
+		else{
+			$('.newCourse').hide();
+			$('.courseDescription').show();
+		}
+	});
+
 	$('.viewAvailableSubjectBtn').click(function(){
 		$('.subjectToAdd').show();
 		$('.coursesubject').hide();

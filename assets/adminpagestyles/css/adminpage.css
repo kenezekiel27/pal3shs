@@ -66,3 +66,25 @@
     width: 300px;
 }
     
+.newCourse{
+    position: relative;
+    top: -82px;
+}
+.newCourse input{
+    font-size: 15px;
+    font-weight: bold;
+}
+.newCourse ul{
+    list-style: none;
+}
+.newCourse ul li{
+    float: left;
+    width: 30vw;
+}
+.courseUl{
+    z-index: 1;
+    position: relative;
+}
+.courseUl button{
+    float: right;
+}

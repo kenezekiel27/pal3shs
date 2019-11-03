@@ -71,10 +71,10 @@
 					<div class="add_course_warning" style="font-weight: lighter;"></div>
 					<div class="modal_body form-material">
 						
-						<center><label>Academic Track</label></center>
-			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter track">
+						<center><label>Academic Strand</label></center>
+			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter strand">
 						<br><br><br>
-						<center><label>Subject Description</label></center>
+						<center><label>Academic Description</label></center>
 						<input type="text" id="strand" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter description">
 						<br><br><br>
 						<center><button class="btn btn-success add_new_course" type="button" style="width: 40%;text-align: center;">Submit</button></center>
