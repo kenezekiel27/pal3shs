@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$('#importSubject').on('hidden.bs.modal', function(){
+      $('.allcourse').select2("val",'');
+    });
 	$('.importSubjectBtn').click(function(){
 		$.ajax({
 			url: base_url + 'adminpage/allcourse',
