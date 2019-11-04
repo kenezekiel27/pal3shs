@@ -1,5 +1,25 @@
 $(document).ready(function(){
+	$('.importSubjectBtn').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/allcourse',
+			type: 'post',
+			dataType: "json",
+			data:{
+			},
+			success: function(response){
+				$('.allcourse').empty();
 
+				$.each(response.allcourses, function(idx, obj) {
+					console.log(obj.id);
+					if(obj.id != $('.id').val()){
+						var option = $('<option value="'+obj.id+'">'+obj.course_name+'</option>');
+					}
+					
+					$('.allcourse').append(option);
+				});
+			}
+		});
+	});
 	$(document).click(function(e){
 		if(e.target.id == "newCourse"){
 

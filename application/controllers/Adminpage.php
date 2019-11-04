@@ -87,7 +87,6 @@ class Adminpage extends CI_Controller {
 		echo json_encode($this->data);
 	}
 	public function courseUpdate($id){
-
 		$data['course'] = $this->pal_model->update_course($id);
 		$data['subjects'] = $this->pal_model->subject();
 		$onegrade11 = json_decode($data['course']['1stsemgrade11']);
@@ -145,6 +144,7 @@ class Adminpage extends CI_Controller {
 		$subjects = $_POST['subjects'];
 		$status = $_POST['status'];
 		$data['course'] = $this->pal_model->update_course($id);
+
 		$rowname = '';
 		$newData = array();
 		if($status == 1){
@@ -387,6 +387,12 @@ class Adminpage extends CI_Controller {
 			$result = $this->pal_model->update_course_name($id, $rowname, $course_name, $newData);
 		}
 		
+		echo json_encode($this->data);
+	}
+
+	public function allcourse(){
+		$result = $this->pal_model->courses_offer();
+		$this->data['allcourses'] = $result;
 		echo json_encode($this->data);
 	}
 }

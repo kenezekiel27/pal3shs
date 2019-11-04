@@ -40,6 +40,7 @@
         $(document).ready(function() {
             $('.subjects').select2();
             $('.removesubjects').select2();
+            $('.allcourse').select2();
 
             
             $('#example').DataTable();

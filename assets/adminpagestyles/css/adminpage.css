@@ -46,6 +46,18 @@
     background-color: #dc3545 !important;
     border-color: #dc3545 !important;
 }
+.btn-primary{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
 .courseUl{
     list-style: none;
 }
@@ -88,4 +100,11 @@
 }
 .courseUl button{
     float: right;
+}
+
+#importSubject{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
