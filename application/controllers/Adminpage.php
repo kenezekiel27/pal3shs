@@ -30,8 +30,10 @@ class Adminpage extends CI_Controller {
 		}
 	}
 	public function dashboard(){
+		$teachers = $this->pal_model->teacher_data();
+		$this->data['personal_info'] = $teachers;
 		$this->load->view('adminpage/header');
-		$this->load->view('adminpage/dashboard');
+		$this->load->view('adminpage/dashboard', $this->data);
 		$this->load->view('adminpage/footer');
 	}
 	public function logout(){
