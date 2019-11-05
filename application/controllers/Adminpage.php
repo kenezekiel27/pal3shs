@@ -89,10 +89,10 @@ class Adminpage extends CI_Controller {
 	public function courseUpdate($id){
 		$data['course'] = $this->pal_model->update_course($id);
 		$data['subjects'] = $this->pal_model->subject();
-		$onegrade11 = json_decode($data['course']['1stsemgrade11']);
-		$twograde11 = json_decode($data['course']['2ndsemgrade11']);
-		$onegrade12 = json_decode($data['course']['1stsemgrade12']);
-		$twograde12 = json_decode($data['course']['2ndsemgrade12']);
+		$onegrade11 = json_decode($data['course']['firstsemgrade11']);
+		$twograde11 = json_decode($data['course']['secondsemgrade11']);
+		$onegrade12 = json_decode($data['course']['firstsemgrade12']);
+		$twograde12 = json_decode($data['course']['secondsemgrade12']);
 		if(count($onegrade11) > 0){
 			foreach ($data['subjects'] as $key => $value) {
 				foreach ($onegrade11 as $value2) {
@@ -148,9 +148,9 @@ class Adminpage extends CI_Controller {
 		$rowname = '';
 		$newData = array();
 		if($status == 1){
-			$rowname = '1stsemgrade11';
+			$rowname = 'firstsemgrade11';
 			
-			$oldData = json_decode($data['course']['1stsemgrade11']);
+			$oldData = json_decode($data['course']['firstsemgrade11']);
 			if(count($oldData) > 0){
 				foreach ($oldData as $value) {
 					array_push($newData, array('id' => $value->id));
@@ -158,9 +158,9 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 2){
-			$rowname = '2ndsemgrade11';
+			$rowname = 'secondsemgrade11';
 			
-			$oldData = json_decode($data['course']['2ndsemgrade11']);
+			$oldData = json_decode($data['course']['secondsemgrade11']);
 			if(count($oldData) > 0){
 				foreach ($oldData as $value) {
 					array_push($newData, array('id' => $value->id));
@@ -168,9 +168,9 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 3){
-			$rowname = '1stsemgrade12';
+			$rowname = 'firstsemgrade12';
 			
-			$oldData = json_decode($data['course']['1stsemgrade12']);
+			$oldData = json_decode($data['course']['firstsemgrade12']);
 			if(count($oldData) > 0){
 				foreach ($oldData as $value) {
 					array_push($newData, array('id' => $value->id));
@@ -178,9 +178,9 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 4){
-			$rowname = '2ndsemgrade12';
+			$rowname = 'secondsemgrade12';
 			
-			$oldData = json_decode($data['course']['2ndsemgrade12']);
+			$oldData = json_decode($data['course']['secondsemgrade12']);
 			if(count($oldData) > 0){
 				foreach ($oldData as $value) {
 					array_push($newData, array('id' => $value->id));
@@ -214,7 +214,7 @@ class Adminpage extends CI_Controller {
 		$data['subjects'] = $this->pal_model->subject();
 		$arr = array();
 		if($status == 1){
-			$data['olddata'] = json_decode($data['course']['1stsemgrade11']);
+			$data['olddata'] = json_decode($data['course']['firstsemgrade11']);
 			if($data['subjects'] > 0 && $data['olddata'] > 0){
 				foreach ($data['subjects'] as $key => $value) {
 					foreach ($data['olddata'] as $value2) {
@@ -226,7 +226,7 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 2){
-			$data['olddata'] = json_decode($data['course']['2ndsemgrade11']);
+			$data['olddata'] = json_decode($data['course']['secondsemgrade11']);
 			if($data['subjects'] > 0 && $data['olddata'] > 0){
 				foreach ($data['subjects'] as $key => $value) {
 					foreach ($data['olddata'] as $value2) {
@@ -238,7 +238,7 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 3){
-			$data['olddata'] = json_decode($data['course']['1stsemgrade12']);
+			$data['olddata'] = json_decode($data['course']['firstsemgrade12']);
 			if($data['subjects'] > 0 && $data['olddata'] > 0){
 				foreach ($data['subjects'] as $key => $value) {
 					foreach ($data['olddata'] as $value2) {
@@ -250,7 +250,7 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if($status == 4){
-			$data['olddata'] = json_decode($data['course']['2ndsemgrade12']);
+			$data['olddata'] = json_decode($data['course']['secondsemgrade12']);
 			if($data['subjects'] > 0 && $data['olddata'] > 0){
 				foreach ($data['subjects'] as $key => $value) {
 					foreach ($data['olddata'] as $value2) {
@@ -273,8 +273,8 @@ class Adminpage extends CI_Controller {
 		$arr = array();
 		
 		if ($status == 1) {
-			$old = json_decode($data['course']['1stsemgrade11']);
-			$rowname = "1stsemgrade11";
+			$old = json_decode($data['course']['firstsemgrade11']);
+			$rowname = "firstsemgrade11";
 			foreach ($old as $key => $value) {
 				for ($i=0; $i < count($removesubjects); $i++) {
 					if($value->id == $removesubjects[$i]){
@@ -287,8 +287,8 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if ($status == 2) {
-			$old = json_decode($data['course']['2ndsemgrade11']);
-			$rowname = "2ndsemgrade11";
+			$old = json_decode($data['course']['secondsemgrade11']);
+			$rowname = "secondsemgrade11";
 			foreach ($old as $key => $value) {
 				for ($i=0; $i < count($removesubjects); $i++) {
 					if($value->id == $removesubjects[$i]){
@@ -301,8 +301,8 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if ($status == 3) {
-			$old = json_decode($data['course']['1stsemgrade12']);
-			$rowname = "1stsemgrade12";
+			$old = json_decode($data['course']['firstsemgrade12']);
+			$rowname = "firstsemgrade12";
 			foreach ($old as $key => $value) {
 				for ($i=0; $i < count($removesubjects); $i++) {
 					if($value->id == $removesubjects[$i]){
@@ -315,8 +315,8 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		else if ($status == 4) {
-			$old = json_decode($data['course']['2ndsemgrade12']);
-			$rowname = "2ndsemgrade12";
+			$old = json_decode($data['course']['secondsemgrade12']);
+			$rowname = "secondsemgrade12";
 			foreach ($old as $key => $value) {
 				for ($i=0; $i < count($removesubjects); $i++) {
 					if($value->id == $removesubjects[$i]){
@@ -392,7 +392,22 @@ class Adminpage extends CI_Controller {
 
 	public function allcourse(){
 		$result = $this->pal_model->courses_offer();
-		$this->data['allcourses'] = $result;
+		//$this->data['allcourses'] = $result;
+		$arr = array();
+		foreach ($result as $key => $value) {
+			$old1 = json_decode($value->firstsemgrade11);
+			$old2 = json_decode($value->secondsemgrade11);
+			$old3 = json_decode($value->firstsemgrade12);
+			$old4 = json_decode($value->secondsemgrade12);
+			if(count($old1) >= 1 || count($old2) >= 1 || count($old3) >= 1 || count($old4) >= 1 ){
+				array_push($arr, array('id'=>$value->id, 'course_name' => $value->course_name));
+			}
+			else{
+				
+			}
+			
+		}
+		$this->data['allcourses'] = $arr;
 		echo json_encode($this->data);
 	}
 }

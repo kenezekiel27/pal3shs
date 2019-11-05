@@ -125,7 +125,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-
+        	
          	<p>Select course</p>
          	<select class="allcourse" style="width: 100% !important">
 			</select>

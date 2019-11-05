@@ -11,7 +11,11 @@ $(document).ready(function(){
 			},
 			success: function(response){
 				$('.allcourse').empty();
-
+				// if(response.allcourses.id != $('.id').val()){
+				// 	alert(response.allcourses.length);
+				// }
+				
+				
 				$.each(response.allcourses, function(idx, obj) {
 					console.log(obj.id);
 					if(obj.id != $('.id').val()){
