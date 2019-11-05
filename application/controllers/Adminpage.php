@@ -207,8 +207,9 @@ class Adminpage extends CI_Controller {
 	
 
 	public function subject(){
+		$this->data['subjects'] = $this->pal_model->subject();
 		$this->load->view('adminpage/header');
-		$this->load->view('adminpage/subject');
+		$this->load->view('adminpage/subject', $this->data);
 		$this->load->view('adminpage/footer');
 	}
 	public function listofsubjectperlevel(){

@@ -43,7 +43,7 @@
 											<center>
                             					<a href="#" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                             					<!-- <button title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn" id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" id="<?php echo $value->id ?>"></i></button> -->
-                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger  btn-sm" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
                             				</center>
 										</td>
 									</tr>
