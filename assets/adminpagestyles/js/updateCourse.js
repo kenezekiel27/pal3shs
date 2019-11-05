@@ -1,4 +1,20 @@
 $(document).ready(function(){
+	$('.allcourse').change(function(){
+		var allcourse = $('.allcourse').val();
+		var importyearlevel = $('.importyearlevel').val();
+		var importsem = $('.importsem').val();
+		$.ajax({
+			url: base_url + 'adminpage/checkifSemAndYearHasSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id': $('.id').val()
+			},
+			success: function(response){
+
+			}
+		})
+	})
 	$('#importSubject').on('hidden.bs.modal', function(){
       $('.allcourse').select2("val",'');
     });
@@ -14,19 +30,51 @@ $(document).ready(function(){
 				// if(response.allcourses.id != $('.id').val()){
 				// 	alert(response.allcourses.length);
 				// }
+
+				if(response.allcourses.length == 0){
+					$('.importSubjectData').hide();
+					$('.showwhennodata').show();
+				}
+				else{
+					var optionSelected = $('<option selected disabled>Select Course</option>');
+					$('.allcourse').append(optionSelected);
+					$.each(response.allcourses, function(idx, obj) {
+						if(obj.id != $('.id').val()){
+							var option = $('<option value="'+obj.id+'">'+obj.course_name+'</option>');
+						}
+						else if(obj.id == $('.id').val() && response.allcourses.length == 1){
+							$('.importSubjectData').hide();
+							$('.showwhennodata').show();
+						}
+						$('.allcourse').append(option);
+					});
+				}
 				
-				
-				$.each(response.allcourses, function(idx, obj) {
-					console.log(obj.id);
-					if(obj.id != $('.id').val()){
-						var option = $('<option value="'+obj.id+'">'+obj.course_name+'</option>');
-					}
-					
-					$('.allcourse').append(option);
-				});
 			}
 		});
 	});
+	$('.importBtn').click(function(){
+		var allcourse = $('.allcourse').val();
+		var importyearlevel = $('.importyearlevel').val();
+		var importsem = $('.importsem').val();
+		
+		
+		// $.ajax({
+		// 	url: base_url + 'adminpage/import_subject',
+		// 	type: 'post',
+		// 	dataType: "json",
+		// 	data:{
+		// 		'id' : $('.id').val(),
+		// 		'idtoduplicate' : allcourse,
+		// 		'importyearlevel' : importyearlevel,
+		// 		'importsem' : importsem
+		// 	},
+		// 	success: function(response){
+		// 		render_response('.importsubjectwarning', response.status, response.msg);
+		// 	}
+		// })
+	});
+
 	$(document).click(function(e){
 		if(e.target.id == "newCourse"){
 

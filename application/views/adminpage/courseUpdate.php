@@ -114,44 +114,52 @@
 
 	
 	<div class="modal fade" id="importSubject" style="height: 700px;">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Import subject from other course</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-        	
-         	<p>Select course</p>
-         	<select class="allcourse" style="width: 100% !important">
-			</select>
-			<br><br>
-			<p>Select Year level</p>
-			<select class="importyearlevel" multiple="multiple" style="width: 100% !important">
-				<option value="Grade 11">Grade 11</option>
-				<option value="Grade 12">Grade 12</option>
-			</select>
-			<br><br>
-			<p>Select Semester</p>
-			<select class="importyearlevel" multiple="multiple" style="width: 100% !important">
-				<option value="First Sem">1st Sem</option>
-				<option value="Second Sem">2nd Sem</option>
-			</select>
-			<br><br><br>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-        	<button type="button" class="btn btn-primary">Import</button>
-        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+	    <div class="modal-dialog modal-dialog-centered ">
+	      <div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header">
+	          <h4 class="modal-title">Import subject from other course</h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        </div>
+	        
+	        <!-- Modal body -->
+	        <div class="modal-body ">
+	        	<div class="importSubjectData">
+	        		<p class="importsubjectwarning"></p>
+	        		<p>Select course</p>
+		         	<select class="allcourse form-control" style="width: 100% !important">
+		         		
+					</select>
+					<br><br>
+					<p>Select Year level</p>
+					<select class="importyearlevel" multiple="multiple" style="width: 100% !important">
+						<option value="Grade 11">Grade 11</option>
+						<option value="Grade 12">Grade 12</option>
+					</select>
+					<br><br>
+					<p>Select Semester</p>
+					<select class="importsem" multiple="multiple" style="width: 100% !important">
+						<!-- <option value="First Sem">1st Sem</option>
+						<option value="Second Sem">2nd Sem</option> -->
+					</select>
+					<br><br><br>
+	        	</div>
+	         	<div class="showwhennodata" style="display: none; font-size: 25px;text-align: center;">
+	         		<br>
+	         		<p>All courses have no subjects yet.</p>
+	         		<br>
+	         	</div>
+	        </div>
+	        
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary importBtn">Import</button>
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        </div>
+	        
+	      </div>
+	    </div>
+	</div>
 	<!-- end of page content -->
 

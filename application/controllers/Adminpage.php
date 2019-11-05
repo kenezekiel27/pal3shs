@@ -410,4 +410,18 @@ class Adminpage extends CI_Controller {
 		$this->data['allcourses'] = $arr;
 		echo json_encode($this->data);
 	}
+	public function import_subject(){
+		$id = $_POST['id'];
+		$idtoduplicate = $_POST['idtoduplicate'];
+		$importyearlevel = $_POST['importyearlevel'];
+		$importsem = $_POST['importsem'];
+
+		$this->data['msg'] = $id.' '.$idtoduplicate.' '.$importyearlevel.' '.$importsem.' ';
+		$this->data['status'] = "success";
+	}
+	public function checkifSemAndYearHasSubject(){
+		$id = $_POST['id'];
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
 }
