@@ -1,4 +1,4 @@
-<!--  -->
+
 	<br>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/adminpagestyles/css/table.css">
 	
@@ -20,99 +20,100 @@
 			<div class="white-box" >
 				<div class="row form-material">
 							
-					<div class="col-md-5 form-group forCourse">
-						<input readonly type="text" class="form-control courseDescription" id="courseDescription" value="<?php echo $course['course_name']; ?>">
-						
+					<div class="col-md-5 form-group">
+						<input style="font-weight: bold;" readonly type="text" class="form-control" value="<?php echo $course['course_name']; ?>">
 						<input type="text" class="id" value="<?php echo $course['id'] ?>" hidden>
-						<input type="hidden" class="originalStrand" value="<?php echo $course['academic_track']?>">
-						<input type="hidden" class="originalDescription" value="<?php echo $course['academic_strand'] ?>">
-					</div>
-					<ul class="courseUl" >
-						<li><button class="btn btn-success viewAvailableSubjectBtn" >Add Subject</button></li>
-						<li><button  class="btn btn-success courseSubjectBtn">Subjects</a></li>
-						<li><button class="btn btn-success importSubjectBtn" data-toggle="modal" data-target="#importSubject">Import Subject</button></li>
-					</ul>
-					<br><br><br>
-					<div class="newCourse" id="newCourse" style="display: none;">
-						<p class="updatecoursenamewarning" id="newCourse" style="position: relative; z-index: 200"></p>
-						<p id="newCourse">Academic Strand</p>
-						<ul class="forAcademicStrand">
-							<li><input id="newCourse" type="text" class="form-control newAcademicStrand" value="<?php echo $course['academic_track'] ?>"></li>
-							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm saveStrand" ><i id="newCourse" class="fa fa-check	"></i></button></li>
-						</ul>
-						<br><br><br>
-						<p id="newCourse">Academic Description</p>
-						<ul>
-							<li><input id="newCourse" type="text" class="form-control newAcademicDescription" value="<?php echo $course['academic_strand'] ?>"></li>
-							<li><button id="newCourse" title="Save" data-toggle="tooltip" class="btn btn-success btn-sm saveDescription" ><i id="newCourse" class="fa fa-check	"></i></button></li>
-						</ul>
-					</div>
-				</div>
-				<div class="coursesubject" style="display: nosne;">
-					<h4><strong>List of Subjects</strong></h4>
-					<div class="addsubjecttocoursewarning2"></div>
-					<br>
-					<p>Grade</p>
-					<select class="form-control viewyearlevel" style="width: 100% !important">
-						<option selected disabled value="default">Select year level</option>
-						<option value="Grade 11">Grade 11</option>
-						<option value="Grade 12">Grade 12</option>
-					</select><br>
-					<p>Semester</p>
-					<select class="form-control viewsemester" style="width: 100% !important">
-						<option selected disabled value="default">Select semester</option>
-						<option value="1st Sem">1st Sem</option>
-						<option value="2nd Sem">2nd Sem</option>
-					</select>
-					<br>
-					<div class="listofsubject" style="display: none;">
 
-						<p class="listofsubjecttext"></p>
-						<select class="removesubjects" name="removesubjects[]" multiple="multiple"  style="width: 100% !important">
-							
-						</select>
 					</div>
+					<ul class="courseUl">
+						<li><button class="btn btn-success viewAvailableSubjectBtn" style="float: right; ">Add Subject</button></li>
+						<li><button  class="btn btn-success courseSubjectBtn" style="float: right;">Subjects</a></li>
+					</ul>
+					
+				</div>
+				<div class="row">
+					<button class="btn btn-success">Grade11 1st Semester</button>
+					<button class="btn btn-success">Grade11 2nd Semester</button>
+					<button class="btn btn-success">Grade12 1st Semester</button>
+					<button class="btn btn-success">Grade12 2nd Semester</button>
+				</div>
+				<br>
+				<div class="coursesubject">
+					<p>List of subject for this course</p>
+					<?php $data = json_decode($course['subject_ids'], true); ?>
+					<select class="removesubjects" name="removesubjects[]" multiple="multiple"  style="width: 100% !important">
+						<?php foreach ($data as $value): ?>
+							<?php 
+								foreach ($subjects as $key => $value2){
+						 			if ($value['id'] == $value2->id) {
+						 				?>
+						 					<option  value=<?php echo $value['id'] ?> style="width: 100% !important"><?php echo $value2->subject_description ?></option>
+						 				<?php
+						 			}
+						 		}
+
+							 ?>
+							
+						<?php endforeach ?>
+					</select>
 					<br><br>
 					<button class="btn btn-danger removeBtn" style="display: none;">Remove Subject</button>
 				</div>
 				<div class="subjectToAdd" style="display: none;">
-					<h4><strong>Add Subject</strong></h4>
-					<div class="addsubjecttocoursewarning"></div>
-					<br>
-					<p>Grade</p>
-					<select class="form-control yearlevel" name="yearlevel"   style="width: 100% !important">
-						<option selected disabled value="default">Select year level</option>
-						<option value="Grade 11">Grade 11</option>
-						<option value="Grade 12">Grade 12</option>
-					</select><br><br>
-					<p>Semester</p>
-					<select class="form-control semester" name="semester"   style="width: 100% !important">
-						<option selected disabled value="default">Select semester</option>
-						<option value="1st Sem">1st Sem</option>
-						<option value="2nd Sem">2nd Sem</option>
+					<p>Add subject</p>
+					 <?php 
+					 	$data = json_decode($course['subject_ids'], true);
+					 	if(is_array($data)){
+					 		foreach ($data as $value) {
+						 		foreach ($subjects as $key => $value2){
+						 			if ($value['id'] == $value2->id) {
+						 				unset($subjects[$key]);
+						 			}
+						 		}
+						 	}
+						 	
+					 	}
+					  ?>
+					  
+					<select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
+						<?php foreach ($subjects as $value): ?>
+							<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo $value->subject_description ?></option>
+						<?php endforeach ?>
 					</select>
-					<br><br>
-					 <div class="listofavailablesubject" style="display: none;">
-					 	<p>Available subject</p>
-					 	<select class="subjects" name="subjects[]" multiple="multiple"  style="width: 100% !important">
-							<?php foreach ($subjects as $value): ?>
-								<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo $value->subject_description ?></option>
-							<?php endforeach ?>
-						</select>
-					 </div>
-					
 					<br><br>
 					<button class="btn btn-success saveBtn" style="display: none;">Add Subject</button>
 				</div>
 				<button class="btn btn-danger removeCourse" style="float: right;" >Remove Course</button><br>
+				<!-- <table id="example" class="table table-striped table-bordered" style="width: 100%">
+							
+					<thead>
+						<tr>
+							<th >Subject Code</th>
+							<th >Subject Description</th>
+							<th >Action</th>
+						</tr>
+					</thead>
+					<tbody>	
+
+						<?php $key ?>
+						<?php foreach ($subjects as $key => $value): ?>
+							<tr class="row-<?php echo $value->id;?>">
+								<td><?php echo $value->subject_code; ?></td>
+								<td><p style="color: black;"><?php echo $value->subject_description ?></p></td>
+								<td>
+                    				<a href="<?php echo base_url();?>course/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                    				<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+                    			</td>
+							</tr>
+						<?php endforeach ?>
+					</tbody>
+				</table> -->
 			</div>
 			
 			<!-- end of Section 1 -->
 		</div>
 	</div>
 	<br><br>
-
-	
 	<div class="modal fade" id="importSubject" style="height: 700px;">
 	    <div class="modal-dialog modal-dialog-centered ">
 	      <div class="modal-content">

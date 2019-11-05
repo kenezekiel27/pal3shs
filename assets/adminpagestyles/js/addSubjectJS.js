@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$('.add_new_subject').click(function(){
 		$.ajax({
 			type: "POST",
-            url: 'addSubjectPHP.php',
+            url: base_url + 'adminpage/addsubject',
             dataType: 'json',
             data: {
             	'subjectcode': $('#subject_code').val(),
@@ -11,12 +11,17 @@ $(document).ready(function(){
         	},
         	success: function(response){
         		$('.add_subject_warning').show();
-        		render_response('.add_subject_warning', response.type, response.msg);
-        		if (response.type == "success") {
+        		
+        		if (response.status== "success") {
         			$('#subject_code').val("");
         			$('#subject_description').val("");
 					$('#subject_type').val("");
+                    render_response('.add_subject_warning', 'success', response.msg);
         		}
+                else{
+                    render_response('.add_subject_warning', 'danger', response.msg);
+                }
+
         	}
 		})
 

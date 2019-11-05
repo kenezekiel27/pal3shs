@@ -74,13 +74,26 @@
 					<table id="example1" class="sectionTable table table-striped table-bordered" style="width: 100%">
 						<thead>
 							<tr>
-								<th>Lrn</th>
+								<!-- <th>Lrn</th> -->
 								<th>Last Name</th>
 								<th>First Name</th>
 								<th>Middle Name</th>
 							</tr>
 						</thead>
-						
+						<tbody>
+
+							<?php $key ?>
+							<?php 
+								foreach ($personal_info as $key => $value) {
+									echo $value->lrn;
+									$new = json_decode($value->personal_info,true);
+									foreach ($new as $key => $value2) {
+										echo $value2['lname'];
+									}
+								}
+
+							 ?>
+						</tbody>
 					</table>
 				</div>
 			</div>

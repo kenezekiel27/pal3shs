@@ -64,8 +64,7 @@
 			<div class="modal" id="add_course_form">
 				<div class="container add_course" id="add_course_form_body">
 					<br><br>
-					<center><p style="font-size: 20px; font-weight: lighter; float: left;">Add Course</p></center>
-					<br><br>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Course</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
 					<hr>
 					<div class="add_course_warning" style="font-weight: lighter;"></div>
@@ -74,7 +73,11 @@
 						<center><label>Academic Strand</label></center>
 			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter strand">
 						<br><br><br>
+
+						<center><label>Academic Strand</label></center>
+
 						<center><label>Academic Description</label></center>
+
 						<input type="text" id="strand" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter description">
 						<br><br><br>
 						<center><button class="btn btn-success add_new_course" type="button" style="width: 40%;text-align: center;">Submit</button></center>

@@ -29,6 +29,7 @@ class Adminpage extends CI_Controller {
 			redirect('home');
 		}
 	}
+	
 	public function dashboard(){
 		$teachers = $this->pal_model->teacher_data();
 		$this->data['personal_info'] = $teachers;
@@ -43,6 +44,7 @@ class Adminpage extends CI_Controller {
 
 		redirect('home');
 	}
+	//viewing of course list
 	public function course(){
 		$courses = $this->pal_model->courses_offer();
 		
@@ -56,7 +58,7 @@ class Adminpage extends CI_Controller {
 		$strand = $_POST['strand'];
 		$this->form_validation->set_message('is_unique', '%s already exist.');
 		$this->form_validation->set_rules('track', "Academic Track", 'required');
-		$this->form_validation->set_rules('strand', "Subject Description", 'required|is_unique[course_offer.academic_strand]');
+		$this->form_validation->set_rules('strand', "Academic Strand", 'required|is_unique[course_offer.academic_strand]');
 
 		if ($this->form_validation->run() == FALSE) {
 
@@ -426,4 +428,33 @@ class Adminpage extends CI_Controller {
 		$this->data['id'] = $id;
 		echo json_encode($this->data);
 	}
+
+	public function addsubject(){
+		$subject_code = $_POST['subjectcode'];
+		$subject_description = $_POST['subjectdescription'];
+		$subject_type = $_POST['subjecttype'];
+		$this->form_validation->set_message('is_unique', '%s already exist.');
+		$this->form_validation->set_rules('subjectcode', "Subject Code", 'required|is_unique[list_of_subject.subject_code]');
+		$this->form_validation->set_rules('subjectdescription', "Subject Description", 'required|is_unique[list_of_subject.subject_description]');
+		$this->form_validation->set_rules('subjecttype', "Subject Description", 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = 'error';
+			$this->data['msg'] = validation_errors();
+			echo json_encode($this->data);
+		}
+		else{
+			$course_data = array(
+				'subject_code' => $subject_code,
+				'subject_description' => $subject_description,
+				'subject_type' => $subject_type
+			);
+			$courseadd =  $this->pal_model->add_subject($course_data);
+			$this->data['status'] = 'success';
+			$this->data['msg'] = "Successfully added a course.";
+			echo json_encode($this->data);
+		}
+	}
+	
 }

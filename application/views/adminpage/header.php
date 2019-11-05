@@ -86,7 +86,7 @@
 						<a href="#" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect">Manage</a>
+						<a href="#" class="waves-effect"><i class="fa fa-align-justify" style="display: inline-block;margin-right: 10px;"></i>Manage</a>
 						<ul class="nav" id="side-menu">
 							<li>
 								<a href="<?php echo base_url(); ?>course" class="waves-effect" style="left: 30px">Course</a>
