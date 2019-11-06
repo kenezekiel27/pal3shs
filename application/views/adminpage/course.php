@@ -64,8 +64,7 @@
 			<div class="modal" id="add_course_form">
 				<div class="container add_course" id="add_course_form_body">
 					<br><br>
-					<center><p style="font-size: 20px; font-weight: lighter; float: left;">Add Course</p></center>
-					<br><br>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Course</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
 					<hr>
 					<div class="add_course_warning" style="font-weight: lighter;"></div>

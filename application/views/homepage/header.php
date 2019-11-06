@@ -79,16 +79,6 @@
 								Username / Password?
 							</a>
 						</div>
-
-						<div class="text-center">
-							<span class="txt1">
-								Create an account?
-							</span>
-
-							<a href="#" class="txt2 hov1">
-								Sign up
-							</a>
-						</div>
 				</div>
 			</div>
 		</div>
@@ -129,6 +119,13 @@
 					</ul>
 					<ul class="navbar-nav absolute-right">
 						<button class="openLoginForm" data-toggle="modal" data-target="#loginForm" style="color: #11cbd7; background: none; border:none; cursor: pointer;" >Login</button>
+						<div class="dropdown">
+							<a class="nav-link dropdown-toggle" style="color: #11cbd7 !important; background: none; border:none; cursor: pointer;" >Register</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Student</a>
+	                 			<a class="dropdown-item" href="<?php echo base_url(); ?>registration2">Teacher</a>
+							</div>
+						</div>
 					</ul>
 				</div>
 			</div>

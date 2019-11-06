@@ -65,7 +65,86 @@ class Homepage extends CI_Controller {
 			
 			
 		}
-		
+	}
+	public function register2(){
+			
+		$this->load->view('homepage/header');
+		$this->load->view('homepage/registration2');
+		$this->load->view('homepage/footer');
+	}
+	public function addteacher(){
+		$lrn = $_POST['lrn'];
+		$lname = $_POST['lname'];
+		$fname = $_POST['fname'];
+		$mname = $_POST['mname'];
+		$sex = $_POST['sex'];
+		$bday = $_POST['bday'];
+		$bplace = $_POST['bplace'];
+		$age = $_POST['age'];
+		$height = $_POST['height'];
+		$weight = $_POST['weight'];
+		$language = $_POST['language'];
+		$religion = $_POST['religion'];
+		$ethnic_group = $_POST['ethnic_group'];
+		$telephone = $_POST['telephone'];
+		$mobile = $_POST['mobile'];
+		$email = $_POST['email'];
+		$this->form_validation->set_message('is_unique', '%s already exist.');
+		$this->form_validation->set_rules('lrn', "LRN", 'required|is_unique[teacher_data.lrn]|is_unique[student_data.lrn]');
+		$this->form_validation->set_rules('lname', "Last name", 'required');
+		$this->form_validation->set_rules('fname', "First name", 'required');
+		$this->form_validation->set_rules('mname', "Middle Name", 'required');
+		$this->form_validation->set_rules('sex', "Sex", 'required');
+		$this->form_validation->set_rules('bday', "Birth Date", 'required');
+		$this->form_validation->set_rules('bplace', "Birth Place", 'required');
+		$this->form_validation->set_rules('age', "Age", 'required');
+		$this->form_validation->set_rules('height', "Height", 'required');
+		$this->form_validation->set_rules('weight', "Weight", 'required');
+		$this->form_validation->set_rules('language', "Language", 'required');
+		$this->form_validation->set_rules('religion', "Religion", 'required');
+		$this->form_validation->set_rules('ethnic_group', "Ethnic Group", 'required');
+		$this->form_validation->set_rules('telephone', "telephone", 'required');
+		$this->form_validation->set_rules('mobile', "mobile", 'required');
+		$this->form_validation->set_rules('email', "email", 'required');
+
+
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = 'error';
+			$this->data['msg'] = validation_errors();
+			echo json_encode($this->data);
+		}
+		else{
+			$arr = array();
+			$personal_info = array(
+				array(
+					'lname' =>$lname,
+					'fname' =>$fname,
+					'mname' =>$mname,
+					'sex' =>$sex,
+					'bday' =>$bday,
+					'bplace' =>$bplace,
+					'age' =>$age,
+					'height' =>$height,
+					'weight' =>$weight,
+					'language' =>$language,
+					'religion' =>$religion,
+					'ethnic_group' =>$ethnic_group,
+					'telephone'=>$telephone,
+					'mobile'=>$mobile,
+					'email' =>$email,
+				)
+			);
+			// foreach ($personal_info as $key => $value) {
+			// 	array_push($arr, array())
+			// }
+			$courseadd =  $this->pal_model->add_teacher($lrn,$personal_info);
+			$this->data['status'] = 'success';
+			$this->data['msg'] = "Successfully added.";
+			
+			echo json_encode($this->data);
+		}
 	}
 
 	// public function index()

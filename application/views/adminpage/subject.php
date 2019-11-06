@@ -33,7 +33,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								
+								<?php $key ?>
+								<?php foreach ($subjects as $key => $value): ?>
+									<tr class="row-<?php echo $value->id;?>">
+										<td><?php echo $value->subject_code ?></td>
+										<td><?php echo $value->subject_description ?></p></td>
+										<td><?php echo $value->subject_type ?></td>
+										<td>
+											<center>
+                            					<a href="#" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                            					<!-- <button title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn" id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" id="<?php echo $value->id ?>"></i></button> -->
+                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+                            				</center>
+										</td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 					</div>
@@ -44,27 +58,27 @@
 			<div class="modal" id="add_subject_form">
 				<div class="container add_subject" id="add_subject_form_body">
 					<br><br>
-					<center><p style="font-size: 20px; font-weight: bold">Add Subject</p></center>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Subject</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
-					<br>
-					<p class="add_subject_warning" style="display: none;"></p>
+					<hr>
+					<p class="add_subject_warning" style="font-weight: lighter;"></p>
 					<div class="modal_body form-material">
 						
-						<label>Subject Code</label>
-			            <input type="text" id="subject_code" class="form-control">
+						<center><label>Subject Code</label></center>
+			            <input type="text" id="subject_code" class="form-control" style="text-align: center; font-weight: lighter;">
 						<br>
-						<label>Subject Description</label>
-						<input type="text" id="subject_description" class="form-control">
+						<center><label>Subject Description</label></center>
+						<input type="text" id="subject_description" class="form-control" style="text-align: center; font-weight: lighter;">
 						<br>
-						<label>Subject Type</label>
-						<select type="text" id="subject_type"class="form-control">
+						<center><label>Subject Type</label></center>
+						<select type="text" id="subject_type"class="form-control"style="text-align: center; font-weight: lighter; padding-left: 136px">
 							<option selected disabled>Select</option>
 							<option>applied</option>
 							<option>core</option>
 							<option>specialized</option>
 						</select> 
 						<br>
-						<button class="btn btn-success add_new_subject" type="button" style="width: 20%; float: left;">Add</button>
+						<center><button class="btn btn-success add_new_subject" type="button" style="width: 40%;">Add</button></center>
 						<br><br><br>
 					</div>
 				</div>

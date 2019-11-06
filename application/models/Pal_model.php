@@ -38,6 +38,27 @@
 	        $this->db->where('id', $id);
         	$this->db->update('course_offer', $newData);
 		}
+		public function add_subject($data){
+			$this->db->insert('list_of_subject', $data);
+			$insert_id = $this->db->insert_id();
+			return $insert_id;
+		}
+		public function subject_offer(){
+			$query = $this->db->get('list_of_subject');
+			return $query->result();
+		}
+		public function add_teacher($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+	            'lrn' =>$lrn,
 
+			);
+			$this->db->insert('teacher_data', $newData);
+		}
+		public function teacher_data(){
+			$query = $this->db->get('teacher_data');
+			return $query->result();
+		}
 		//for adding of subject to course
 	}

@@ -9,7 +9,7 @@
 					<div class="mb-5 element-animate">
 
 						<h1 class="mb-2">About Us</h1>
-              			<p class="bcrumb"><a href="homepage3.php" style="color: #11cbd7">Home</a> <span class="sep ion-android-arrow-dropright px-2"></span>  <span class="current">About Us</span></p>
+              			<p class="bcrumb"><a href="<?php echo base_url(); ?>home" style="color: #11cbd7">Home</a> <span class="sep ion-android-arrow-dropright px-2"></span>  <span class="current">About Us</span></p>
 					</div>
 				</div>
 			</div>

@@ -72,6 +72,7 @@
 
 	<script src="<?php echo base_url(); ?>assets/homepagestyles/customJS.js"></script>
 	<script src="<?php echo base_url(); ?>assets/homepagestyles/login.js"></script>
+	<script src="<?php echo base_url(); ?>assets/homepagestyles/js/registration2JS.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>
 		var base_url = '<?php echo base_url() ?>';
