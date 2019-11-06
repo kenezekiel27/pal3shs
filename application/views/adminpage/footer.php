@@ -40,6 +40,9 @@
         $(document).ready(function() {
             $('.subjects').select2();
             $('.removesubjects').select2();
+            //$('.allcourse').select2();
+            $('.importyearlevel').select2();
+            $('.importsem').select2();
 
             $('#example').DataTable();
             $('#example1').DataTable();

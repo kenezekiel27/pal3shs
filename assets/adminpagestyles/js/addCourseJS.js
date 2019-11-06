@@ -40,7 +40,7 @@ $(document).ready(function(){
                           $('#strand').val("");
 
                           var newrow = $('<tr class="row-'+response.data.id+'"><td >'+totalno+'</td><td><p style="color:black">'
-                            +response.data.course_name+'</p></td><td><center><a title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm " href="'+base_url+'course/'+response.data.id+'"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>&nbsp;'
+                            +response.data.course_name+'</p></td><td><center><a title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn'+response.data.id+'" href="'+base_url+'course/'+response.data.id+'"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>&nbsp;'
                             +'<button title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="'+response.data.id+'"  ><i class="fa fa-times" aria-hidden="true" id="'+response.data.id+'"></i></button></center></td></tr>');
                           $('#example').append(newrow);
                           $('.totalno').text(totalno);
@@ -61,35 +61,38 @@ $(document).ready(function(){
 
 	});
     $(document).on('click', '.removed_course', function(e){
-      var id = e.target.id;
-       $('#'+id).prop("disabled", true);
-       var totalno = parseInt($('.totalno').text()) +1;
-      $.ajax({
-          type: "POST",
-          url: base_url + 'adminpage/removeCourse',
-          dataType: "json",
-          data:{
-              'id':id,
-          },  
-          success: function(response){
-              if (response.status == "success") {
-                $.toast({
-                    text: 'Course has been removed.',
-                    position: 'bottom-center',
-                    loaderBg: '#ff6849',
-                    icon: 'success',
-                    hideAfter: 2000,
-                    stack: 6
-                });
-                $('.updateBtn'+id).prop("disabled", true);
-                $(this).prop("disabled", true);
-                setTimeout(function(){
-                    $('.row-'+id).hide("slow");
-                    $('.totalno').text(parseInt($('.totalno').text()) -1);
-                  }, 1000);
-              }
-          }
-      })
+      var answer = confirm('Are you sure you want to remove this?');
+      if(answer){
+        var id = e.target.id;
+        $('#'+id).prop("disabled", true);
+        var totalno = parseInt($('.totalno').text()) +1;
+        $.ajax({
+            type: "POST",
+            url: base_url + 'adminpage/removeCourse',
+            dataType: "json",
+            data:{
+                'id':id,
+            },  
+            success: function(response){
+                if (response.status == "success") {
+                  $.toast({
+                      text: 'Course has been removed.',
+                      position: 'bottom-center',
+                      loaderBg: '#ff6849',
+                      icon: 'success',
+                      hideAfter: 2000,
+                      stack: 6
+                  });
+                  $('.updateBtn'+id).attr("disabled", true);
+                  $(this).prop("disabled", true);
+                  setTimeout(function(){
+                      $('.row-'+id).hide("slow");
+                      $('.totalno').text(parseInt($('.totalno').text()) -1);
+                    }, 1000);
+                }
+            }
+        })
+      }
     });
 
 

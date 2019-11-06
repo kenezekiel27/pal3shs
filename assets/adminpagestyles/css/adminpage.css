@@ -46,6 +46,18 @@
     background-color: #dc3545 !important;
     border-color: #dc3545 !important;
 }
+.btn-primary{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
 .courseUl{
     list-style: none;
 }
@@ -59,4 +71,40 @@
     background-image:none !important; /*Removes Pesky Default Toast Icon*/
     padding: 15px 15px 15px 15px !important; /*Corrects Spacing for default icon*/
     text-align:center;
+}
+.jq-toast-single{
+    text-align: left;
+    display: block;
+    width: 300px;
+}
+    
+.newCourse{
+    position: relative;
+    top: -82px;
+}
+.newCourse input{
+    font-size: 15px;
+    font-weight: bold;
+}
+.newCourse ul{
+    list-style: none;
+}
+.newCourse ul li{
+    float: left;
+    width: 30vw;
+    padding: 0px 10px;
+}
+.courseUl{
+    z-index: 1;
+    position: relative;
+}
+.courseUl button{
+    float: right;
+}
+
+#importSubject{
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
 }

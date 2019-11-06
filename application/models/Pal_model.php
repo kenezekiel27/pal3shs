@@ -30,10 +30,18 @@
 			$query = $this->db->get('list_of_subject');
 			return $query->result();
 		}
-		public function update_course_data($id, $data){
+		public function update_course_data($rowname, $id, $data){
 			$data = json_encode($data, JSON_PRETTY_PRINT);
 			$newData = [
-	            'subject_ids' => $data,
+	            $rowname => $data,
+	        ];
+	        $this->db->where('id', $id);
+        	$this->db->update('course_offer', $newData);
+		}
+		public function update_course_name($id, $rowname, $course_name, $data){
+			$newData = [
+				'course_name' => $course_name,
+				$rowname => $data
 	        ];
 	        $this->db->where('id', $id);
         	$this->db->update('course_offer', $newData);
@@ -42,10 +50,6 @@
 			$this->db->insert('list_of_subject', $data);
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
-		}
-		public function subject_offer(){
-			$query = $this->db->get('list_of_subject');
-			return $query->result();
 		}
 		public function add_teacher($lrn,$data){
 			$data = json_encode($data, JSON_PRETTY_PRINT);

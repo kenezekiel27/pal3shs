@@ -47,7 +47,7 @@
 										<td><p style="color: black;"><?php echo $value->course_name ?></p></td>
 										<td>
                             				<center>
-                            					<a href="<?php echo base_url();?>course/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                            					<a href="<?php echo base_url();?>course/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                             					<!-- <button title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn" id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" id="<?php echo $value->id ?>"></i></button> -->
                             					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
                             				</center>
@@ -70,10 +70,14 @@
 					<div class="add_course_warning" style="font-weight: lighter;"></div>
 					<div class="modal_body form-material">
 						
-						<center><label>Academic Track</label></center>
-			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter track">
-						<br><br><br>
 						<center><label>Academic Strand</label></center>
+			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter strand">
+						<br><br><br>
+
+						<center><label>Academic Strand</label></center>
+
+						<center><label>Academic Description</label></center>
+
 						<input type="text" id="strand" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter description">
 						<br><br><br>
 						<center><button class="btn btn-success add_new_course" type="button" style="width: 40%;text-align: center;">Submit</button></center>
