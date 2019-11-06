@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 04:19 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Nov 06, 2019 at 02:45 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,7 +45,7 @@ CREATE TABLE `course_offer` (
 --
 
 INSERT INTO `course_offer` (`id`, `firstsemgrade11`, `secondsemgrade11`, `firstsemgrade12`, `secondsemgrade12`, `course_name`, `academic_track`, `academic_strand`, `subject_ids`) VALUES
-(1, '', '', '', '', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"26\"\n    },\n    {\n        \"id\": \"27\"\n    },\n    {\n        \"id\": \"28\"\n    },\n    {\n        \"id\": \"29\"\n    },\n    {\n        \"id\": \"30\"\n    },\n    {\n        \"id\": \"32\"\n    },\n    {\n        \"id\": \"33\"\n    },\n    {\n        \"id\": \"34\"\n    },\n    {\n        \"id\": \"35\"\n    },\n    {\n        \"id\": \"36\"\n    },\n    {\n        \"id\": \"37\"\n    },\n    {\n        \"id\": \"38\"\n    },\n    {\n        \"id\": \"40\"\n    },\n    {\n        \"id\": \"41\"\n    },\n    {\n        \"id\": \"42\"\n    },\n    {\n        \"id\": \"43\"\n    },\n    {\n        \"id\": \"44\"\n    },\n    {\n        \"id\": \"45\"\n    },\n    {\n        \"id\": \"46\"\n    },\n    {\n        \"id\": \"47\"\n    },\n    {\n        \"id\": \"48\"\n    },\n    {\n        \"id\": \"71\"\n    },\n    {\n        \"id\": \"72\"\n    },\n    {\n        \"id\": \"73\"\n    },\n    {\n        \"id\": \"74\"\n    },\n    {\n        \"id\": \"75\"\n    },\n    {\n        \"id\": \"76\"\n    },\n    {\n        \"id\": \"77\"\n    },\n    {\n        \"id\": \"78\"\n    },\n    {\n        \"id\": \"79\"\n    },\n    {\n        \"id\": \"80\"\n    },\n    {\n        \"id\": \"81\"\n    },\n    {\n        \"id\": \"82\"\n    },\n    {\n        \"id\": \"83\"\n    },\n    {\n        \"id\": \"84\"\n    },\n    {\n        \"id\": \"85\"\n    },\n    {\n        \"id\": \"86\"\n    },\n    {\n        \"id\": \"87\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"89\"\n    },\n    {\n        \"id\": \"90\"\n    },\n    {\n        \"id\": \"5\"\n    }\n]'),
+(1, '[]', '', '', '', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"26\"\n    },\n    {\n        \"id\": \"27\"\n    },\n    {\n        \"id\": \"28\"\n    },\n    {\n        \"id\": \"29\"\n    },\n    {\n        \"id\": \"30\"\n    },\n    {\n        \"id\": \"32\"\n    },\n    {\n        \"id\": \"33\"\n    },\n    {\n        \"id\": \"34\"\n    },\n    {\n        \"id\": \"35\"\n    },\n    {\n        \"id\": \"36\"\n    },\n    {\n        \"id\": \"37\"\n    },\n    {\n        \"id\": \"38\"\n    },\n    {\n        \"id\": \"40\"\n    },\n    {\n        \"id\": \"41\"\n    },\n    {\n        \"id\": \"42\"\n    },\n    {\n        \"id\": \"43\"\n    },\n    {\n        \"id\": \"44\"\n    },\n    {\n        \"id\": \"45\"\n    },\n    {\n        \"id\": \"46\"\n    },\n    {\n        \"id\": \"47\"\n    },\n    {\n        \"id\": \"48\"\n    },\n    {\n        \"id\": \"71\"\n    },\n    {\n        \"id\": \"72\"\n    },\n    {\n        \"id\": \"73\"\n    },\n    {\n        \"id\": \"74\"\n    },\n    {\n        \"id\": \"75\"\n    },\n    {\n        \"id\": \"76\"\n    },\n    {\n        \"id\": \"77\"\n    },\n    {\n        \"id\": \"78\"\n    },\n    {\n        \"id\": \"79\"\n    },\n    {\n        \"id\": \"80\"\n    },\n    {\n        \"id\": \"81\"\n    },\n    {\n        \"id\": \"82\"\n    },\n    {\n        \"id\": \"83\"\n    },\n    {\n        \"id\": \"84\"\n    },\n    {\n        \"id\": \"85\"\n    },\n    {\n        \"id\": \"86\"\n    },\n    {\n        \"id\": \"87\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"89\"\n    },\n    {\n        \"id\": \"90\"\n    },\n    {\n        \"id\": \"5\"\n    }\n]'),
 (2, '', '', '', '', 'Academic/General Academic Strand', 'Academic', 'General Academic Strand', '[\n    {\n        \"id\": 5\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"8\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"9\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
 (3, '', '', '', '', 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', ''),
 (4, '', '', '', '', 'Academic/Science and Technology, Engineering and Mathematics', 'Academic', 'Science and Technology, Engineering and Mathematics', ''),
@@ -63,6 +63,7 @@ INSERT INTO `course_offer` (`id`, `firstsemgrade11`, `secondsemgrade11`, `firsts
 
 CREATE TABLE `list_of_subject` (
   `id` int(11) NOT NULL,
+  `teachers_id` text NOT NULL,
   `subject_code` varchar(250) NOT NULL,
   `subject_description` varchar(500) NOT NULL,
   `subject_type` varchar(250) NOT NULL
@@ -72,57 +73,54 @@ CREATE TABLE `list_of_subject` (
 -- Dumping data for table `list_of_subject`
 --
 
-INSERT INTO `list_of_subject` (`id`, `subject_code`, `subject_description`, `subject_type`) VALUES
-(5, 'CPR', 'Contemporary Philippine Arts from the Regions', 'applied'),
-(6, 'ELS', 'Earth and Life Science', 'applied'),
-(7, 'GenMath', 'General Mathematics', 'applied'),
-(8, 'KPWK', 'Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino\r\n', 'applied'),
-(9, 'Oral', 'Oral Communication', 'applied'),
-(10, 'PerDev', 'Personal Development', 'applied'),
-(11, 'PE1', 'Physical Education 1', 'applied'),
-(18, 'Math1', 'Business Math', 'core'),
-(19, 'MIL', 'Media and Information Literacy', 'applied'),
-(26, 'PE2', 'Physical Education 2', 'applied'),
-(27, 'PhySci', 'Physical Science', 'applied'),
-(28, 'RAW', 'Reading and Writing', 'applied'),
-(29, 'Stat', 'Statistics and Probability', 'applied'),
-(30, 'PR1', 'Practical Research 1', 'core'),
-(32, 'OAM', 'Organization and Management', 'specialized'),
-(33, 'PHP', 'Introduction to the Philosophy of the Human Person (IPHP)', 'applied'),
-(34, 'PE3', 'Physical Education 3', 'applied'),
-(35, 'EmpTech', 'Empowerment Technologies', 'core'),
-(36, 'Entrep', 'Entrepreneurship', 'core'),
-(37, 'Fil1', 'Filipino sa Piling Larang:', 'core'),
-(38, 'PR2', 'Practical Research 2', 'core'),
-(40, 'POM', 'Principles of Marketing', 'specialized'),
-(41, 'PE4', 'Physical Education 4', 'applied'),
-(42, 'UCSP', 'Understanding Culture, Society, and Politics (UCSP)', 'applied'),
-(43, 'English1', 'English for Academic and Professional Purposes', 'core'),
-(44, 'IRCABS', 'Immersion/Research/Culminating Activity/Business Simulation', 'specialized'),
-(45, 'Econ1', 'Applied Economics', 'specialized'),
-(46, 'Ethics1', 'Business Ethics and Responsibility', 'specialized'),
-(47, 'Finance', 'Business Finance', 'specialized'),
-(48, 'Inq/Inv/Imm', 'Inquiries, Investigation and Immersion', 'specialized'),
-(71, 'CreWrite', 'Creative Writing', 'core'),
-(72, 'DISS', 'Disciplines and Ideas in the Social Sciences (DISS)', 'specialized'),
-(73, 'DRR', 'Disaster Readiness and Reduction', 'specialized'),
-(74, 'Bio1', 'General Biology 1', 'specialized'),
-(75, 'Chem1', 'General Chemistry 1', 'specialized'),
-(76, 'IWRB', 'Introduction to World Religions and Beliefs', 'specialized'),
-(77, 'TVL1', 'TVL  Major 1', 'specialized'),
-(78, 'TVL2', 'TVL  Major 2', 'specialized'),
-(79, 'CNF', 'Creative Nonfiction', 'specialized'),
-(80, 'DIASS', 'Disciplines and Ideas in the Applied Social Sciences (DIASS)', 'specialized'),
-(81, 'PPG', 'Philippine Politics and Governance (PPG)', 'specialized'),
-(82, 'CESL', 'Community Engagement, Solidarity, and Leadership ', 'specialized'),
-(83, 'TNC21st', 'Trends, Networks, and Critical Thinking in the 21st Century Culture ', 'specialized'),
-(84, 'CAL1', 'Pre-Calculus', 'specialized'),
-(85, 'CAL2', 'Basic Calculus', 'specialized'),
-(86, 'Phys1', 'General Physics 1', 'specialized'),
-(87, 'CAP', 'Capstone', 'specialized'),
-(89, 'CHEM2', 'General Chemistry 2', 'specialized'),
-(90, 'PHYS2', 'General Physics 2', 'specialized'),
-(91, 'dddd', 'vvvvv', 'core');
+INSERT INTO `list_of_subject` (`id`, `teachers_id`, `subject_code`, `subject_description`, `subject_type`) VALUES
+(7, '[\n    {\n        \"id\": \"3\"\n    }\n]', 'GenMath', 'General Mathematics', 'applied'),
+(8, '[\n    {\n        \"id\": \"1\"\n    }\n]', 'KPWK', 'Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino\r\n', 'applied'),
+(9, '[\n    {\n        \"id\": \"3\"\n    }\n]', 'Oral', 'Oral Communication', 'applied'),
+(10, '', 'PerDev', 'Personal Development', 'applied'),
+(11, '', 'PE1', 'Physical Education 1', 'applied'),
+(18, '', 'Math1', 'Business Math', 'core'),
+(19, '', 'MIL', 'Media and Information Literacy', 'applied'),
+(26, '', 'PE2', 'Physical Education 2', 'applied'),
+(27, '', 'PhySci', 'Physical Science', 'applied'),
+(28, '', 'RAW', 'Reading and Writing', 'applied'),
+(29, '', 'Stat', 'Statistics and Probability', 'applied'),
+(30, '', 'PR1', 'Practical Research 1', 'core'),
+(32, '', 'OAM', 'Organization and Management', 'specialized'),
+(33, '', 'PHP', 'Introduction to the Philosophy of the Human Person (IPHP)', 'applied'),
+(34, '', 'PE3', 'Physical Education 3', 'applied'),
+(35, '', 'EmpTech', 'Empowerment Technologies', 'core'),
+(36, '', 'Entrep', 'Entrepreneurship', 'core'),
+(37, '', 'Fil1', 'Filipino sa Piling Larang:', 'core'),
+(38, '', 'PR2', 'Practical Research 2', 'core'),
+(40, '', 'POM', 'Principles of Marketing', 'specialized'),
+(41, '', 'PE4', 'Physical Education 4', 'applied'),
+(42, '', 'UCSP', 'Understanding Culture, Society, and Politics (UCSP)', 'applied'),
+(43, '', 'English1', 'English for Academic and Professional Purposes', 'core'),
+(44, '', 'IRCABS', 'Immersion/Research/Culminating Activity/Business Simulation', 'specialized'),
+(45, '', 'Econ1', 'Applied Economics', 'specialized'),
+(46, '', 'Ethics1', 'Business Ethics and Responsibility', 'specialized'),
+(47, '', 'Finance', 'Business Finance', 'specialized'),
+(48, '', 'Inq/Inv/Imm', 'Inquiries, Investigation and Immersion', 'specialized'),
+(71, '', 'CreWrite', 'Creative Writing', 'core'),
+(72, '', 'DISS', 'Disciplines and Ideas in the Social Sciences (DISS)', 'specialized'),
+(73, '', 'DRR', 'Disaster Readiness and Reduction', 'specialized'),
+(75, '', 'Chem1', 'General Chemistry 1', 'specialized'),
+(76, '', 'IWRB', 'Introduction to World Religions and Beliefs', 'specialized'),
+(77, '', 'TVL1', 'TVL  Major 1', 'specialized'),
+(78, '', 'TVL2', 'TVL  Major 2', 'specialized'),
+(79, '', 'CNF', 'Creative Nonfiction', 'specialized'),
+(80, '', 'DIASS', 'Disciplines and Ideas in the Applied Social Sciences (DIASS)', 'specialized'),
+(81, '', 'PPG', 'Philippine Politics and Governance (PPG)', 'specialized'),
+(82, '', 'CESL', 'Community Engagement, Solidarity, and Leadership ', 'specialized'),
+(83, '', 'TNC21st', 'Trends, Networks, and Critical Thinking in the 21st Century Culture ', 'specialized'),
+(84, '', 'CAL1', 'Pre-Calculus', 'specialized'),
+(85, '', 'CAL2', 'Basic Calculus', 'specialized'),
+(86, '', 'Phys1', 'General Physics 1', 'specialized'),
+(87, '', 'CAP', 'Capstone', 'specialized'),
+(89, '', 'CHEM2', 'General Chemistry 2', 'specialized'),
+(90, '', 'PHYS2', 'General Physics 2', 'specialized'),
+(92, '', 'e', 'e', 'applied');
 
 -- --------------------------------------------------------
 
@@ -199,7 +197,7 @@ CREATE TABLE `teacher_data` (
 
 INSERT INTO `teacher_data` (`id`, `lrn`, `personal_info`) VALUES
 (1, '111111', '[\r\n {\r\n    \"lname\": \"limbag\",\r\n    \"fname\": \"meynard\",\r\n    \"mname\": \"bernales\",\r\n    \"sex\": \"Male\",\r\n    \"bday\": \"09\\/25\\/1992\",\r\n    \"bplace\": \"Dasmarinas, Cavite\",\r\n    \"age\": \"27\",\r\n    \"height\": \"160\",\r\n    \"weight\": \"60\",\r\n    \"language\": \"Filipino\",\r\n    \"religion\": \"Catholic\",\r\n    \"ethnic_group\": \"Filipino\",\r\n    \"telephone\": \"11234\",\r\n    \"mobile\": \"12345678\",\r\n    \"email\": \"meynardbernales@gmail.com\"\r\n}\r\n\r\n\r\n]'),
-(3, '123123', '[\n    {\n        \"lname\": \"123\",\n        \"fname\": \"\",\n        \"mname\": \"\",\n        \"sex\": \"\",\n        \"bday\": \"\",\n        \"bplace\": \"\",\n        \"age\": \"\",\n        \"height\": \"\",\n        \"weight\": \"\",\n        \"language\": \"\",\n        \"religion\": \"\",\n        \"ethnic_group\": \"\",\n        \"telephone\": \"\",\n        \"mobile\": \"\",\n        \"email\": \"\"\n    }\n]');
+(3, '123123', '[\r\n {\r\n    \"lname\": \"wqe\",\r\n    \"fname\": \"eeee\",\r\n    \"mname\": \"dasd\",\r\n    \"sex\": \"Male\",\r\n    \"bday\": \"09\\/25\\/1992\",\r\n    \"bplace\": \"Dasmarinas, Cavite\",\r\n    \"age\": \"27\",\r\n    \"height\": \"160\",\r\n    \"weight\": \"60\",\r\n    \"language\": \"Filipino\",\r\n    \"religion\": \"Catholic\",\r\n    \"ethnic_group\": \"Filipino\",\r\n    \"telephone\": \"11234\",\r\n    \"mobile\": \"12345678\",\r\n    \"email\": \"meynardbernales@gmail.com\"\r\n}\r\n\r\n\r\n]');
 
 -- --------------------------------------------------------
 
@@ -212,7 +210,7 @@ CREATE TABLE `users_data` (
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `restriction` varchar(250) NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -270,13 +268,13 @@ ALTER TABLE `users_data`
 -- AUTO_INCREMENT for table `course_offer`
 --
 ALTER TABLE `course_offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `list_of_subject`
 --
 ALTER TABLE `list_of_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `pending_data`
