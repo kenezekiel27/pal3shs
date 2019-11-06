@@ -41,9 +41,9 @@
 										<td><?php echo $value->subject_type ?></td>
 										<td>
 											<center>
-                            					<a href="#" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                            					<a href="<?php echo base_url();?>subject/<?php echo $value->id?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateSubjectBtn<?php echo $value->id  ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                             					<!-- <button title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn" id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" id="<?php echo $value->id ?>"></i></button> -->
-                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger  btn-sm" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger remove_subject btn-sm" id="<?php echo $value->id ?>"><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
                             				</center>
 										</td>
 									</tr>

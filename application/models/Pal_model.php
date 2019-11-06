@@ -64,5 +64,36 @@
 			$query = $this->db->get('teacher_data');
 			return $query->result();
 		}
-		//for adding of subject to course
+		//for viewing of subject
+
+		public function viewSubject($id){
+			$query = $this->db->get_where('list_of_subject', array('id' => $id));
+			return $query->row_array();
+		}
+
+		public function remove_subject($id){
+			$this->db->where('id', $id);
+			$query = $this->db->delete('list_of_subject');
+			return $query;
+		}
+		public function update_subject_data($id, $data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = [
+	            'teachers_id' => $data,
+	        ];
+	        $this->db->where('id', $id);
+	        $this->db->update('list_of_subject', $newData);
+		}
+		// public function update_course($id){
+		// 	$query = $this->db->get_where('course_offer', array('id' => $id));
+		// 	return $query->row_array();
+		// }
+		// public function update_course_data($rowname, $id, $data){
+		// 	$data = json_encode($data, JSON_PRETTY_PRINT);
+		// 	$newData = [
+	 //            $rowname => $data,
+	 //        ];
+	 //        $this->db->where('id', $id);
+  //       	$this->db->update('course_offer', $newData);
+		// }
 	}

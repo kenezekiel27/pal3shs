@@ -458,4 +458,85 @@ class Adminpage extends CI_Controller {
 		}
 	}
 	
+
+
+	//subject module
+
+	public function removeSubject(){
+		$id = $_POST['id'];
+		$this->pal_model->remove_subject($id);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
+	public function viewOneSubject($id){
+
+		$data['teachers'] = $this->pal_model->teacher_data();
+		$subject = $this->pal_model->viewSubject($id);
+
+		$existteacher = json_decode($subject['teachers_id'], TRUE);
+		$this->data['availableteachers'] = $existteacher;
+		$this->data['allteachers'] = $data['teachers'];
+		if(count($existteacher) != 0){
+			foreach ($data['teachers'] as $key => $value) {
+				foreach ($existteacher as $value2) {
+					if ($value->id == $value2['id']) {
+						unset($data['teachers'][$key]);
+					}
+				}
+			}
+		}
+		$this->data['subject'] = $subject;
+		$this->data['teachers'] = $data['teachers'];
+		if ($subject != null) {
+			$this->data['subject'] = $subject;
+			$this->load->view('adminpage/header');
+			$this->load->view('adminpage/subjectData', $this->data);
+			$this->load->view('adminpage/footer');
+		}
+		else{
+			show_404();
+		}
+	}
+
+	public function addTeacherToSubject(){
+		$id = $_POST['id'];
+		$teachers = $_POST['teachers'];
+
+		$data['subject'] = $this->pal_model->viewSubject($id);
+		$newData = array();
+		$oldData = json_decode($data['subject']['teachers_id']);
+		if(count($oldData) > 0){
+			foreach ($oldData as $value) {
+				array_push($newData, array('id' => $value->id));
+			}	
+		}
+		for ($i=0; $i < count($teachers); $i++) { 
+			array_push($newData, array('id' => $teachers[$i]));
+		}
+		$result = $this->pal_model->update_subject_data($id, $newData);
+		$this->data['status'] = "success";
+		$this->data['msg'] = $teachers;
+		echo json_encode($this->data);
+	}
+	public function removeTeacherFromSubject(){
+		$id = $_POST['id'];
+		$removeteachers = $_POST['removeteachers'];
+		$data['subject'] = $this->pal_model->viewSubject($id);
+		$arr = array();
+
+		$old = json_decode($data['subject']['teachers_id']);
+		foreach ($old as $key => $value) {
+			for ($i=0; $i < count($removeteachers); $i++) {
+				if($value->id == $removeteachers[$i]){
+					unset($old[$key]);
+				}
+			}
+		}
+		foreach ($old as $key => $value){
+			array_push($arr, array('id' => $value->id));
+		}
+		$result = $this->pal_model->update_subject_data($id, $arr);
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
+	}
 }
