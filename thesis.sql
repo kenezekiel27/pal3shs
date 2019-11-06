@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 12:04 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.0.23
+-- Generation Time: Nov 06, 2019 at 04:19 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,16 +45,15 @@ CREATE TABLE `course_offer` (
 --
 
 INSERT INTO `course_offer` (`id`, `firstsemgrade11`, `secondsemgrade11`, `firstsemgrade12`, `secondsemgrade12`, `course_name`, `academic_track`, `academic_strand`, `subject_ids`) VALUES
-(1, '[\r\n    {\r\n        \"id\": \"10\"\r\n    },\r\n    {\r\n        \"id\": \"20\"\r\n    },\r\n    {\r\n        \"id\": \"11\"\r\n    },\r\n    {\r\n        \"id\": \"19\"\r\n    },\r\n    {\r\n        \"id\": \"18\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"32\"\r\n    },\r\n    {\r\n        \"id\": \"33\"\r\n    },\r\n    {\r\n        \"id\": \"34\"\r\n    },\r\n    {\r\n        \"id\": \"35\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"81\"\r\n    },\r\n    {\r\n        \"id\": \"82\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"83\"\r\n    },\r\n    {\r\n        \"id\": \"84\"\r\n    }\r\n    ,\r\n    {\r\n        \"id\": \"46\"\r\n    },\r\n    {\r\n        \"id\": \"47\"\r\n    }\r\n\r\n\r\n]', '[\r\n    {\r\n        \"id\": \"7\"\r\n    },\r\n    {\r\n        \"id\": \"8\"\r\n    },\r\n    {\r\n        \"id\": \"5\"\r\n    },\r\n    {\r\n        \"id\": \"6\"\r\n    }\r\n]', '[\r\n    {\r\n        \"id\": \"26\"\r\n    },\r\n    {\r\n        \"id\": \"27\"\r\n    },\r\n    {\r\n        \"id\": \"28\"\r\n    },\r\n    {\r\n        \"id\": \"29\"\r\n    },\r\n    {\r\n      \"id\": \"30\"\r\n    }\r\n]', '[\r\n    {\r\n        \"id\": \"70\"\r\n    },\r\n    {\r\n        \"id\": \"71\"\r\n    },\r\n    {\r\n        \"id\": \"72\"\r\n    },\r\n    {\r\n        \"id\": \"73\"\r\n    },\r\n    {\r\n      \"id\": \"74\"\r\n    },\r\n    {\r\n        \"id\": \"75\"\r\n    },\r\n    {\r\n        \"id\": \"76\"\r\n    },\r\n    {\r\n        \"id\": \"77\"\r\n    },\r\n    {\r\n      \"id\": \"78\"\r\n    },\r\n    {\r\n        \"id\": \"79\"\r\n    },\r\n    {\r\n        \"id\": \"85\"\r\n    },\r\n    {\r\n        \"id\": \"86\"\r\n    },\r\n    {\r\n      \"id\": \"87\"\r\n    },\r\n    {\r\n        \"id\": \"89\"\r\n    },\r\n    {\r\n        \"id\": \"90\"\r\n    },\r\n    {\r\n        \"id\": \"43\"\r\n    }\r\n]', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"6\"\n    }\n]'),
-(3, '[     {         \"id\": \"7\"     },     {         \"id\": \"8\"     } ]', '', '', '', 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
+(1, '', '', '', '', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"26\"\n    },\n    {\n        \"id\": \"27\"\n    },\n    {\n        \"id\": \"28\"\n    },\n    {\n        \"id\": \"29\"\n    },\n    {\n        \"id\": \"30\"\n    },\n    {\n        \"id\": \"32\"\n    },\n    {\n        \"id\": \"33\"\n    },\n    {\n        \"id\": \"34\"\n    },\n    {\n        \"id\": \"35\"\n    },\n    {\n        \"id\": \"36\"\n    },\n    {\n        \"id\": \"37\"\n    },\n    {\n        \"id\": \"38\"\n    },\n    {\n        \"id\": \"40\"\n    },\n    {\n        \"id\": \"41\"\n    },\n    {\n        \"id\": \"42\"\n    },\n    {\n        \"id\": \"43\"\n    },\n    {\n        \"id\": \"44\"\n    },\n    {\n        \"id\": \"45\"\n    },\n    {\n        \"id\": \"46\"\n    },\n    {\n        \"id\": \"47\"\n    },\n    {\n        \"id\": \"48\"\n    },\n    {\n        \"id\": \"71\"\n    },\n    {\n        \"id\": \"72\"\n    },\n    {\n        \"id\": \"73\"\n    },\n    {\n        \"id\": \"74\"\n    },\n    {\n        \"id\": \"75\"\n    },\n    {\n        \"id\": \"76\"\n    },\n    {\n        \"id\": \"77\"\n    },\n    {\n        \"id\": \"78\"\n    },\n    {\n        \"id\": \"79\"\n    },\n    {\n        \"id\": \"80\"\n    },\n    {\n        \"id\": \"81\"\n    },\n    {\n        \"id\": \"82\"\n    },\n    {\n        \"id\": \"83\"\n    },\n    {\n        \"id\": \"84\"\n    },\n    {\n        \"id\": \"85\"\n    },\n    {\n        \"id\": \"86\"\n    },\n    {\n        \"id\": \"87\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"89\"\n    },\n    {\n        \"id\": \"90\"\n    },\n    {\n        \"id\": \"5\"\n    }\n]'),
+(2, '', '', '', '', 'Academic/General Academic Strand', 'Academic', 'General Academic Strand', '[\n    {\n        \"id\": 5\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"8\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"9\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
+(3, '', '', '', '', 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', ''),
 (4, '', '', '', '', 'Academic/Science and Technology, Engineering and Mathematics', 'Academic', 'Science and Technology, Engineering and Mathematics', ''),
 (5, '', '', '', '', 'TVL/Beauty Care, Hairdressing, Wellness Massage', 'TVL', 'Beauty Care, Hairdressing, Wellness Massage', ''),
 (6, '', '', '', '', 'TVL/Computer System Servicing', 'TVL', 'Computer System Servicing', ''),
 (7, '', '', '', '', 'TVL/Cookery, Bread and Pastries, Food and Beverage', 'TVL', 'Cookery, Bread and Pastries, Food and Beverage', ''),
 (8, '', '', '', '', 'TVL/Electrical Installation and Maintenance', 'TVL', 'Electrical Installation and Maintenance', ''),
-(9, '', '', '', '', 'TVL/Electronic Products Assembly and Servicing', 'TVL', 'Electronic Products Assembly and Servicing', ''),
-(10, '', '', '', '', 'academic/asdasd', 'academic', 'asdasd', ''),
-(11, '', '', '', '', 'asd/asdqwe123x132', 'asd', 'asdqwe123x132', '');
+(9, '', '', '', '', 'TVL/Electronic Products Assembly and Servicing', 'TVL', 'Electronic Products Assembly and Servicing', '');
 
 -- --------------------------------------------------------
 
@@ -122,7 +121,8 @@ INSERT INTO `list_of_subject` (`id`, `subject_code`, `subject_description`, `sub
 (86, 'Phys1', 'General Physics 1', 'specialized'),
 (87, 'CAP', 'Capstone', 'specialized'),
 (89, 'CHEM2', 'General Chemistry 2', 'specialized'),
-(90, 'PHYS2', 'General Physics 2', 'specialized');
+(90, 'PHYS2', 'General Physics 2', 'specialized'),
+(91, 'dddd', 'vvvvv', 'core');
 
 -- --------------------------------------------------------
 
@@ -184,6 +184,26 @@ INSERT INTO `student_data` (`id`, `lrn`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teacher_data`
+--
+
+CREATE TABLE `teacher_data` (
+  `id` int(11) NOT NULL,
+  `lrn` varchar(250) NOT NULL,
+  `personal_info` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher_data`
+--
+
+INSERT INTO `teacher_data` (`id`, `lrn`, `personal_info`) VALUES
+(1, '111111', '[\r\n {\r\n    \"lname\": \"limbag\",\r\n    \"fname\": \"meynard\",\r\n    \"mname\": \"bernales\",\r\n    \"sex\": \"Male\",\r\n    \"bday\": \"09\\/25\\/1992\",\r\n    \"bplace\": \"Dasmarinas, Cavite\",\r\n    \"age\": \"27\",\r\n    \"height\": \"160\",\r\n    \"weight\": \"60\",\r\n    \"language\": \"Filipino\",\r\n    \"religion\": \"Catholic\",\r\n    \"ethnic_group\": \"Filipino\",\r\n    \"telephone\": \"11234\",\r\n    \"mobile\": \"12345678\",\r\n    \"email\": \"meynardbernales@gmail.com\"\r\n}\r\n\r\n\r\n]'),
+(3, '123123', '[\n    {\n        \"lname\": \"123\",\n        \"fname\": \"\",\n        \"mname\": \"\",\n        \"sex\": \"\",\n        \"bday\": \"\",\n        \"bplace\": \"\",\n        \"age\": \"\",\n        \"height\": \"\",\n        \"weight\": \"\",\n        \"language\": \"\",\n        \"religion\": \"\",\n        \"ethnic_group\": \"\",\n        \"telephone\": \"\",\n        \"mobile\": \"\",\n        \"email\": \"\"\n    }\n]');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_data`
 --
 
@@ -192,7 +212,7 @@ CREATE TABLE `users_data` (
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `restriction` varchar(250) NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -231,6 +251,12 @@ ALTER TABLE `student_data`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `teacher_data`
+--
+ALTER TABLE `teacher_data`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users_data`
 --
 ALTER TABLE `users_data`
@@ -244,13 +270,13 @@ ALTER TABLE `users_data`
 -- AUTO_INCREMENT for table `course_offer`
 --
 ALTER TABLE `course_offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `list_of_subject`
 --
 ALTER TABLE `list_of_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `pending_data`
@@ -263,6 +289,12 @@ ALTER TABLE `pending_data`
 --
 ALTER TABLE `student_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `teacher_data`
+--
+ALTER TABLE `teacher_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_data`

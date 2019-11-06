@@ -74,8 +74,6 @@
 			            <input type="text" id="track" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter strand">
 						<br><br><br>
 
-						<center><label>Academic Strand</label></center>
-
 						<center><label>Academic Description</label></center>
 
 						<input type="text" id="strand" class="form-control" style="text-align: center; font-weight: lighter;" placeholder="Enter description">
