@@ -34,6 +34,9 @@ $(document).ready(function(){
 					if(response.credentials.restriction == "admin"){
 						window.location = base_url + 'dashboard';
 					}
+					else if(response.credentials.restriction == "student"){
+						window.location = base_url + 'dashboard-student';
+					}
 					render_response('.loginwarning','success',response.msg);
 				}
 				

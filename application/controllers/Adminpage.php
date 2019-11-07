@@ -25,7 +25,7 @@ class Adminpage extends CI_Controller {
 		$this->isLogin();
 	}
 	private function isLogin(){
-		if($this->session->userdata('user_data') == "" ){
+		if($this->session->userdata('user_data') == "" || $this->session->userdata('restriction') == "student"){
 			redirect('home');
 		}
 	}
