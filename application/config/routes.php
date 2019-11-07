@@ -69,5 +69,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] = 'adminpage/dashboard';
 $route['course'] = 'adminpage/course';
 $route['subject'] = 'adminpage/subject';
+$route['school-event'] = 'adminpage/school_event';
 
 $route['(:any)'] = 'homepage/pages/$1';

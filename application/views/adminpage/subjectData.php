@@ -19,23 +19,76 @@
 			<div class="white-box" >
 				<div class="row form-material">
 					<div class="col-md-5 form-group forSubject">
+						<div class="updatenamesofsubject"></div>
 						<ul>
 							<li>
 								<label>Subject Code</label>
-								<input readonly type="text" class="form-control subjectDescription" id="courseDescription" value="<?php echo $subject['subject_code'] ?>">
+								<input type="text" class="form-control subjectCode" value="<?php echo $subject['subject_code'] ?>">
+								<input type="hidden" class="originalSubjectCode" value="<?php echo $subject['subject_code'] ?>">
 							</li>
 							<li>
-								<p style="visibility: hidden;">asdas</p>
-
+								<p style="visibility: hidden;">as</p>
+							</li>
+							<li>
+								<label style="visibility: hidden;">asd</label>
+								<br>
+								<button class="btn btn-success updateSubjectCodeBtn"><i class="fa fa-check"></i></button>
+							</li>
+							<li>
+								<p style="visibility: hidden;">asd</p>
 							</li>
 							<li>
 								<label>Subject Description</label>
-								<input readonly type="text" class="form-control subjectDescription" id="courseDescription" value="<?php echo $subject['subject_description'] ?>">
-
+								<input type="text" class="form-control subjectDescription" value="<?php echo $subject['subject_description'] ?>">
+								<input type="hidden" class="originalSubjectDescription" value="<?php echo $subject['subject_description']; ?>">
 							</li>
-							<li style="float: right;">
-								<button class="btn btn-success viewTeacher">View Teacher</button>
-								<button class="btn btn-success addTeacher">Add Teacher</button>
+							<li>
+								<p style="visibility: hidden;">as</p>
+							</li>
+							<li>
+								<label style="visibility: hidden;">asd</label>
+								<br>
+								<button class="btn btn-success updateSubjectDescriptionBtn"><i class="fa fa-check"></i></button>
+							</li>
+							<li>
+								<p style="visibility: hidden;">asd</p>
+							</li>
+							<li>
+								<?php 
+									$type = array(
+										array(
+											"type" => "applied"
+										),
+										array(
+											"type" => "core"
+										),
+										array(
+											"type" => "specialized"
+										)
+									);
+									
+								 ?>
+
+								<label>Subject Type</label>
+								<select class="form-control subjectType">
+									 <?php foreach($type as $key => $value): ?>
+									 	
+									 	<?php if ($subject['subject_type'] == $value['type']): ?>
+									 		<option selected><?php echo $subject['subject_type'] ?></option>
+									 	<?php else: ?>
+									 		<option><?php echo $value['type'] ?></option>
+									 	<?php endif ?>
+									 <?php endforeach ?>
+								</select>
+								<input type="hidden" class="originalSubjectType" value="<?php echo $subject['subject_type'] ?>">
+							</li>
+							<li>
+								<p style="visibility: hidden;">as</p>
+							</li>
+							<li>
+								<label style="visibility: hidden;">asd</label>
+								<br>
+								<button class="btn btn-success updateSubjectTypeBtn"><i class="fa fa-check"></i></button>
 							</li>
 						</ul>
 						<input type="text" class="id" value="<?php echo $subject['id'] ?>" hidden>
@@ -61,7 +114,7 @@
 					</div>
 					<div class="addTeacherToSubject" style="display: none;">
 						<h4><strong>Add Teacher</strong></h4>
-						<div class="addteachertosubjectwarning"></div>
+						
 						<br>
 						<p>Available Teacher</p>
 						<select class="teachers" name="teachers[]" multiple="multiple"  style="width: 100% !important">
@@ -77,9 +130,15 @@
 					</div>
 					<br><br>
 				</div>
-				<button style="display: none" class="btn btn-success removeTeacherBtn">Remove Teacher</button>
-				<button style="display: none;" class="btn btn-success addTeacherBtn">Add Teacher</button>
-				<button class="btn btn-danger removeOneSubject" style="float: right;" >Remove Subject</button><br>
+				<button style="display: none; float: left;" class="btn btn-danger removeTeacherBtn">Remove Teacher</button>
+				<button style="display: none; float: left;" class="btn btn-success addTeacherBtn">Add Teacher</button>
+				<ul class="buttonsForSubject">
+					<li></li>
+					<li><button class="btn btn-danger removeOneSubject" >Remove Subject</button></li>
+					<li><button class="btn btn-success addTeacher">Add Teacher</button></li>
+					<li><button class="btn btn-success viewTeacher">View Teacher</button></li>
+				</ul>
+				<br>
 			</div>
 
 

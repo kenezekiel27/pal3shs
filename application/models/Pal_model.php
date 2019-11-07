@@ -84,16 +84,11 @@
 	        $this->db->where('id', $id);
 	        $this->db->update('list_of_subject', $newData);
 		}
-		// public function update_course($id){
-		// 	$query = $this->db->get_where('course_offer', array('id' => $id));
-		// 	return $query->row_array();
-		// }
-		// public function update_course_data($rowname, $id, $data){
-		// 	$data = json_encode($data, JSON_PRETTY_PRINT);
-		// 	$newData = [
-	 //            $rowname => $data,
-	 //        ];
-	 //        $this->db->where('id', $id);
-  //       	$this->db->update('course_offer', $newData);
-		// }
+		public function update_subject_names($id, $rowname, $newName){
+			$newData = [
+				$rowname => $newName
+	        ];
+	        $this->db->where('id', $id);
+        	$this->db->update('list_of_subject', $newData);
+		}
 	}

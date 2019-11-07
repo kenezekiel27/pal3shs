@@ -89,4 +89,101 @@ $(document).ready(function(){
 		})
 		
 	})
+
+	$('.updateSubjectCodeBtn').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/updateNameOfSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'newName' : $('.subjectCode').val(),
+				'rowName' : 'subject_code',
+				'originalSubjectCode' : $('.originalSubjectCode').val()
+			},
+			success: function(response){
+				if(response.status == "error"){
+					render_response('.updatenamesofsubject','danger',response.msg);
+				}
+				else{
+					$('.originalSubjectCode').val($('.subjectCode').val());
+					$('.updatenamesofsubject').empty();
+					$.toast({
+						heading: 'Subject Code has been updated',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 2000,
+						stack: 6,
+			      	});
+				}
+			}
+		})
+	})
+	$('.updateSubjectDescriptionBtn').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/updateNameOfSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'newName' : $('.subjectDescription').val(),
+				'rowName' : 'subject_description',
+				'originalSubjectDescription' : $('.originalSubjectDescription').val()
+			},
+			success: function(response){
+				if(response.status == "error"){
+					render_response('.updatenamesofsubject','danger',response.msg);
+				}
+				else{
+					$('.originalSubjectDescription').val($('.subjectDescription').val());
+					$('.updatenamesofsubject').empty();
+					$.toast({
+						heading: 'Subject Description has been updated',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 2000,
+						stack: 6,
+			      	});
+				}
+			}
+		})
+	})
+	$('.updateSubjectTypeBtn').click(function(){
+		$.ajax({
+			url: base_url + 'adminpage/updateNameOfSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id' : $('.id').val(),
+				'newName' : $('.subjectType').val(),
+				'rowName' : 'subject_type',
+				'originalSubjectType' : $('.originalSubjectType').val()
+			},
+			success: function(response){
+				if(response.status == "error"){
+					render_response('.updatenamesofsubject','danger',response.msg);
+				}
+				else{
+					$('.originalSubjectType').val($('.subjectType').val());
+					$('.updatenamesofsubject').empty();
+					$.toast({
+						heading: 'Subject Type has been updated',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 2000,
+						stack: 6,
+			      	});
+				}
+			}
+		})
+	})
 })
