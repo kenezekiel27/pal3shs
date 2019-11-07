@@ -29,6 +29,8 @@
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/addSubjectJS.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/addCourseJS.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/updateCourse.js"></script>
+    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/remove_subject.js"></script>
+    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/subjectData.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
@@ -43,6 +45,8 @@
             //$('.allcourse').select2();
             $('.importyearlevel').select2();
             $('.importsem').select2();
+            $('.teachers').select2();
+            $('.removeteachers').select2();
 
             $('#example').DataTable();
             $('#example1').DataTable();

@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['subject/(:any)'] = 'adminpage/viewOneSubject/$1';
 $route['course/(:any)'] = 'adminpage/courseUpdate/$1';
 
 $route['default_controller'] = 'homepage/pages';
@@ -68,5 +69,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] = 'adminpage/dashboard';
 $route['course'] = 'adminpage/course';
 $route['subject'] = 'adminpage/subject';
+<<<<<<< HEAD
 $route['student-registration'] = 'homepage/register1';
+=======
+$route['school-event'] = 'adminpage/school_event';
+
+>>>>>>> 49139b8781b3f9c9528ebcda532e3f9adafb7f5d
 $route['(:any)'] = 'homepage/pages/$1';

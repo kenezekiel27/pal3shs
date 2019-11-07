@@ -80,13 +80,13 @@
 				</div>
 				<ul class="nav" id="side-menu">
 					<li style="padding: 70px 0 0;">
-						<a href="<?php echo base_url(); ?>dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+						<a href="<?php echo base_url(); ?>dashboard" class="waves-effect"><i style="color: black" class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+						<a href="#" class="waves-effect"><i <i style="color: black" class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><i class="fa fa-align-justify" style="display: inline-block;margin-right: 10px;"></i>Manage</a>
+						<a href="#" class="waves-effect"><i class="fa fa-align-justify" style="color: black; display: inline-block;margin-right: 10px;"></i>Manage</a>
 						<ul class="nav" id="side-menu">
 							<li>
 								<a href="<?php echo base_url(); ?>course" class="waves-effect" style="left: 30px">Course</a>
@@ -95,16 +95,27 @@
 						</ul>
 					</li>
 					<li>
-						 <a href="student.php" class="waves-effect"><i class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>Student</a>
+						 <a href="student.php" class="waves-effect"><i <i style="color: black" class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>Student</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/teacher.png" alt="user-img" width="30" class="img-circle" style="margin-left: -2px">Teacher</a>
+						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/teacher.png" alt="user-img" width="27" class="img-circle" style="margin-left: -2px">Teacher</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><i class="fa fa-users" aria-hidden="true"></i> Section</a>
+						<a href="#" class="waves-effect"><i <i style="color: black" class="fa fa-users" aria-hidden="true"></i> Section</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/account.png" alt="user-img" width="30" class="img-circle" style="margin-left: -7px">Accounts</a>
+						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/account.png" alt="user-img" width="24" class="img-circle" style="margin-left: -7px">Accounts</a>
+					</li>
+					<li>
+
+						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/bulletinicon.png" alt="user-img" width="24"  style="margin-left: -7px"> Bulletin Board</a>
+						<ul class="nav" id="side-menu">
+							<li>
+								<a href="<?php echo base_url(); ?>school-event" class="waves-effect" style="left: 30px">School Event</a>
+								<a href="#" class="waves-effect" style="left: 30px">School Activity</a>
+								<a href="#" class="waves-effect" style="left: 30px">Class Suspension</a>
+							</li>
+						</ul>
 					</li>
 					<li>
 						<a href="<?php echo base_url(); ?>adminpage/logout" class="waves-effect"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>

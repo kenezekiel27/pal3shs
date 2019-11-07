@@ -458,4 +458,151 @@ class Adminpage extends CI_Controller {
 		}
 	}
 	
+
+
+	//subject module
+
+	public function removeSubject(){
+		$id = $_POST['id'];
+		$this->pal_model->remove_subject($id);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
+	public function viewOneSubject($id){
+
+		$data['teachers'] = $this->pal_model->teacher_data();
+		$subject = $this->pal_model->viewSubject($id);
+
+		$existteacher = json_decode($subject['teachers_id'], TRUE);
+		$this->data['availableteachers'] = $existteacher;
+		$this->data['allteachers'] = $data['teachers'];
+		if(count($existteacher) != 0){
+			foreach ($data['teachers'] as $key => $value) {
+				foreach ($existteacher as $value2) {
+					if ($value->id == $value2['id']) {
+						unset($data['teachers'][$key]);
+					}
+				}
+			}
+		}
+		$this->data['subject'] = $subject;
+		$this->data['teachers'] = $data['teachers'];
+		if ($subject != null) {
+			$this->data['subject'] = $subject;
+			$this->load->view('adminpage/header');
+			$this->load->view('adminpage/subjectData', $this->data);
+			$this->load->view('adminpage/footer');
+		}
+		else{
+			show_404();
+		}
+	}
+
+	public function addTeacherToSubject(){
+		$id = $_POST['id'];
+		$teachers = $_POST['teachers'];
+
+		$data['subject'] = $this->pal_model->viewSubject($id);
+		$newData = array();
+		$oldData = json_decode($data['subject']['teachers_id']);
+		if(count($oldData) > 0){
+			foreach ($oldData as $value) {
+				array_push($newData, array('id' => $value->id));
+			}	
+		}
+		for ($i=0; $i < count($teachers); $i++) { 
+			array_push($newData, array('id' => $teachers[$i]));
+		}
+		$result = $this->pal_model->update_subject_data($id, $newData);
+		$this->data['status'] = "success";
+		$this->data['msg'] = $teachers;
+		echo json_encode($this->data);
+	}
+	public function removeTeacherFromSubject(){
+		$id = $_POST['id'];
+		$removeteachers = $_POST['removeteachers'];
+		$data['subject'] = $this->pal_model->viewSubject($id);
+		$arr = array();
+
+		$old = json_decode($data['subject']['teachers_id']);
+		foreach ($old as $key => $value) {
+			for ($i=0; $i < count($removeteachers); $i++) {
+				if($value->id == $removeteachers[$i]){
+					unset($old[$key]);
+				}
+			}
+		}
+		foreach ($old as $key => $value){
+			array_push($arr, array('id' => $value->id));
+		}
+		$result = $this->pal_model->update_subject_data($id, $arr);
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
+	}
+	public function updateNameOfSubject(){
+		$id = $_POST['id'];
+		$newName = $_POST['newName'];
+		$rowName = $_POST['rowName'];
+		$this->form_validation->set_message('is_unique', '%s already exist.');
+		$nameOfRow = "";
+		if($rowName == 'subject_code'){
+			$originalSubjectCode = $_POST['originalSubjectCode'];
+			if ($originalSubjectCode != $newName) {
+				$this->form_validation->set_rules('newName', "Subject Code", 'required|is_unique[list_of_subject.subject_code]');
+				if ($this->form_validation->run() == FALSE) {
+
+					$this->data['status'] = 'error';
+					$this->data['msg'] = validation_errors();
+					echo json_encode($this->data);
+				}
+				else{
+					$this->data['status'] = "success";
+					$result = $this->pal_model->update_subject_names($id, 'subject_code', $newName);
+					echo json_encode($this->data);
+				}
+			}		
+		}
+		else if($rowName == 'subject_description'){
+			$originalSubjectCode = $_POST['originalSubjectDescription'];
+			if ($originalSubjectCode != $newName) {
+				$this->form_validation->set_rules('newName', "Subject Description", 'required|is_unique[list_of_subject.subject_description]');
+				if ($this->form_validation->run() == FALSE) {
+
+					$this->data['status'] = 'error';
+					$this->data['msg'] = validation_errors();
+					echo json_encode($this->data);
+				}
+				else{
+					$this->data['status'] = "success";
+					$result = $this->pal_model->update_subject_names($id, 'subject_description', $newName);
+					echo json_encode($this->data);
+				}
+			}		
+		}
+		else{
+			$originalSubjectType = $_POST['originalSubjectType'];
+			if ($originalSubjectType != $newName) {
+				$this->form_validation->set_rules('newName', "Subject Type", 'required');
+				if ($this->form_validation->run() == FALSE) {
+
+					$this->data['status'] = 'error';
+					$this->data['msg'] = validation_errors();
+					echo json_encode($this->data);
+				}
+				else{
+					$this->data['status'] = "success";
+					$result = $this->pal_model->update_subject_names($id, 'subject_type', $newName);
+					echo json_encode($this->data);
+				}
+			}		
+		}	
+	}
+
+
+	// BULLETIN BOARD
+	public function school_event(){
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/schoolEvent');
+		$this->load->view('adminpage/footer');
+	}
 }
