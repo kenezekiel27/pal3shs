@@ -29,6 +29,7 @@
 					<p class="send_info_warning" style="display: none;"></p>
 					<!-- Form 1 -->
 					<form class="Personal_Information">
+						<h1>Personal Information</h1>
 						<div class="row">
 							<div class="col-md-4 form-group">
 								<label>LRN</label>
@@ -61,7 +62,7 @@
 							<div class="col-md-4 form-group">
 	 							<label>Birth Date</label>
 	 							<div class="input-group date">
-							        <input type="text" class="form-control" id="bday" placeholder="MM\DD\YYYY">
+							        <input type="text" class="form-control" id="bday" placeholder="MM/DD/YYYY">
 							    </div>
 	 						</div>
 	 						<div class="col-md-4 form-group">
@@ -141,6 +142,138 @@
 	 					</div>
 					</form>
 					<!-- end of Form 1 -->
+					<!-- form2 -->
+					<form class="teacher_address">
+						<div class="row">
+	 						<h1>Teacher's Address</h1>
+	 					</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+	 							<label>House#/Street/Blk/Lot/Subdivision/Brgy</label>
+	 							<input type="text" class="form-control" id="brgy">
+	 						</div>
+	 						<div class="col-md-4">
+	 							<label>Municipality</label>
+	 							<input type="text" class="form-control" id="municipality">
+	 						</div>
+	 						<div class="col-md-4">
+	 							<label>Province</label>
+	 							<input type="text" class="form-control" id="province">
+	 						</div>
+						</div>
+						<div class="row">
+							<h1>Guardian's Information</h1>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>Last Name</label>
+								<input type="text" class="form-control" id="g_lname">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>first Name</label>
+								<input type="text" class="form-control" id="g_fname">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Middle Name</label>
+								<input type="text" class="form-control" id="g_mname">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>Relationship</label>
+								<input type="text" class="form-control" id="g_relationship">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Contact Number</label>
+								<input type="text" class="form-control" id="g_contact">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+	 							<label>House#/Street/Blk/Lot/Subdivision/Brgy</label>
+	 							<input type="text" class="form-control" id="g_brgy">
+	 						</div>
+	 						<div class="col-md-4 form-group">
+	 							<label>Municipality</label>
+	 							<input type="text" class="form-control" id="g_municipality">
+	 						</div>
+	 						<div class="col-md-4 form-group">
+	 							<label>Province</label>
+	 							<input type="text" class="form-control" id="g_province">
+	 						</div>
+						</div>		
+					</form>
+					<!-- end of form2 -->
+					<!-- form 3 -->
+					<form class="Edcuational_Background">
+						<div class="row">
+							<h1>Educational Background</h1>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>School Name</label>
+								<input type="text" placeholder="School Name" class="form-control" id="school_name">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Degree</label>
+								<select class="form-control" id="degree">
+									<option selected disabled>Select</option>
+									<option>Bachelor of Science</option>
+									<option>Bachelor of Arts</option>
+									<option>Bachelor in Secondary Education</option>
+									<option>Bachelor in Elementary Education</option>
+									<option>Bachelor in Secondary Education Major in</option>
+								</select>
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Course</label>
+								<input type="text" placeholder="Course" class="form-control" id="course">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>House #/Street/Blk/Lot/Subdivision/Brgy</label>
+								<input type="text" placeholder="House #/Street/Blk/Lot/Subdivision/Brgy" class="form-control" id="s_brgy">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Municipality</label>
+								<input type="text" placeholder="Municipality" class="form-control" id="s_municipality">
+							</div>
+							<div class="col-md-4 form-group">
+								<label>Province</label>
+								<input type="text" placeholder="Province" class="form-control" id="s_province">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>Academic year from:</label>
+								<select class="form-control" id="year_from">
+									<option selected disabled>Select</option>
+									<?php
+										for($year =date("Y"); $year >=1950; $year--){
+											?> 
+												<option value="<?php echo $year ?>"><?php echo $year ?></option>
+											<?php
+										} 
+									?>
+								</select>
+							</div>
+							<div class="col-md-4 form-group">
+								<label>To:</label>
+								<select class="form-control" id="year_to">
+									<option selected disabled>Select</option>
+									<?php
+										for($year =date("Y")+1; $year >=1950; $year--){
+											?> 
+												<option value="<?php echo $year ?>"><?php echo $year ?></option>
+											<?php
+										} 
+									?>
+								</select>
+							</div>
+						</div>
+					</form>
+					<!-- end of form 3 -->
 					<div class="form-group">
 						<button class="btn btn-primary sendBtn btn-lg">Send</button>
 					</div>

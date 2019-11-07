@@ -1,6 +1,6 @@
 	<!-- Footer -->
 	<footer class="footer text-center">
-		<script>document.write(new Date().getFullYear());</script> All rights reserved | Paliparan III Señior High School</p>
+		<script>document.write(new Date().getFullYear());</script> All rights reserved | Paliparan III Senior High School</p>
 	</footer>
 
 	<script src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/bower_components/jquery/dist/jquery.min.js"></script>

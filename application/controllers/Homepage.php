@@ -66,13 +66,34 @@ class Homepage extends CI_Controller {
 			
 		}
 	}
-	public function register2(){
-			
+	public function register1(){
+		$courses = $this->pal_model->courses_offer();
+		$this->data['courses'] = $courses;
+		
 		$this->load->view('homepage/header');
-		$this->load->view('homepage/registration2');
+		$this->load->view('homepage/registration1', $this->data);
 		$this->load->view('homepage/footer');
+
 	}
-	public function addteacher(){
+	public function addstudent(){
+		/*academic level*/
+		$type = $_POST['type'];
+		$new_acad_level = $_POST['new_acad_level'];
+		$new_course = $_POST['new_course'];
+		$new_semester = $_POST['new_semester'];
+		$new_yearfrom = $_POST['new_yearfrom'];
+		$new_yearto= $_POST['new_yearto'];
+		$old_course = $_POST['old_course'];
+		$old_acad_level = $_POST['old_acad_level'];
+		$old_semester = $_POST['old_semester'];
+		$old_from = $_POST['old_from'];
+		$old_to = $_POST['old_to'];
+		$transfer_course = $_POST['transfer_course'];
+		$transfer_acad_level = $_POST['transfer_acad_level'];
+		$transfer_semester = $_POST['transfer_semester'];
+		$transfer_from = $_POST['transfer_from'];
+		$transfer_to = $_POST['transfer_to'];
+		/*personal_info*/
 		$lrn = $_POST['lrn'];
 		$lname = $_POST['lname'];
 		$fname = $_POST['fname'];
@@ -89,6 +110,36 @@ class Homepage extends CI_Controller {
 		$telephone = $_POST['telephone'];
 		$mobile = $_POST['mobile'];
 		$email = $_POST['email'];
+		/*student address*/
+		$brgy = $_POST['brgy'];
+		$municipality = $_POST['municipality'];
+		$province = $_POST['province'];
+		/*guardian information*/
+		$g_lname = $_POST['g_lname'];
+		$g_fname = $_POST['g_fname'];
+		$g_mname = $_POST['g_mname'];
+		$g_relationship = $_POST['g_relationship'];
+		$g_contact = $_POST['g_contact'];
+		$g_brgy = $_POST['g_brgy'];
+		$g_municipality = $_POST['g_municipality'];
+		$g_province = $_POST['g_province'];
+		/*educational_background*/
+		$old = $_POST['old_curriculum'];
+		$old_school = $_POST['old_school'];
+        $old_brgy = $_POST['old_brgy'];
+        $old_municipality = $_POST['old_municipality'];
+        $old_province = $_POST['old_province'];
+        $old_yearfrom = $_POST['old_yearfrom'];
+        $old_yearto = $_POST['old_yearto'];
+        $old_average = $_POST['old_average'];
+        $jshs_school = $_POST['jshs_school'];
+        $jshs_brgy = $_POST['jshs_brgy'];
+        $jshs_municipality = $_POST['jshs_municipality'];
+        $jshs_province = $_POST['jshs_province'];
+        $jshs_yearfrom = $_POST['jshs_yearfrom'];
+        $jshs_yearto = $_POST['jshs_yearto'];
+        $jshs_average = $_POST['jshs_average'];
+
 		$this->form_validation->set_message('is_unique', '%s already exist.');
 		$this->form_validation->set_rules('lrn', "LRN", 'required|is_unique[teacher_data.lrn]|is_unique[student_data.lrn]');
 		$this->form_validation->set_rules('lname', "Last name", 'required');
@@ -106,7 +157,216 @@ class Homepage extends CI_Controller {
 		$this->form_validation->set_rules('telephone', "telephone", 'required');
 		$this->form_validation->set_rules('mobile', "mobile", 'required');
 		$this->form_validation->set_rules('email', "email", 'required');
+		$this->form_validation->set_rules('brgy', "Barangay", 'required');
+		$this->form_validation->set_rules('municipality', "Municipality", 'required');
+		$this->form_validation->set_rules('province', "Province", 'required');
+		$this->form_validation->set_rules('g_lname', "Guardian Last name", 'required');
+		$this->form_validation->set_rules('g_fname', "Guardian First name", 'required');
+		$this->form_validation->set_rules('g_mname', "Guardian Middle name", 'required');
+		$this->form_validation->set_rules('g_relationship', "Relationship", 'required');
+		$this->form_validation->set_rules('g_contact', "Guardian contact", 'required');
+		$this->form_validation->set_rules('g_brgy', "Barangay", 'required');
+		$this->form_validation->set_rules('g_municipality', "Municipality", 'required');
+		$this->form_validation->set_rules('g_province', "Province", 'required');
 
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = 'error';
+			$this->data['msg'] = validation_errors();
+			echo json_encode($this->data);
+		}
+		else{
+			$arr = array();
+			if($type == "new"){
+				$acad_level = array(
+					array(
+						'acad_status' => 'New Student',
+						'acad_level' => $new_acad_level,
+						'course' => $new_course,
+						'semester' => $new_semester,
+						'yearfrom' => $new_yearfrom,
+						'yearto' => $new_yearto,
+					)
+				);
+			}
+			else if($type == 'old'){
+				$acad_level = array(
+					array(
+						'acad_status' => 'Old Student',
+						'acad_level' => $old_course,
+						'course' => $old_acad_level,
+						'semester' => $old_semester,
+						'yearfrom' =>$old_from,
+						'yearto' => $old_to,
+					)
+				);
+			}
+			else if($type == "transferee"){
+				$acad_level = array(
+					array(
+						'acad_status' => 'Transfer Student',
+						'acad_level' => $transfer_course,
+						'course' => $transfer_acad_level,
+						'semester' => $transfer_semester,
+						'yearfrom' =>$transfer_from,
+						'yearto' => $transfer_to,
+					)
+				);
+			}
+			$personal_info = array(
+				array(
+					'lname' =>$lname,
+					'fname' =>$fname,
+					'mname' =>$mname,
+					'sex' =>$sex,
+					'bday' =>$bday,
+					'bplace' =>$bplace,
+					'age' =>$age,
+					'height' =>$height,
+					'weight' =>$weight,
+					'language' =>$language,
+					'religion' =>$religion,
+					'ethnic_group' =>$ethnic_group,
+					'telephone'=>$telephone,
+					'mobile'=>$mobile,
+					'email' =>$email,
+				)
+			);
+			$address = array(
+				array(
+					'brgy' => $brgy,
+					'municipality' => $municipality,
+					'province' => $province, 
+				)
+			);
+			$guardian_info = array(
+				array(
+					'g_lname' => $g_lname,
+					'g_fname' => $g_fname,
+					'g_mname' => $g_mname,
+					'g_relationship' => $g_relationship,
+					'g_contact' =>$g_contact,
+					'g_brgy' => $g_brgy,
+					'g_municipality' => $g_municipality,
+					'g_province' => $g_province,
+
+				)
+			);
+			if($old==1){
+				$educational = array(
+					array(
+						'curriculum' => 'Old Curriculum/Transferee',
+						'school' => $old_school,
+						'brgy' => $old_brgy,
+						'municipality' => $old_municipality,
+						'province' => $old_province,
+						'yearfrom' => $old_yearfrom,
+						'yearto' => $old_yearto,
+						'average' => $old_average,
+					)
+				);
+			}
+			else{
+				$educational = array(
+					array(
+						'curriculum' => 'Junior High School',
+						'school' => $jshs_school,
+						'brgy' => $jshs_brgy,
+						'municipality' => $jshs_municipality,
+						'province' => $jshs_province,
+						'yearfrom' => $jshs_yearfrom,
+						'yearto' => $jshs_yearto,
+						'average' => $jshs_average,
+					)
+				);
+			}
+			$courseadd =  $this->pal_model->add_student($lrn,$personal_info,$address,$guardian_info,$educational,$acad_level);
+			$this->data['status'] = 'success';
+			$this->data['msg'] = "Successfully added.";
+			
+			echo json_encode($this->data);
+		}
+	}
+	public function register2(){
+			
+		$this->load->view('homepage/header');
+		$this->load->view('homepage/registration2');
+		$this->load->view('homepage/footer');
+	}
+	public function addteacher(){
+		$lrn = $_POST['lrn'];
+		/*personal_info*/
+		$lname = $_POST['lname'];
+		$fname = $_POST['fname'];
+		$mname = $_POST['mname'];
+		$sex = $_POST['sex'];
+		$bday = $_POST['bday'];
+		$bplace = $_POST['bplace'];
+		$age = $_POST['age'];
+		$height = $_POST['height'];
+		$weight = $_POST['weight'];
+		$language = $_POST['language'];
+		$religion = $_POST['religion'];
+		$ethnic_group = $_POST['ethnic_group'];
+		$telephone = $_POST['telephone'];
+		$mobile = $_POST['mobile'];
+		$email = $_POST['email'];
+		/*adress*/
+		$brgy = $_POST['brgy'];
+        $municipality = $_POST['municipality'];
+        $province = $_POST['province'];
+        /*guardian info*/
+        $g_lname = $_POST['g_lname'];
+		$g_fname = $_POST['g_fname'];
+		$g_mname = $_POST['g_mname'];
+		$g_relationship = $_POST['g_relationship'];
+		$g_contact = $_POST['g_contact'];
+		$g_brgy = $_POST['g_brgy'];
+		$g_municipality = $_POST['g_municipality'];
+		$g_province = $_POST['g_province'];
+		/*educational background*/
+		$school_name = $_POST['school_name'];
+		$degree = $_POST['degree'];
+		$course = $_POST['course'];
+		$s_brgy = $_POST['s_brgy'];
+		$s_municipality = $_POST['s_municipality'];
+		$s_province = $_POST['s_province'];
+		$year_from = $_POST['year_from'];
+		$year_to = $_POST['year_to'];
+		$this->form_validation->set_message('is_unique', '%s already exist.');
+		$this->form_validation->set_rules('lrn', "LRN", 'required|is_unique[teacher_data.lrn]|is_unique[student_data.lrn]');
+		$this->form_validation->set_rules('lname', "Last name", 'required');
+		$this->form_validation->set_rules('fname', "First name", 'required');
+		$this->form_validation->set_rules('mname', "Middle Name", 'required');
+		$this->form_validation->set_rules('sex', "Sex", 'required');
+		$this->form_validation->set_rules('bday', "Birth Date", 'required');
+		$this->form_validation->set_rules('bplace', "Birth Place", 'required');
+		$this->form_validation->set_rules('age', "Age", 'required');
+		$this->form_validation->set_rules('height', "Height", 'required');
+		$this->form_validation->set_rules('weight', "Weight", 'required');
+		$this->form_validation->set_rules('language', "Language", 'required');
+		$this->form_validation->set_rules('religion', "Religion", 'required');
+		$this->form_validation->set_rules('ethnic_group', "Ethnic Group", 'required');
+		$this->form_validation->set_rules('telephone', "telephone", 'required');
+		$this->form_validation->set_rules('mobile', "mobile", 'required');
+		$this->form_validation->set_rules('email', "email", 'required');
+		$this->form_validation->set_rules('brgy', "Barangay", 'required');
+		$this->form_validation->set_rules('municipality', "municipality", 'required');
+		$this->form_validation->set_rules('province', "province", 'required');
+		$this->form_validation->set_rules('g_lname', "Last name", 'required');
+		$this->form_validation->set_rules('g_fname', "First name", 'required');
+		$this->form_validation->set_rules('g_mname', "Middle name", 'required');
+		$this->form_validation->set_rules('g_relationship', "Relationship", 'required');
+		$this->form_validation->set_rules('g_contact', "Contact", 'required');
+		$this->form_validation->set_rules('g_brgy', "Barangay", 'required');
+		$this->form_validation->set_rules('g_municipality', "Municipality", 'required');
+		$this->form_validation->set_rules('school_name', "School name", 'required');
+		$this->form_validation->set_rules('degree', "Bachelor Degree", 'required');
+		$this->form_validation->set_rules('s_brgy', "Barangay", 'required');
+		$this->form_validation->set_rules('s_municipality', "Municipality", 'required');
+		$this->form_validation->set_rules('s_province', "Province", 'required');
+		$this->form_validation->set_rules('year_from', "Academic year from", 'required');
+		$this->form_validation->set_rules('year_to', "Academic year to", 'required');
 
 
 		if ($this->form_validation->run() == FALSE) {
@@ -136,10 +396,41 @@ class Homepage extends CI_Controller {
 					'email' =>$email,
 				)
 			);
+			$address = array(
+				array(
+					'brgy' => $brgy,
+					'municipality' => $municipality,
+					'province' => $province,
+				)
+			);
+			$guardian_info = array(
+				array(
+					'g_lname'=>$g_lname,
+					'g_fname'=>$g_fname,
+					'g_mname'=>$g_mname,
+					'g_relationship'=>$g_relationship,
+					'g_contact'=>$g_contact,
+					'g_brgy'=>$g_brgy,
+					'g_municipality'=>$g_municipality,
+					'g_province'=>$g_province,
+				)
+			);
+			$educational_background = array(
+				array(
+					'school_name'=>$school_name,
+					'degree' =>$degree,
+					'course'=>$course,
+					's_brgy'=>$s_brgy,
+					's_municipality'=>$s_municipality,
+					's_province'=>$s_province,
+					'year_from'=>$year_from,
+					'year_to'=>$year_to,
+				)
+			);
 			// foreach ($personal_info as $key => $value) {
 			// 	array_push($arr, array())
 			// }
-			$courseadd =  $this->pal_model->add_teacher($lrn,$personal_info);
+			$courseadd =  $this->pal_model->add_teacher($lrn,$personal_info,$address,$guardian_info,$educational_background);
 			$this->data['status'] = 'success';
 			$this->data['msg'] = "Successfully added.";
 			

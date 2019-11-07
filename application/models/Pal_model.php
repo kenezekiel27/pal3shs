@@ -51,17 +51,41 @@
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
 		}
-		public function add_teacher($lrn,$data){
+		public function add_teacher($lrn,$data,$data2,$data3,$data4){
 			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$data2 = json_encode($data2, JSON_PRETTY_PRINT);
+			$data3 = json_encode($data3, JSON_PRETTY_PRINT);
+			$data4 = json_encode($data4, JSON_PRETTY_PRINT);
 			$newData = array(
 				'personal_info' => $data,
 	            'lrn' =>$lrn,
+	            'address' => $data2,
+	            'guardian_info' => $data3,
+	            'education' => $data4,
+	            'status' => '0',
 
 			);
 			$this->db->insert('teacher_data', $newData);
 		}
+		public function add_student($lrn,$data,$data2,$data3,$data4,$data5){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$data2 = json_encode($data2,JSON_PRETTY_PRINT);
+			$data3 = json_encode($data3,JSON_PRETTY_PRINT);
+			$data4 = json_encode($data4,JSON_PRETTY_PRINT);
+			$data5 = json_encode($data5,JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+				'acad_level' => $data5,
+	            'lrn' =>$lrn,
+	            'address' => $data2,
+	            'guardian_info' => $data3,
+	            'education' => $data4,
+	            'status' =>'0',
+			);
+			$this->db->insert('student_data', $newData);
+		}
 		public function teacher_data(){
-			$query = $this->db->get('teacher_data');
+			$query = $this->db->get_where('teacher_data', array('status' => '0'));
 			return $query->result();
 		}
 		//for adding of subject to course

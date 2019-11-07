@@ -7,7 +7,7 @@
 				<div class="col-md-7 text-center">
 					<div class="mb-5 element-animate">
 
-						<h1 class="mb-2">Paliparan III Señior High School</h1>
+						<h1 class="mb-2">Paliparan III Senior High School</h1>
 					</div>
 				</div>
 			</div>

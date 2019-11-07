@@ -28,7 +28,7 @@
 			</div>
 			<div class="row pt-5">
 	        	<div class="col-md-12 text-center copyright">
-		            <p class="float-md-left" style="color: white">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Paliparan III Señior High School</p>
+		            <p class="float-md-left" style="color: white">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Paliparan III Senior High School</p>
 		            <p class="float-md-right">
 		              <a href="https://www.facebook.com/p3shs/" class="fa fa-facebook p-2"></a>
 		              <a href="#" class="fa fa-twitter p-2"></a>
@@ -73,6 +73,7 @@
 	<script src="<?php echo base_url(); ?>assets/homepagestyles/customJS.js"></script>
 	<script src="<?php echo base_url(); ?>assets/homepagestyles/login.js"></script>
 	<script src="<?php echo base_url(); ?>assets/homepagestyles/js/registration2JS.js"></script>
+	<script src="<?php echo base_url();?>assets/homepagestyles/js/registration1JS.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>
 		var base_url = '<?php echo base_url() ?>';
