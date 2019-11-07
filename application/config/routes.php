@@ -69,10 +69,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] = 'adminpage/dashboard';
 $route['course'] = 'adminpage/course';
 $route['subject'] = 'adminpage/subject';
-<<<<<<< HEAD
+
 $route['student-registration'] = 'homepage/register1';
-=======
+
 $route['school-event'] = 'adminpage/school_event';
 
->>>>>>> 49139b8781b3f9c9528ebcda532e3f9adafb7f5d
+$route['pending-registration'] = 'adminpage/pending_registration';
 $route['(:any)'] = 'homepage/pages/$1';

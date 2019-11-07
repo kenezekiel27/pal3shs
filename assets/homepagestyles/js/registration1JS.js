@@ -38,8 +38,6 @@ $(document).ready(function(){
         });
     });
 	$('.sendBtn1').click(function(){
-        
-        alert(old_curriculum);
 		$.ajax({
 			type: "POST",
             url: base_url + 'homepage/addstudent',

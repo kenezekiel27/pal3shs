@@ -85,11 +85,20 @@
 			$this->db->insert('student_data', $newData);
 		}
 		public function teacher_data(){
-			$query = $this->db->get_where('teacher_data', array('status' => '0'));
+			$query = $this->db->get_where('teacher_data', array('status' => '1'));
 			return $query->result();
 		}
 		//for viewing of subject
-
+		/*pending teacher for viewing*/
+		public function pending_teacher(){
+			$query = $this->db->get_where('teacher_data', array('status' => '0'));
+			return $query->result();
+		}
+		/*pending student for viewing*/
+		public function pending_student(){
+			$query = $this->db->get_where('student_data', array('status' => '0'));
+			return $query->result();
+		}
 		public function viewSubject($id){
 			$query = $this->db->get_where('list_of_subject', array('id' => $id));
 			return $query->row_array();

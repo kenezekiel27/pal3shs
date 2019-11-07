@@ -119,9 +119,11 @@
 						<p>Available Teacher</p>
 						<select class="teachers" name="teachers[]" multiple="multiple"  style="width: 100% !important">
 							<?php foreach ($teachers as $value): ?>
+								<?php $index = 0; ?>
 								<?php $new = json_decode($value->personal_info,true); ?>
 								<?php foreach($new as $key => $value2): ?>
-									<option  value=<?php echo $value->id ?> style="width: 100% !important"><?php echo ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']) ?></option>
+										<option  value="<?php echo $value->id ?>" style="width: 100% !important"><?php echo ucfirst($value2["fname"])." " .ucfirst($value2["mname"][0]).". ". ucfirst($value2["lname"]) ?></option>
+									</option>
 								<?php endforeach ?>
 								
 							<?php endforeach ?>

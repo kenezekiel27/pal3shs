@@ -597,6 +597,17 @@ class Adminpage extends CI_Controller {
 			}		
 		}	
 	}
+	/*pending registration page*/
+	public function pending_registration(){
+		
+		$students = $this->pal_model->pending_student();
+		$this->data['student_info'] = $students;
+		$teachers = $this->pal_model->pending_teacher();
+		$this->data['teacher_info'] = $teachers;
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/pendingRegistration',$this->data);
+		$this->load->view('adminpage/footer');
+	}
 
 
 	// BULLETIN BOARD
