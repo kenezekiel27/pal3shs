@@ -629,8 +629,14 @@ class Adminpage extends CI_Controller {
 	// FOR SECTION PAGE
 
 	public function openSection(){
+		$courses = $this->pal_model->courses_offer();
+		$teachers = $this->pal_model->teacher_data();
+
+		$this->data['teachers'] = $teachers;
+		$this->data['courses'] = $courses;
+
 		$this->load->view('adminpage/header');
-		$this->load->view('adminpage/sectionList');
+		$this->load->view('adminpage/sectionList', $this->data);
 		$this->load->view('adminpage/footer');
 	}
 }
