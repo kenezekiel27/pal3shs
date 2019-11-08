@@ -687,6 +687,7 @@ class Adminpage extends CI_Controller {
 
 
 
+	// adding of new academic year
 	public function addAcadYear(){
 		$acadYear = $_POST['acadYear'];
 		$courseOpen = $_POST['courseOpen'];
@@ -728,6 +729,36 @@ class Adminpage extends CI_Controller {
 			}
 		}
 		$this->data['open_course'] = $arr;
+		echo json_encode($this->data);
+	}
+
+	// adding of new section
+
+	public function addNewSection(){
+		$no_of_section = $_POST['no_of_section'];
+		$sec_grade = $_POST['sec_grade'];
+		$sec_semester = $_POST['sec_semester'];
+		$sec_acadyearid = $_POST['sec_acadyear'];
+		$sec_status = $_POST['sec_status'];
+		$sec_acad_course = $_POST['sec_acad_course'];
+
+		$newAcadYear = $this->pal_model->get_open_course_per_acadyear($sec_acadyearid);
+		$arr = array();
+		for ($i=1; $i <=$no_of_section; $i++) { 
+			$name = "Section ".$i;
+			$data = array(
+				"section_name" => $name,
+				"academic_level" => $sec_grade,
+				"semester" => $sec_semester,
+				"academic_year" => $newAcadYear['acad_year'],
+				"status" => $sec_status,
+				"course" => $sec_acad_course,
+			);
+			$old = $this->pal_model->add_section($data);
+
+		}
+
+		$this->data['status'] = "success";
 		echo json_encode($this->data);
 	}
 

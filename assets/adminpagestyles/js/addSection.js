@@ -92,4 +92,46 @@ $(document).ready(function(){
 			}
 		});
      })
+
+    $('.add_new_section').click(function(){
+    	$('.add_new_section').text("Loading");
+    	$.ajax({
+    		url: base_url + 'adminpage/addNewSection',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'no_of_section' : $('.noOfSection').val(),
+				'sec_grade' : $('#sec_grade').val(),
+				'sec_semester' : $('#sec_semester').val(),
+				'sec_acadyear' : $('#sec_acadyear').val(),
+				'sec_status' : $('#sec_status').val(),
+				'sec_acad_course': $('#sec_acad_course').val()
+
+			},
+			success: function(response){
+				$('.add_new_section').prop("disabled", true);
+				$('.add_new_section').text("Add");
+				if (response.status == "success") {
+					$('.add_new_section').text("Loading");
+					$.toast({
+						heading: 'New section is available',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 4123000,
+						stack: 6,
+			      	});
+			      	setTimeout(function(){
+						window.location = base_url + 'section';
+					},2500);
+				}
+				else{
+					$('.add_new_section').prop("disabled", false);
+				}
+
+			}
+		});
+    })
 })

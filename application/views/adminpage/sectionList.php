@@ -35,31 +35,8 @@
 					<hr>
 					<p class="add_section_warning" style="font-weight: lighter"></p>
 					<div class="modal_body form-material" style="width: 100% !important; left: 0px !important;">
-						<div class="row">
-							<div class="col-md-4">
-								<label>No of section</label>
-								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
-							</div>
-							
-							<div class="col-md-4">
-								<label>Academic Level</label>
-								<select class="form-control" id="sec_acad_level">
-									<option selected disabled>Select</option>
-									<option>Grade 11</option>
-									<option>Grade 12</option>
-								</select>
-							</div>	
-							<div class="col-md-4">
-								<label>Semester</label>
-								<select class="form-control" id="sec_semester">
-									<option disabled selected>Select</option>
-									<option>1st Semester</option>
-									<option>2nd Semester</option>
-								</select>
-							</div>
-							
-						</div>
-						<br>
+						
+						
 						<div class="row"> 
 							<div class="col-md-4">
 								<label>Academic Year</label>
@@ -72,7 +49,7 @@
 							</div>
 							<div class="col-md-4">
 								<label>Status</label>
-								<select class="form-control">
+								<select class="form-control" id="sec_status">
 									<option selected disabled>Select</option>
 									<option>Current</option>
 									<option>Previous</option>
@@ -87,6 +64,31 @@
 									<?php endforeach ?> -->
 								</select>
 							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of section</label>
+								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
+							</div>
+							
+							<div class="col-md-4">
+								<label>Academic Level</label>
+								<select class="form-control" id="sec_grade">
+									<option selected disabled>Select</option>
+									<option>Grade 11</option>
+									<option>Grade 12</option>
+								</select>
+							</div>	
+							<div class="col-md-4">
+								<label>Semester</label>
+								<select class="form-control" id="sec_semester">
+									<option disabled selected>Select</option>
+									<option>1st Semester</option>
+									<option>2nd Semester</option>
+								</select>
+							</div>
+							
 						</div>
 						<br>
 						<p style="font-weight: lighter; color:red; font-size: 12px;">*Select academic year to show the open courses.</p>

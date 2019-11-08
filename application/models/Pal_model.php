@@ -196,4 +196,11 @@
 			$query = $this->db->get_where('open_course', array('id' => $id));
 			return $query->row_array();
 		}
+
+
+		// adding of new section
+
+		public function add_section($data){
+			$this->db->insert('section_list', $data);
+		}
 	}
