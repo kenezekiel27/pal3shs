@@ -611,10 +611,10 @@ class Adminpage extends CI_Controller {
 	/*viewing of student information*/
 	public function student_info($id){
 
-		/*//$students = $this->pal_model->viewStudent($id);
-		$this->data['studentinfo'] = 'sad';*/
+		$students = $this->pal_model->viewStudent($id);
+		$this->data['student_info'] = $students;
 		$this->load->view('adminpage/header');
-		$this->load->view('adminpage/studentInfo');
+		$this->load->view('adminpage/studentInfo',$this->$data);
 		$this->load->view('adminpage/footer');
 	}
 
