@@ -88,7 +88,15 @@
 			$query = $this->db->get_where('teacher_data', array('status' => '1'));
 			return $query->result();
 		}
-		//for viewing of subject
+		/*viewing of student information*/
+		public function student_data(){
+			$query = $this->db->get_where('student_data');
+			return $query->result();
+		}
+		public function viewStudent($id){
+			$query = $this->db->get_where('student_data', array('id' => $id));
+			return $query->row_array();
+		}
 		/*pending teacher for viewing*/
 		public function pending_teacher(){
 			$query = $this->db->get_where('teacher_data', array('status' => '0'));

@@ -54,7 +54,7 @@
 													</td>
 													<td>
 			                            				<center>
-			                            					<a href="" title="View" data-toggle="tooltip" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+			                            					<a href="<?php echo base_url(); ?>student-information/<?php echo $value->id?>" title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewBtn<?php echo $value->id ?>"><i class="fa fa-eye"></i></a>
 			                            					<a href="#" title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-check" aria-hidden="true" ></i></a>
 			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
 			                            				</center>
@@ -91,7 +91,7 @@
 													<td><?php echo $value2['mname'] ?></td>
 													<td>
 			                            				<center>
-			                            					<a href="" title="View" data-toggle="tooltip" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+			                            					<a href="#" title="View" data-toggle="tooltip" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
 			                            					<a href="#" title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-check" aria-hidden="true" ></i></a>
 			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
 			                            				</center>

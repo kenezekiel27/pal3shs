@@ -608,7 +608,15 @@ class Adminpage extends CI_Controller {
 		$this->load->view('adminpage/pendingRegistration',$this->data);
 		$this->load->view('adminpage/footer');
 	}
+	/*viewing of student information*/
+	public function student_info($id){
 
+		/*//$students = $this->pal_model->viewStudent($id);
+		$this->data['studentinfo'] = 'sad';*/
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/studentInfo');
+		$this->load->view('adminpage/footer');
+	}
 
 	// BULLETIN BOARD
 	public function school_event(){
