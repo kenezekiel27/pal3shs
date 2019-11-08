@@ -102,7 +102,7 @@
 						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/teacher.png" alt="user-img" width="27" class="img-circle" style="margin-left: -2px">Teacher</a>
 					</li>
 					<li>
-						<a href="#" class="waves-effect"><i style="color: black" class="fa fa-users" aria-hidden="true"></i> Section</a>
+						<a href="<?php echo base_url(); ?>section" class="waves-effect"><i style="color: black" class="fa fa-users" aria-hidden="true"></i> Section</a>
 					</li>
 					<li>
 						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/account.png" alt="user-img" width="24" class="img-circle" style="margin-left: -7px">Accounts</a>

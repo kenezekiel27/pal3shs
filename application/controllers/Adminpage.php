@@ -611,10 +611,10 @@ class Adminpage extends CI_Controller {
 	/*viewing of student information*/
 	public function student_info($id){
 
-		/*//$students = $this->pal_model->viewStudent($id);
-		$this->data['studentinfo'] = 'sad';*/
+		$students = $this->pal_model->viewStudent($id);
+		$this->data['student_info'] = $students;
 		$this->load->view('adminpage/header');
-		$this->load->view('adminpage/studentInfo');
+		$this->load->view('adminpage/studentInfo', $this->data);
 		$this->load->view('adminpage/footer');
 	}
 
@@ -622,6 +622,15 @@ class Adminpage extends CI_Controller {
 	public function school_event(){
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/schoolEvent');
+		$this->load->view('adminpage/footer');
+	}
+
+
+	// FOR SECTION PAGE
+
+	public function openSection(){
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/sectionList');
 		$this->load->view('adminpage/footer');
 	}
 }
