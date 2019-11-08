@@ -20,25 +20,33 @@
 						<button class="btn btn-success">Educational Background</button>
 						<hr>
 						<div class="Academic_info form-material">
-							<!-- <?php $key ?>
+							<?php $key ?>
 								<?php 
 									$course="";
 									$acad_level="";
 									$semester="";
 									$year_from="";
 									$year_to="";
-									var_dump($student_info);
-									// foreach ($student_info as $key => $value) {
-									// 	$new = json_decode($value->acad_level,true);
-									// 	foreach ($new as $key => $value2) {
-									// 		$course=$value2['course'];
-									// 		$acad_level=$value2['acad_level'];
-									// 		$semester=$value2['semester'];
-									// 		$year_from=$value2['yearfrom'];
-									// 		$year_to=$value2['yearto'];
-									// 	}
+									$new = json_decode($student_info['acad_level'],true);
+									foreach ($new as $key => $value2) {
+										$course=$value2['course'];
+										$acad_level=$value2['acad_level'];
+										$semester=$value2['semester'];
+										$year_from=$value2['yearfrom'];
+										$year_to=$value2['yearto'];
+									}
+									// foreach ($student_info as $value) {
+									// 	echo $value['acad_level'];
+									// 	$new = json_decode($value['acad_level'],true);
+									// 	// foreach ($new as $key => $value2) {
+									// 	// 	$course=$value2->course;
+									// 	// 	$acad_level=$value2['acad_level'];
+									// 	// 	$semester=$value2['semester'];
+									// 	// 	$year_from=$value2['yearfrom'];
+									// 	// 	$year_to=$value2['yearto'];
+									// 	// }
 									// }
-							 	?> -->
+							 	?> 
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Course</label>
@@ -46,21 +54,21 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Academic Level</label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" value="<?php echo $acad_level ?>">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Semester</label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" value="<?php echo $semester ?>">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Academic year from:</label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" value="<?php echo $year_from ?>">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>to:</label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" value="<?php echo $year_to ?>">
 								</div>
 							</div>
 						</div>

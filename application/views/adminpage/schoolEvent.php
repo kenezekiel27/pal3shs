@@ -18,25 +18,11 @@
                 </div>
 			</div>
 
-			<div class="row">
-				<div class="white-box col-lg-7" >
-					<div class="row form-material">
-						<h4>Current Events</h4>
-						<br><br>
-						<center><p>No events yet.</p></center>
-					</div>
-				</div>
-				<div class="col-lg-1" >
-					<div class="row form-material">
-
-					</div>
-				</div>
-				<div class="white-box col-lg-4" >
-					<div class="row form-material">
-						<div class="event1">
-							<img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/bulletinicon.png" alt="user-img" width="100"  >
-						</div>
-					</div>
+			<div class="white-box" >
+				<div class="row form-material">
+					<h4>Current Events</h4>
+					<br><br>
+					<center><p>No events yet.</p></center>
 				</div>
 			</div>
 			

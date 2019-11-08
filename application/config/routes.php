@@ -71,6 +71,8 @@ $route['dashboard'] = 'adminpage/dashboard';
 $route['course'] = 'adminpage/course';
 $route['subject'] = 'adminpage/subject';
 
+$route['section'] = 'adminpage/openSection';
+
 $route['student-registration'] = 'homepage/register1';
 
 $route['school-event'] = 'adminpage/school_event';
