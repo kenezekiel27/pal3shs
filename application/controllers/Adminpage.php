@@ -631,12 +631,56 @@ class Adminpage extends CI_Controller {
 	public function openSection(){
 		$courses = $this->pal_model->courses_offer();
 		$teachers = $this->pal_model->teacher_data();
-
+		$academicYear = $this->pal_model->academic_year();
 		$this->data['teachers'] = $teachers;
 		$this->data['courses'] = $courses;
-
+		$this->data['academicYear'] = $academicYear;
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/sectionList', $this->data);
 		$this->load->view('adminpage/footer');
+	}
+
+	public function addAcadYear(){
+		$acadYear = $_POST['acadYear'];
+		$courseOpen = $_POST['courseOpen'];
+
+		$newData = array();
+		$this->form_validation->set_message('is_unique', '%s already exist.');
+		$this->form_validation->set_rules('acadYear', "Academic Year", 'required|is_unique[open_course.acad_year]');
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = "danger";
+			$this->data['msg'] = validation_errors();
+		}
+		else{
+			for ($i=0; $i < count($courseOpen); $i++) { 
+				array_push($newData, array('id' => $courseOpen[$i]));
+			}
+
+			$this->pal_model->add_acad_year($acadYear, $newData);
+			$this->data['course_open'] = $newData;
+		}
+		
+		
+		echo json_encode($this->data);
+	}
+
+	public function getOpenCoursePerAcadYear(){
+		$id = $_POST['id'];
+		$this->data['id'] = $id;
+		$old = $this->pal_model->get_open_course_per_acadyear($id);
+		$courseOpen = json_decode($old['course_open_id']);
+
+		$courses = $this->pal_model->courses_offer();
+		$arr = array();
+		foreach ($courseOpen as $value) {
+			foreach ($courses as $value2) {
+				if ($value->id == $value2->id) {
+					array_push($arr,array('id'=>$value2->id, 'course_name' => $value2->course_name));
+				}
+			}
+		}
+		$this->data['open_course'] = $arr;
+		echo json_encode($this->data);
 	}
 }

@@ -48,13 +48,8 @@
 }
 
 
-.add_acadyear{
-	font-weight: bold;
-
-}
 .add_acadyear select{
 	font-weight: lighter;
-
 }
 .add_acadyear select option{
 	z-index: 6000;

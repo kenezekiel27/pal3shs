@@ -37,14 +37,10 @@
 					<div class="modal_body form-material" style="width: 100% !important; left: 0px !important;">
 						<div class="row">
 							<div class="col-md-4">
-								<label>Course</label>
-								<select class="form-control d" id="sec_acad_course">
-									<option selected disabled>Select</option>
-									<?php foreach ($courses as $key => $value): ?>
-										<option class="form-control"><?php echo $value->course_name ?></option>
-									<?php endforeach ?>
-								</select>
+								<label>No of section</label>
+								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
 							</div>
+							
 							<div class="col-md-4">
 								<label>Academic Level</label>
 								<select class="form-control" id="sec_acad_level">
@@ -66,49 +62,14 @@
 						<br>
 						<div class="row"> 
 							<div class="col-md-4">
-								<label>Year From</label>
-								<select class="form-control" id="sec_acad_yearfrom">
+								<label>Academic Year</label>
+								<select class="form-control" id="sec_acadyear">
 									<option selected disabled>Select</option>
-									<?php
-										for($year = date("Y"); $year >= 1995; $year--){
-								            ?>
-								                <option value="<?php echo $year ?>"><?php echo $year ?></option>
-								            <?php
-								        }
-								     ?> 
-									?>
-								</select>
-							</div>
-							<div class="col-md-4">
-								<label>Year To</label>
-								<select class="form-control" id="sec_acad_yearto">
-									<option selected disabled>Select</option>
-									<?php
-										for($year = date("Y")+1; $year >= 1995; $year--){
-								            ?>
-								                <option value="<?php echo $year ?>"><?php echo $year ?></option>
-								            <?php
-								        }
-								     ?> 
-									?>
-								</select>
-							</div>
-							<div class="col-md-4">
-								<label>Adviser</label>
-								<select class="form-control" id="sec_adviser">
-									<option selected disabled>Select</option>
-									<?php foreach ($teachers as $key => $value): ?>
-										<?php $info = json_decode($value->personal_info, TRUE) ?>
-										<?php foreach($info as $value2): ?>
-											<option value="<?php echo $value->id ?>"><?php echo ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']) ?></option>
-										<?php endforeach ?>
-										
+									<?php foreach($academicYear as $value): ?>
+										<option value="<?php echo $value->id ?>"><?php echo $value->acad_year ?></option>
 									<?php endforeach ?>
 								</select>
 							</div>
-						</div>
-						<br>
-						<div class="row">
 							<div class="col-md-4">
 								<label>Status</label>
 								<select class="form-control">
@@ -118,13 +79,18 @@
 								</select>
 							</div>
 							<div class="col-md-4">
-								<label>No of section</label>
-								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
+								<label>Course</label>
+								<select class="form-control " id="sec_acad_course">
+									<option selected disabled>Select</option>
+									<!-- <?php foreach ($courses as $key => $value): ?>
+										<option class="form-control"><?php echo $value->course_name ?></option>
+									<?php endforeach ?> -->
+								</select>
 							</div>
-							
 						</div>
-
-						<br><br><br>
+						<br>
+						<p style="font-weight: lighter; color:red; font-size: 12px;">*Select academic year to show the open courses.</p>
+						<br>
 						<center><button class="btn btn-success add_new_section" type="button" style="width: 40%;">Add</button></center>
 						<br><br><br>
 					</div>
@@ -137,37 +103,39 @@
 					<center><p style="font-size: 20px; font-weight: lighter;">Add Academic Year</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
 					<hr>
-					<p class="add_section_warning" style="font-weight: lighter"></p>
+					<p class="add_acadyear_warning" style="font-weight: lighter"></p>
 					<div class="modal_body form-material" style="width: 100% !important; left: 0px !important;">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<label>Academic Year</label>
-								<select class="form-control">
+								<select class="form-control selectAcadYear">
 									<option selected disabled>Select</option>
 									<?php 
 										for ($year = date("Y"); $year >= 1995; $year--) { 
 											?>
-												<option><?php echo $year; ?> / <?php echo $year+1; ?></option>
+												<option value="<?php echo $year; ?>-<?php echo $year+1; ?>"><?php echo $year; ?>-<?php echo $year+1; ?></option>
 											<?php
 										}
 									 ?>
 								</select>
 							</div>
-							<div class="col-md-6">
+							
+						</div><br>
+						<div class="row">
+							<div class="col-md-12">
 								<label>Open Course</label>
 								<br>
-								<select class="openCourse" style="width: 100% !important" multiple="multiple" >
+								<select class="openCourse" style="width: 100% !important;" multiple="multiple" >
 									<?php foreach ($courses as $key => $value): ?>
-										<option class="form-control"><?php echo $value->course_name ?></option>
+										<option value="<?php echo $value->id ?>"><?php echo $value->course_name ?></option>
 									<?php endforeach ?>
 									
 								</select>
 							</div>
 						</div>
-						
 					</div>
 					<br><br><br>
-					<center><button class="btn btn-success" style="width: 25%">Add</button></center>
+					<center><button class="btn btn-success add_acad_year_btn" style="width: 25%; display: none;">Add</button></center>
 					<br><br>
 				</div>
 

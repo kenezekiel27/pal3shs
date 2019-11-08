@@ -132,4 +132,28 @@
 	        $this->db->where('id', $id);
         	$this->db->update('list_of_subject', $newData);
 		}
+
+
+		// adding of new acad year
+		public function add_acad_year($acadyear, $opencourse){
+			$data = json_encode($opencourse, JSON_PRETTY_PRINT);
+			$newData = array(
+				'acad_year' => $acadyear,
+				'course_open_id' => $data
+			);
+			$this->db->insert('open_course', $newData);
+		}
+
+		// viewing of all academic year
+		public function academic_year(){
+			$query = $this->db->get('open_course');
+			return $query->result();
+		}
+
+		// for getting open courses per academic year
+		
+		public function get_open_course_per_acadyear($id){
+			$query = $this->db->get_where('open_course', array('id' => $id));
+			return $query->row_array();
+		}
 	}
