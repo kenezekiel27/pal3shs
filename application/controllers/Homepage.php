@@ -59,8 +59,10 @@ class Homepage extends CI_Controller {
 				$this->data['status'] = 'success';
 				$this->data['msg'] = "Logging in. Please wait!";
 				$this->data['credentials'] = $check;
+				$this->data['restriction'] = $check['restriction'];
 				echo json_encode($this->data);
 				$this->session->set_userdata('user_data', $check);
+				$this->session->set_userdata('restriction', $check['restriction']);
 			}
 			
 			
