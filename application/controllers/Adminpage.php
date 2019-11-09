@@ -782,6 +782,7 @@ class Adminpage extends CI_Controller {
 	// check if for section academic level
 
 	public function checkAcademicLevel(){
+		$academiccourse = $_POST['academiccourse'];
 		$academiclevel = $_POST['academiclevel'];
 		$academicyear = $_POST['academicyear'];
 		$status = $_POST['status'];
@@ -790,16 +791,10 @@ class Adminpage extends CI_Controller {
 			'Grade 12'
 		);
 
-		$semester = array(
-			'1st Semester',
-			'2nd Semester'
-		);
+		
+		
 
-		if ($academiclevel == "Grade 11") {
-			# code...
-		}
-
-		$data = $this->pal_model->check_academic_level($academiclevel, $academicyear, $status);
+		$data = $this->pal_model->check_academic_level($academiccourse, $academicyear, $status);
 		$first = false;
 		$second = false;
 		$third = false;
@@ -819,17 +814,28 @@ class Adminpage extends CI_Controller {
 				$fourth = true;
 			}
 		}
+
+		$semester1 = array(
+			'1st Semester',
+			'2nd Semester'
+		);
+
+		$semester2 = array(
+			'1st Semester',
+			'2nd Semester'
+		);
 		if ($first) {
-			unset($semester[0]);
+			unset($semester1[0]);
 		}
 		if ($second) {
-			unset($semester[1]);
+			unset($semester1[1]);
+		}
+		if ($third) {
+			unset($semester2[0]);
 		}
 		if ($fourth) {
-			# code...
+			unset($semester2[1]);
 		}
-
-
 
 		if($second && $first){
 			unset($levels[0]);
@@ -841,7 +847,23 @@ class Adminpage extends CI_Controller {
 		$this->data['boolean'] = $first.' '. $second.' '.$third.' '.$fourth;
 		$this->data['status'] = 'success';
 		$this->data['academiclevel'] = $levels;
-		$this->data['semester'] = $semester;
+		$this->data['acadlevel']  = $academiclevel;
+		if ($academiclevel == "Grade 11") {
+			$this->data['grade11'] = "yes";
+			$this->data['semester'] = $semester1;
+		}
+		else if ($academiclevel == "Grade 12"){
+			$this->data['grade12'] = "yes";
+			$this->data['semester'] = $semester2;
+		}
+		else{
+			$semester = array(
+				'1st Semester',
+				'2nd Semester'
+			);
+			$this->data['default'] = "yes";
+			$this->data['semester'] = $semester;
+		}
 		echo json_encode($this->data);
 	}
 }

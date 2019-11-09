@@ -146,7 +146,7 @@ $(document).ready(function(){
   //   	$('#sec_acad_course').empty();
   //   	var optionSelected = $('<option selected disabled>Select</option><option disabled>Select a academic year to show the courses</option>');
 		// $('#sec_acad_course').append(optionSelected);
-		//callAjax();
+		callAjax();
     })
 
     $('#sec_grade').change(function(){
@@ -160,9 +160,11 @@ $(document).ready(function(){
 				type: 'post',
 				dataType: "json",
 				data:{
-					'academiclevel' : $('#sec_acad_course').val(),
+					'academiccourse' : $('#sec_acad_course').val(),
+					'academiclevel' : $('#sec_grade').val(),
 					'academicyear' : $('#sec_acadyear option:selected').text(),
 					'status' : $('#sec_status').val(),
+					'forgrade': 1
 				},
 				success: function (response){
 
@@ -195,7 +197,8 @@ $(document).ready(function(){
 				type: 'post',
 				dataType: "json",
 				data:{
-					'academiclevel' : $('#sec_acad_course').val(),
+					'academiccourse' : $('#sec_acad_course').val(),
+					'academiclevel' : $('#sec_grade').val(),
 					'academicyear' : $('#sec_acadyear option:selected').text(),
 					'status' : $('#sec_status').val(),
 				},
