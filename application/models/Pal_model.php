@@ -223,4 +223,12 @@
 			$this->db->where('id', $id);
 			$query = $this->db->update('section_list', array('adviser' =>$adviser));
 		}
+
+		// REMOVE SECTION
+
+		public function remove_section($id){
+			$this->db->where('id', $id);
+			$query = $this->db->delete('section_list');
+			return $query;
+		}
 	}

@@ -304,5 +304,58 @@ $(document).ready(function(){
       $('.selectAdviser').val("Select");
     });
 
-    // check if teacher is available as adviser
+    // REMOVE SECTION
+    $('.removeSectionBtn').click(function(e){
+    	var id = e.target.id;
+    	var answer = confirm("Are you sure you want to remove this?");
+    	if (answer) {
+    		if ($('.noOfStudent'+id).val() != '0') {
+    			
+    			$.toast({
+					heading: "Can't remove section with existing student.",
+					position: 'bottom-center',
+					loaderBg: '#ff6849',
+					bgColor: '#dc3545',
+					textColor:'white',
+					textAlign: 'center',
+					hideAfter: 2000,
+					stack: 6,
+		      	});
+    		}
+    		else{
+    			
+
+    			$.ajax({
+    				url: base_url + 'adminpage/removeSection',
+					type: 'post',
+					dataType: "json",
+					data:{
+						'id': id
+					},
+					success: function(response){
+						if (response.status == "success") {
+							
+							$('.adviser'+id).prop("disabled", true);
+			    			$('.removesection'+id).prop("disabled", true);
+			    			$('.viewSectionBtn'+id).attr("disabled", true);
+			    			setTimeout(function(){
+			    				$.toast({
+									heading: 'Section has been removed',
+									position: 'bottom-center',
+									loaderBg: '#ff6849',
+									bgColor: '#28a745',
+									textColor:'white',
+									textAlign: 'center',
+									hideAfter: 2000,
+									stack: 6,
+						      	});
+			                	$('.sectionrow-'+id).hide("slow");
+			                }, 1000);
+						}
+						
+					}
+    			})
+    		}
+    	}
+    })
 })

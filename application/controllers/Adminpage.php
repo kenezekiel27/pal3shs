@@ -927,4 +927,15 @@ class Adminpage extends CI_Controller {
 		echo json_encode($this->data);
 	}
 
+	// REMOVE SECTION
+
+	public function removeSection(){
+		$id = $_POST['id'];
+
+		$this->pal_model->remove_section($id);
+
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
+	}
+
 }

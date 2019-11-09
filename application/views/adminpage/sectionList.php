@@ -18,44 +18,60 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="white-box">
-						<button data-toggle ="modal" data-target="#add_section_form" class="btn btn-success add_sectionBtn" type="button">Add Section</button>
+						<button data-toggle ="modal" data-target="#add_section_form" class="btn btn-success add_sectionBtn" type="button">Add New Section</button>
 						<button class="btn btn-success" data-toggle="modal" data-target="#add_acadyear_form" type="button">Add Academic Year</button>
+						<button class="btn btn-success" data-toggle="modal" data-target="#" type="button">Add Section To Existing Data</button>
 						<hr>
-						<h3>List of Section</h3>
+						
 						<br>
+						<button class="btn btn-primary">Filter data</button>
+						
+						<br><br>
+						<h3>List of Section: All</h3>
 						<table id="sectionTable" class="table table-striped table-bordered" style="width: 100%">
 							<thead>
 								<tr>
 									<th style="text-align: center;">Academic Year</th>
-									<th style="text-align: center;">Course</th>
+									<th style="text-align: center; width: 120px">Course</th>
+									<th style="text-align: center;">Status</th>
+									<th style="text-align: center;">Section</th>
 									<th style="text-align: center;">Grade</th>
 									<td style="text-align: center; font-weight: bold; color:#666">Semester</td>
+									<th style="text-align: center;">Student</th>
 									<th style="text-align: center;">Adviser</th>
 									<th style="text-align: center;">Action</th>
 								</tr>
 							</thead>
-							<thead>
+							<tbody>
 								<?php foreach($section_list as $value): ?>
 									<tr class="sectionrow-<?php echo $value->id ?>">
 										<td style="text-align: center;"><?php echo $value->academic_year ?></td>
-										<td style="text-align: center;"><?php echo $value->course ?></td>
+										<td style="text-align: center; width: 120px"><?php echo $value->course ?></td>
+										<td style="text-align: center;"><?php echo $value->status ?></td>
+										<td style="text-align: center;"><?php echo $value->section_name ?></td>
 										<td style="text-align: center;"><?php echo $value->academic_level ?></td>
 										<td style="text-align: center;"><?php echo $value->semester ?></td>
+										<td style="text-align: center;">
+											<?php $listofstudent = json_decode($value->student_id, TRUE) ?>
+											<input type="hidden" class="noOfStudent<?php echo $value->id ?>" value="<?php echo count($listofstudent); ?>">
+											<?php echo count($listofstudent); ?>
+										</td>
 										<td style="text-align: center;" class="adviser<?php echo $value->id ?>">
 											<?php if ($value->adviser == ""): ?>
-												<button class="btn btn-primary btn-sm openAdviser" data-toggle="modal" data-target="#add_adviser_form" id="<?php echo $value->id;?>">Assign</button>
+												<button class="btn btn-primary btn-sm openAdviser adviser<?php echo $value->id ?>" data-toggle="modal" data-target="#add_adviser_form" id="<?php echo $value->id;?>">Assign</button>
 											<?php else: ?>
 												<?php echo ucfirst($value->adviser) ?>
 											<?php endif ?>
 										</td>
+										
 										<td style="text-align: center;">
-											<a href="<?php echo base_url();?>section" title="View" data-toggle="tooltip" class="btn btn-success btn-sm "><i class="fa fa-eye"></i></a>
-											<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm" id="<?php echo $value->id;?>" ><i id="<?php echo $value->id;?>" class="fa fa-times" ></i></button>
+											<a href="<?php echo base_url();?>section" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
+											<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm removeSectionBtn removesection<?php echo $value->id  ?>" id="<?php echo $value->id;?>" ><i id="<?php echo $value->id;?>" class="fa fa-times" ></i></button>
 										</td>
 									</tr>
 								<?php endforeach ?>
 								
-							</thead>
+							</tbody>
 						</table>
 					</div>
 				</div>
