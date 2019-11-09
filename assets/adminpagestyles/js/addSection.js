@@ -129,9 +129,48 @@ $(document).ready(function(){
 				}
 				else{
 					$('.add_new_section').prop("disabled", false);
+					render_response('.add_section_warning',response.status, response.msg);
 				}
 
 			}
 		});
     })
+
+    $('#sec_acad_course').change(function(){
+    	$('#sec_grade').empty();
+    	$('#sec_semester').empty();
+    	$.ajax({
+    		url: base_url + 'adminpage/checkAcademicLevel',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'academiclevel' : $('#sec_acad_course').val(),
+				'academicyear' : $('#sec_acadyear option:selected').text()
+			},
+			success: function (response){
+				var optionSelected = $('<option selected disabled>Select</option>');
+				$('#sec_grade').append(optionSelected);
+
+				var optionSelected1 = $('<option selected disabled>Select</option>');
+				$('#sec_semester').append(optionSelected1);
+				if (response.academiclevel == ""){
+					$('#sec_grade').append($('<option disabled>All levels has a sections already</option>'));
+					$('#sec_semester').append($('<option disabled>All semester has a sections already</option>'));
+				}
+				else{
+					
+					$.each(response.academiclevel, function(idx, obj) {
+						console.log(obj.id);
+						$('#sec_grade').append($('<option>'+obj+'</option>'));
+					});
+					$.each(response.semester, function(idx, obj){
+						$('#sec_semester').append($('<option>'+obj+'</option>'));
+
+					})
+				}
+				
+			}
+    	})
+    })
+
 })

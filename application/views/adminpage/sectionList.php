@@ -59,6 +59,7 @@
 								<label>Course</label>
 								<select class="form-control " id="sec_acad_course">
 									<option selected disabled>Select</option>
+									<option disabled>Select a academic year to show the courses</option>
 									<!-- <?php foreach ($courses as $key => $value): ?>
 										<option class="form-control"><?php echo $value->course_name ?></option>
 									<?php endforeach ?> -->
@@ -76,23 +77,24 @@
 								<label>Academic Level</label>
 								<select class="form-control" id="sec_grade">
 									<option selected disabled>Select</option>
-									<option>Grade 11</option>
-									<option>Grade 12</option>
+									<option disabled>Select a course to show the levels</option>
+									<!-- <option>Grade 11</option>
+									<option>Grade 12</option> -->
 								</select>
 							</div>	
 							<div class="col-md-4">
 								<label>Semester</label>
 								<select class="form-control" id="sec_semester">
 									<option disabled selected>Select</option>
-									<option>1st Semester</option>
-									<option>2nd Semester</option>
+									<option disabled>Select a level to show the semester</option>
+									<!-- <option>1st Semester</option>
+									<option>2nd Semester</option> -->
 								</select>
 							</div>
 							
 						</div>
 						<br>
-						<p style="font-weight: lighter; color:red; font-size: 12px;">*Select academic year to show the open courses.</p>
-						<br>
+						
 						<center><button class="btn btn-success add_new_section" type="button" style="width: 40%;">Add</button></center>
 						<br><br><br>
 					</div>

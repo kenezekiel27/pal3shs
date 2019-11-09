@@ -742,24 +742,95 @@ class Adminpage extends CI_Controller {
 		$sec_status = $_POST['sec_status'];
 		$sec_acad_course = $_POST['sec_acad_course'];
 
-		$newAcadYear = $this->pal_model->get_open_course_per_acadyear($sec_acadyearid);
-		$arr = array();
-		for ($i=1; $i <=$no_of_section; $i++) { 
-			$name = "Section ".$i;
-			$data = array(
-				"section_name" => $name,
-				"academic_level" => $sec_grade,
-				"semester" => $sec_semester,
-				"academic_year" => $newAcadYear['acad_year'],
-				"status" => $sec_status,
-				"course" => $sec_acad_course,
-			);
-			$old = $this->pal_model->add_section($data);
+		
 
+		$this->form_validation->set_rules('no_of_section', "Sections", 'required');
+		$this->form_validation->set_rules('sec_grade', "Grade", 'required');
+		$this->form_validation->set_rules('sec_semester', "Semester", 'required');
+		$this->form_validation->set_rules('sec_acadyear', "Academic Year", 'required');
+		$this->form_validation->set_rules('sec_status', "Status", 'required');
+		$this->form_validation->set_rules('sec_acad_course', "Course", 'required');
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = "danger";
+			$this->data['msg'] = validation_errors();
+		}
+		else{
+			$newAcadYear = $this->pal_model->get_open_course_per_acadyear($sec_acadyearid);
+			$arr = array();
+			for ($i=1; $i <=$no_of_section; $i++) { 
+				$name = "Section ".$i;
+				$data = array(
+					"section_name" => $name,
+					"academic_level" => $sec_grade,
+					"semester" => $sec_semester,
+					"academic_year" => $newAcadYear['acad_year'],
+					"status" => $sec_status,
+					"course" => $sec_acad_course,
+				);
+				$old = $this->pal_model->add_section($data);
+
+			}
+
+			$this->data['status'] = "success";
 		}
 
-		$this->data['status'] = "success";
+		
 		echo json_encode($this->data);
 	}
 
+	// check if for section academic level
+
+	public function checkAcademicLevel(){
+		$academiclevel = $_POST['academiclevel'];
+		$academicyear = $_POST['academicyear'];
+		$levels = array(
+			'Grade 11',
+			'Grade 12'
+		);
+
+		$semester = array(
+			'1st Semester',
+			'2nd Semester'
+		);
+
+		$data = $this->pal_model->check_academic_level($academiclevel, $academicyear);
+		$first = false;
+		$second = false;
+		$third = false;
+		$fourth = false;
+		foreach ($data as $value) {
+			if ($value->semester == "1st Semester" && $value->academic_level == "Grade 11") {
+				$first = true;
+			}
+			else if($value->semester == "2nd Semester" && $value->academic_level == "Grade 11"){
+				$second = true;
+			}
+
+			else if ($value->semester == "1st Semester" && $value->academic_level == "Grade 12") {
+				$third = true;
+			}
+			else if($value->semester == "2nd Semester" && $value->academic_level == "Grade 12"){
+				$fourth = true;
+				}
+		}
+		if ($first) {
+			unset($semester[0]);
+		}
+		if ($second) {
+			unset($semester[1]);
+		}
+		if($second && $first){
+			unset($levels[0]);
+		}
+		if($third && $fourth){
+			unset($levels[1]);
+		}
+
+		$this->data['boolean'] = $first.' '. $second.' '.$third.' '.$fourth;
+		$this->data['status'] = 'success';
+		$this->data['academiclevel'] = $levels;
+		$this->data['semester'] = $semester;
+		echo json_encode($this->data);
+	}
 }

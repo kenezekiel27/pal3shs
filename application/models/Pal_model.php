@@ -203,4 +203,11 @@
 		public function add_section($data){
 			$this->db->insert('section_list', $data);
 		}
+
+		// check academic level for adding of section
+
+		public function check_academic_level($course, $academicyear){
+			$query = $this->db->get_where('section_list', array('course' => $course, 'academic_year' => $academicyear));
+			return $query->result();
+		}
 	}
