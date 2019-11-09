@@ -31,6 +31,7 @@
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/updateCourse.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/remove_subject.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/subjectData.js"></script>
+    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/addSection.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/remove_studentJS.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/remove_teacherJS.js"></script>
