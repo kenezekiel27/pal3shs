@@ -23,14 +23,13 @@
 						<hr>
 						<h3>List of Section</h3>
 						<br>
-
 						<table id="sectionTable" class="table table-striped table-bordered" style="width: 100%">
 							<thead>
 								<tr>
 									<th style="text-align: center;">Academic Year</th>
 									<th style="text-align: center;">Course</th>
 									<th style="text-align: center;">Grade</th>
-									<td style="text-align: center;">Semester</td>
+									<td style="text-align: center; font-weight: bold; color:#666">Semester</td>
 									<th style="text-align: center;">Adviser</th>
 									<th style="text-align: center;">Action</th>
 								</tr>
@@ -70,21 +69,21 @@
 					<hr>
 					<p class="add_section_warning" style="font-weight: lighter"></p>
 					<div class="modal_body form" style="width: 100% !important; left: 0px !important;">
-						<p class="addadvisertosectionwarning" style="font-weight: lighter;"></p>
-						<br>
-						<select class="form-control selectAdviser" >
-							<option selected disabled>Select</option>
-							<?php foreach($teachers as $value): ?>
-								<?php $new = json_decode($value->personal_info,true); ?>
-								<?php foreach($new as $key => $value2): ?>
-									<?php $newName = ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']) ?>
-									<option value="<?php echo $newName ?>" ><?php echo $newName ?></option>
-								<?php endforeach ?>
-							<?php endforeach ?>
-						</select>
-						<br>
+						<div class="hideifnoteacheravailable" >
+							<p class="addadvisertosectionwarning" style="font-weight: lighter;"></p>
+							<br>
+							<p style="font-weight: lighter;">Available teacher</p>
+							<select class="form-control selectAdviser" >
+								<option selected disabled>Select</option>
+								
+							</select>
+							<br>
 
-						<center><button class="btn btn-success addAdviserBtn" style="width: 30%">Add</button></center>
+							<center><button class="btn btn-success addAdviserBtn" style="width: 30%">Add</button></center>
+						</div>
+						<div class="showifnoteacheravailable" style="display: none;">
+							<center><p style="font-weight: lighter;">No available teacher.</p></center>
+						</div>
 					</div>
 					<br><br>
 				</div>

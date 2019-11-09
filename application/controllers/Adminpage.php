@@ -655,16 +655,16 @@ class Adminpage extends CI_Controller {
 
 	public function openSection(){
 		$courses = $this->pal_model->courses_offer();
-		$teachers = $this->pal_model->teacher_data();
+		//$teachers = $this->pal_model->teacher_data();
 		$academicYear = $this->pal_model->academic_year();
 		$sectionlist = $this->pal_model->section_list();
 
 		$this->data['courses'] = $courses;
 		$this->data['academicYear'] = $academicYear;
-		$this->data['teachers'] = $teachers;
+		
 		$this->data['section_list'] = $sectionlist;
 
-
+		//$this->data['teachers'] = $teachers;
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/sectionList', $this->data);
 		$this->load->view('adminpage/footer');
@@ -890,6 +890,40 @@ class Adminpage extends CI_Controller {
 		}
 		
 
+		echo json_encode($this->data);
+	}
+
+	// CHECK IF TEACHER IS AVAILABLE AS ADVISER
+
+	public function checkIfAdviser(){
+		$teachers = $this->pal_model->teacher_data();
+		$sectionlist = $this->pal_model->section_list();
+		// $this->data['section_list'] = $sectionlist;
+		// $this->data['teachers'] = $teachers;
+		$arr = array();
+		foreach ($teachers as $key => $value) {
+			$old = json_decode($value->personal_info, TRUE);
+			foreach ($old as $key => $value2) {
+				$fullname = ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']);
+				
+				foreach ($sectionlist as $key => $value3) {
+					if ($value3->adviser == $fullname) {
+						unset($teachers[$key]);
+					}
+				}
+			}
+		}
+
+		foreach ($teachers as $value) {
+			$old = json_decode($value->personal_info, TRUE);
+			foreach ($old as $value2) {
+				$fullname = ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']);
+				array_push($arr, array("name" => $fullname));
+			}
+		}
+
+		$this->data['teachers'] = $arr;
+		$this->data['status'] = "success";
 		echo json_encode($this->data);
 	}
 

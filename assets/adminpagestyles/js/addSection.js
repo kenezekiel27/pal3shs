@@ -230,8 +230,34 @@ $(document).ready(function(){
 
     var idOfSection;
     $('.openAdviser').click(function(e){
+    	$('.selectAdviser').empty();
     	var id = e.target.id;
     	idOfSection = id;
+    	$.ajax({
+    		url: base_url + 'adminpage/checkIfAdviser',
+			type: 'post',
+			dataType: "json",
+			data:{},
+			success: function(response){
+				if (response.teachers == "") {
+					$('.hideifnoteacheravailable').hide();
+					$('.showifnoteacheravailable').show();
+				}
+				else{
+					$('.hideifnoteacheravailable').show();
+					$('.showifnoteacheravailable').hide();
+					var optionSelected = $('<option selected disabled>Select</option>');
+					$('.selectAdviser').append(optionSelected);
+					// var string = JSON.stringify(response.teachers);
+					// var data = JSON.parse(string);
+					$.each(response.teachers, function(idx, obj) {
+					
+						$('.selectAdviser').append($('<option>'+obj.name+'</option>'));
+					});
+				}
+				
+			}
+    	});
     })
     $('.addAdviserBtn').click(function(){
     	var nameOfAdviser = $('.selectAdviser').val();
@@ -277,4 +303,6 @@ $(document).ready(function(){
     $('#add_adviser_form').on('hidden.bs.modal', function(){
       $('.selectAdviser').val("Select");
     });
+
+    // check if teacher is available as adviser
 })
