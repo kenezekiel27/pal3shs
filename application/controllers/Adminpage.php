@@ -742,7 +742,7 @@ class Adminpage extends CI_Controller {
 		$sec_status = $_POST['sec_status'];
 		$sec_acad_course = $_POST['sec_acad_course'];
 
-		
+
 
 		$this->form_validation->set_rules('no_of_section', "Sections", 'required');
 		$this->form_validation->set_rules('sec_grade', "Grade", 'required');
@@ -784,17 +784,17 @@ class Adminpage extends CI_Controller {
 	public function checkAcademicLevel(){
 		$academiclevel = $_POST['academiclevel'];
 		$academicyear = $_POST['academicyear'];
+		$status = $_POST['status'];
 		$levels = array(
 			'Grade 11',
 			'Grade 12'
 		);
 
-		$semester = array(
-			'1st Semester',
-			'2nd Semester'
-		);
+		
 
-		$data = $this->pal_model->check_academic_level($academiclevel, $academicyear);
+
+
+		$data = $this->pal_model->check_academic_level($academiclevel, $academicyear, $status);
 		$first = false;
 		$second = false;
 		$third = false;
@@ -812,14 +812,35 @@ class Adminpage extends CI_Controller {
 			}
 			else if($value->semester == "2nd Semester" && $value->academic_level == "Grade 12"){
 				$fourth = true;
-				}
+			}
 		}
-		if ($first) {
-			unset($semester[0]);
+		if ($academiclevel == "Grade 11") {
+			$semester = array(
+				'1st Semester',
+				'2nd Semester'
+			);
+			if ($first) {
+				unset($semester[0]);
+			}
+			if ($second) {
+				unset($semester[1]);
+			}
+			$this->data['semester'] = $semester;
 		}
-		if ($second) {
-			unset($semester[1]);
+		else if($academiclevel == "Grade 12"){
+			$semester = array(
+				'1st Semester',
+				'2nd Semester'
+			);
+			if ($third) {
+				unset($semester[0]);
+			}
+			if ($fourth) {
+				unset($semester[1]);
+			}
+			$this->data['semester'] = $semester;
 		}
+
 		if($second && $first){
 			unset($levels[0]);
 		}
@@ -830,7 +851,7 @@ class Adminpage extends CI_Controller {
 		$this->data['boolean'] = $first.' '. $second.' '.$third.' '.$fourth;
 		$this->data['status'] = 'success';
 		$this->data['academiclevel'] = $levels;
-		$this->data['semester'] = $semester;
+		
 		echo json_encode($this->data);
 	}
 }

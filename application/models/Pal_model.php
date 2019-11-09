@@ -206,8 +206,8 @@
 
 		// check academic level for adding of section
 
-		public function check_academic_level($course, $academicyear){
-			$query = $this->db->get_where('section_list', array('course' => $course, 'academic_year' => $academicyear));
+		public function check_academic_level($course, $academicyear,$status){
+			$query = $this->db->get_where('section_list', array('course' => $course, 'academic_year' => $academicyear, 'status' => $status));
 			return $query->result();
 		}
 	}

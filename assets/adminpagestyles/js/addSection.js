@@ -135,42 +135,96 @@ $(document).ready(function(){
 			}
 		});
     })
-
     $('#sec_acad_course').change(function(){
-    	$('#sec_grade').empty();
-    	$('#sec_semester').empty();
-    	$.ajax({
-    		url: base_url + 'adminpage/checkAcademicLevel',
-			type: 'post',
-			dataType: "json",
-			data:{
-				'academiclevel' : $('#sec_acad_course').val(),
-				'academicyear' : $('#sec_acadyear option:selected').text()
-			},
-			success: function (response){
-				var optionSelected = $('<option selected disabled>Select</option>');
-				$('#sec_grade').append(optionSelected);
-
-				var optionSelected1 = $('<option selected disabled>Select</option>');
-				$('#sec_semester').append(optionSelected1);
-				if (response.academiclevel == ""){
-					$('#sec_grade').append($('<option disabled>All levels has a sections already</option>'));
-					$('#sec_semester').append($('<option disabled>All semester has a sections already</option>'));
-				}
-				else{
-					
-					$.each(response.academiclevel, function(idx, obj) {
-						console.log(obj.id);
-						$('#sec_grade').append($('<option>'+obj+'</option>'));
-					});
-					$.each(response.semester, function(idx, obj){
-						$('#sec_semester').append($('<option>'+obj+'</option>'));
-
-					})
-				}
-				
-			}
-    	})
+    	
+    	
+    	callAjax();
     })
+
+
+    $('#sec_status').change(function(){
+  //   	$('#sec_acad_course').empty();
+  //   	var optionSelected = $('<option selected disabled>Select</option><option disabled>Select a academic year to show the courses</option>');
+		// $('#sec_acad_course').append(optionSelected);
+		//callAjax();
+    })
+
+    $('#sec_grade').change(function(){
+    	if($('#sec_status').val() == null){
+
+    	}
+    	else{
+    		$('#sec_semester').empty();
+    		$.ajax({
+	    		url: base_url + 'adminpage/checkAcademicLevel',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'academiclevel' : $('#sec_acad_course').val(),
+					'academicyear' : $('#sec_acadyear option:selected').text(),
+					'status' : $('#sec_status').val(),
+				},
+				success: function (response){
+
+					var optionSelected1 = $('<option selected disabled>Select</option>');
+					$('#sec_semester').append(optionSelected1);
+					if (response.academiclevel == ""){
+						$('#sec_grade').append($('<option disabled>All levels has a sections already</option>'));
+						$('#sec_semester').append($('<option disabled>All semester has a sections already</option>'));
+					}
+					else{
+						$.each(response.semester, function(idx, obj){
+							$('#sec_semester').append($('<option>'+obj+'</option>'));
+
+						})
+					}
+					
+				}
+	    	})
+    	}
+    })
+    function callAjax(){
+    	if($('#sec_status').val() == null){
+
+    	}
+    	else{
+    		$('#sec_grade').empty();
+    		$('#sec_semester').empty();
+    		$.ajax({
+	    		url: base_url + 'adminpage/checkAcademicLevel',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'academiclevel' : $('#sec_acad_course').val(),
+					'academicyear' : $('#sec_acadyear option:selected').text(),
+					'status' : $('#sec_status').val(),
+				},
+				success: function (response){
+					var optionSelected = $('<option selected disabled>Select</option>');
+					$('#sec_grade').append(optionSelected);
+
+					var optionSelected1 = $('<option selected disabled>Select</option>');
+					$('#sec_semester').append(optionSelected1);
+					if (response.academiclevel == ""){
+						$('#sec_grade').append($('<option disabled>All levels has a sections already</option>'));
+						$('#sec_semester').append($('<option disabled>All semester has a sections already</option>'));
+					}
+					else{
+						
+						$.each(response.academiclevel, function(idx, obj) {
+							console.log(obj.id);
+							$('#sec_grade').append($('<option>'+obj+'</option>'));
+						});
+						$.each(response.semester, function(idx, obj){
+							$('#sec_semester').append($('<option>'+obj+'</option>'));
+
+						})
+					}
+					
+				}
+	    	})
+    	}
+    }
+
 
 })

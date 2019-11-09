@@ -77,7 +77,7 @@
 								<label>Academic Level</label>
 								<select class="form-control" id="sec_grade">
 									<option selected disabled>Select</option>
-									<option disabled>Select a course to show the levels</option>
+									<option disabled>Select a course and status to show the levels</option>
 									<!-- <option>Grade 11</option>
 									<option>Grade 12</option> -->
 								</select>
