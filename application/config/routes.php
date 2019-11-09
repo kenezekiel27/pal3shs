@@ -52,7 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['dashboard-student'] = 'studentpage/dashboardStudent';
 $route['subject/(:any)'] = 'adminpage/viewOneSubject/$1';
 $route['course/(:any)'] = 'adminpage/courseUpdate/$1';
-$route['student-information/(:any)'] = 'adminpage/student_info/$1';
+$route['pending-registration/(:any)'] = 'adminpage/student_info/$1';
+$route['pending-registration1/(:any)'] = 'adminpage/teacher_info/$1';
 
 $route['default_controller'] = 'homepage/pages';
 $route['404_override'] = '';
@@ -79,4 +80,5 @@ $route['school-event'] = 'adminpage/school_event';
 
 $route['pending-registration'] = 'adminpage/pending_registration';
 $route['student-information'] = 'adminpage/student_info';
+$route['teacher-information'] = 'adminpage/teacher_info';
 $route['(:any)'] = 'homepage/pages/$1';

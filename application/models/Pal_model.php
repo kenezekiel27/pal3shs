@@ -88,6 +88,10 @@
 			$query = $this->db->get_where('teacher_data', array('status' => '1'));
 			return $query->result();
 		}
+		public function viewTeacher($id){
+			$query = $this->db->get_where('teacher_data', array('id' => $id));
+			return $query->row_array();
+		}
 		/*viewing of student information*/
 		public function student_data(){
 			$query = $this->db->get_where('student_data');
@@ -117,6 +121,42 @@
 			$query = $this->db->delete('list_of_subject');
 			return $query;
 		}
+		/*remove student info from db*/
+		public function remove_student($id){
+			$this->db->where('id', $id);
+			$query = $this->db->delete('student_data');
+			return $query;
+		}
+		/*--*/
+		/*confirm student*/
+		public function confirm_student($id, $lrn){
+			$this->db->where('id', $id);
+			$query = $this->db->update('student_data', array('status' =>'1'));
+			$this->db->insert('users_data', array(
+				'username' => $lrn,
+				'password' => '123456',
+				'restriction' => 'student',
+			));
+			return $query;
+		}
+		/*confirm teacher*/
+		public function confirm_teacher($id,$lrn){
+			$this->db->where('id', $id);
+			$query = $this->db->update('teacher_data', array('status' =>'1'));
+			$this->db->insert('users_data', array(
+				'username' => $lrn,
+				'password' => '123456',
+				'restriction' => 'teacher',
+			));
+			return $query;
+		}
+		/*remove teacher info*/
+		public function remove_teacher($id){
+			$this->db->where('id', $id);
+			$query = $this->db->delete('teacher_data');
+			return $query;
+		}
+		/*--*/
 		public function update_subject_data($id, $data){
 			$data = json_encode($data, JSON_PRETTY_PRINT);
 			$newData = [

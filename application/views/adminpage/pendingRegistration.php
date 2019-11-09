@@ -39,7 +39,7 @@
 										$new = json_decode($value->personal_info,true);
 										foreach ($new as $key => $value2) {
 											?>
-												<tr class="row-<?php echo $key  ?>">
+												<tr class="row1-<?php echo $value->id  ?>">
 													<td><?php echo $value->lrn?></td>
 													<td><?php echo $value2['lname'] ?></td>
 													<td><?php echo $value2['fname'] ?></td>
@@ -54,9 +54,9 @@
 													</td>
 													<td>
 			                            				<center>
-			                            					<a href="<?php echo base_url(); ?>student-information/<?php echo $value->id?>" title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewBtn<?php echo $value->id ?>"><i class="fa fa-eye"></i></a>
-			                            					<a href="#" title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-check" aria-hidden="true" ></i></a>
-			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+			                            					<a href="<?php echo base_url(); ?>pending-registration/<?php echo $value->id?>" title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewBtn1<?php echo $value->id ?>"><i class="fa fa-eye"></i></a>
+			                            					<button title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm confirmBtn1 con1<?php echo $value->id ?>"  id="<?php echo $value->id;?>" ><i class="fa fa-check" aria-hidden="true" id="<?php echo $value->id;?>"></i></button>
+			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_student id1<?php echo $value->id ?> btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
 			                            				</center>
 			                            			</td>
 												</tr>
@@ -84,16 +84,16 @@
 										$new = json_decode($value->personal_info,true);
 										foreach ($new as $key => $value2) {
 											?>
-												<tr class="row-<?php echo $key  ?>">
+												<tr class="row2-<?php echo $value->id  ?>">
 													<td><?php echo $value->lrn?></td>
 													<td><?php echo $value2['lname'] ?></td>
 													<td><?php echo $value2['fname'] ?></td>
 													<td><?php echo $value2['mname'] ?></td>
 													<td>
 			                            				<center>
-			                            					<a href="#" title="View" data-toggle="tooltip" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-			                            					<a href="#" title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm updateBtn<?php echo $value->id ?>"  ><i class="fa fa-check" aria-hidden="true" ></i></a>
-			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_course btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
+			                            					<a href="<?php echo base_url(); ?>pending-registration1/<?php echo $value->id?>" title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewBtn2<?php echo $value->id ?>"><i class="fa fa-eye"></i></a>
+			                            					<button title="confirm" data-toggle="tooltip"  class="btn btn-success btn-sm confirmBtn2 con2<?php echo $value->id ?>" id="<?php echo $value->id;?>"><i class="fa fa-check" aria-hidden="true" id="<?php echo $value->id;?>"></i></button>
+			                            					<button  title="Remove" data-toggle="tooltip" class="btn btn-danger removed_teacher id2<?php echo $value->id ?> btn-sm" id="<?php echo $value->id;?>" ><i class="fa fa-times" id="<?php echo $value->id ?>"></i></button>
 			                            				</center>
 			                            			</td>
 												</tr>

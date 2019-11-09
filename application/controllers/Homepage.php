@@ -257,7 +257,7 @@ class Homepage extends CI_Controller {
 			if($old==1){
 				$educational = array(
 					array(
-						'curriculum' => 'Old Curriculum/Transferee',
+						'curriculum' => 'Old Curriculum',
 						'school' => $old_school,
 						'brgy' => $old_brgy,
 						'municipality' => $old_municipality,

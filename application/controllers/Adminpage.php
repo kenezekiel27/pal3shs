@@ -608,20 +608,41 @@ class Adminpage extends CI_Controller {
 		$this->load->view('adminpage/pendingRegistration',$this->data);
 		$this->load->view('adminpage/footer');
 	}
-	/*viewing of student information*/
-	public function student_info($id){
-
-		$students = $this->pal_model->viewStudent($id);
-		$this->data['student_info'] = $students;
-		$this->load->view('adminpage/header');
-<<<<<<< HEAD
-		$this->load->view('adminpage/studentInfo',$this->$data);
-=======
-		$this->load->view('adminpage/studentInfo', $this->data);
->>>>>>> cb773ce5cb84ab025cf3f95d3463bdd89d39dd3b
-		$this->load->view('adminpage/footer');
+	
+	/*remove student*/
+	public function removeStudent(){
+		$id = $_POST['id'];
+		$this->pal_model->remove_student($id);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
 	}
+	/*confirm student*/
+	public function confirmStudent(){
+		$id = $_POST['id'];
+		$studentdata = $this->pal_model->viewStudent($id);
+		$lrn = $studentdata['lrn'];
 
+		$this->pal_model->confirm_student($id, $lrn);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
+	/*confirm teacher*/
+	public function confirmTeacher(){
+		$id = $_POST['id'];
+		$teacherdata = $this->pal_model->viewTeacher($id);
+		$lrn = $teacherdata['lrn'];
+
+		$this->pal_model->confirm_teacher($id,$lrn);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
+	/*remove teacher*/
+	public function removeTeacher(){
+		$id = $_POST['id'];
+		$this->pal_model->remove_teacher($id);
+		$this->data['id'] = $id;
+		echo json_encode($this->data);
+	}
 	// BULLETIN BOARD
 	public function school_event(){
 		$this->load->view('adminpage/header');
@@ -637,4 +658,25 @@ class Adminpage extends CI_Controller {
 		$this->load->view('adminpage/sectionList');
 		$this->load->view('adminpage/footer');
 	}
+
+	/*viewing of student information*/
+	public function student_info($id){
+
+		$students = $this->pal_model->viewStudent($id);
+		$this->data['student_info'] = $students;
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/studentInfo', $this->data);
+
+		$this->load->view('adminpage/footer');
+	}
+	/*viewing of teacher information*/
+	public function teacher_info($id){
+		$teachers = $this->pal_model->viewTeacher($id);
+		$this->data['teacher_info'] = $teachers;
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/teacherInfo', $this->data);
+		$this->load->view('adminpage/footer');
+	}
+
+
 }
