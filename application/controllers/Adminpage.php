@@ -790,9 +790,14 @@ class Adminpage extends CI_Controller {
 			'Grade 12'
 		);
 
-		
+		$semester = array(
+			'1st Semester',
+			'2nd Semester'
+		);
 
-
+		if ($academiclevel == "Grade 11") {
+			# code...
+		}
 
 		$data = $this->pal_model->check_academic_level($academiclevel, $academicyear, $status);
 		$first = false;
@@ -814,32 +819,17 @@ class Adminpage extends CI_Controller {
 				$fourth = true;
 			}
 		}
-		if ($academiclevel == "Grade 11") {
-			$semester = array(
-				'1st Semester',
-				'2nd Semester'
-			);
-			if ($first) {
-				unset($semester[0]);
-			}
-			if ($second) {
-				unset($semester[1]);
-			}
-			$this->data['semester'] = $semester;
+		if ($first) {
+			unset($semester[0]);
 		}
-		else if($academiclevel == "Grade 12"){
-			$semester = array(
-				'1st Semester',
-				'2nd Semester'
-			);
-			if ($third) {
-				unset($semester[0]);
-			}
-			if ($fourth) {
-				unset($semester[1]);
-			}
-			$this->data['semester'] = $semester;
+		if ($second) {
+			unset($semester[1]);
 		}
+		if ($fourth) {
+			# code...
+		}
+
+
 
 		if($second && $first){
 			unset($levels[0]);
@@ -851,7 +841,7 @@ class Adminpage extends CI_Controller {
 		$this->data['boolean'] = $first.' '. $second.' '.$third.' '.$fourth;
 		$this->data['status'] = 'success';
 		$this->data['academiclevel'] = $levels;
-		
+		$this->data['semester'] = $semester;
 		echo json_encode($this->data);
 	}
 }
