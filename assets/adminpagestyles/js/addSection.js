@@ -143,9 +143,6 @@ $(document).ready(function(){
 
 
     $('#sec_status').change(function(){
-  //   	$('#sec_acad_course').empty();
-  //   	var optionSelected = $('<option selected disabled>Select</option><option disabled>Select a academic year to show the courses</option>');
-		// $('#sec_acad_course').append(optionSelected);
 		callAjax();
     })
 
@@ -229,5 +226,55 @@ $(document).ready(function(){
     	}
     }
 
+    // add adviser
 
+    var idOfSection;
+    $('.openAdviser').click(function(e){
+    	var id = e.target.id;
+    	idOfSection = id;
+    })
+    $('.addAdviserBtn').click(function(){
+    	var nameOfAdviser = $('.selectAdviser').val();
+    	$.ajax({
+    		url: base_url + 'adminpage/addAdviserToSection',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'nameOfAdviser' : nameOfAdviser,
+				'id': idOfSection
+			},
+			success: function(response){
+				if (response.status == "danger") {
+					render_response('.addadvisertosectionwarning', response.status, response.msg)
+				}
+				else{
+					
+			    	$('.addAdviserBtn').text("Loading");
+			    	$('.addAdviserBtn').prop("disabled", true);
+
+			      	setTimeout(function(){
+			      		$('.adviser'+idOfSection).empty();
+				    	$('.adviser'+idOfSection).append('<p>'+response.name+'</p>');
+			      		$('.addAdviserBtn').text("Add");
+			    		$('.addAdviserBtn').prop("disabled", false);
+			      		$.toast({
+							heading: 'Teacher has been assigned',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#28a745',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+						$('#add_adviser_form').modal('hide');
+					},2500);
+				}
+			}
+    	})
+    	
+    });
+    $('#add_adviser_form').on('hidden.bs.modal', function(){
+      $('.selectAdviser').val("Select");
+    });
 })

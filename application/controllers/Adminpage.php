@@ -657,9 +657,14 @@ class Adminpage extends CI_Controller {
 		$courses = $this->pal_model->courses_offer();
 		$teachers = $this->pal_model->teacher_data();
 		$academicYear = $this->pal_model->academic_year();
-		$this->data['teachers'] = $teachers;
+		$sectionlist = $this->pal_model->section_list();
+
 		$this->data['courses'] = $courses;
 		$this->data['academicYear'] = $academicYear;
+		$this->data['teachers'] = $teachers;
+		$this->data['section_list'] = $sectionlist;
+
+
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/sectionList', $this->data);
 		$this->load->view('adminpage/footer');
@@ -866,4 +871,26 @@ class Adminpage extends CI_Controller {
 		}
 		echo json_encode($this->data);
 	}
+
+
+	// ADD ADVISER TO A SECTION
+	public function addAdviserToSection(){
+		$id = $_POST['id'];
+		$nameOfAdviser = $_POST['nameOfAdviser'];
+		$this->form_validation->set_rules('nameOfAdviser', "adviser", 'required');
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = "danger";
+			$this->data['msg'] = validation_errors();
+		}
+		else{
+			$this->pal_model->add_adviser_to_section($id, $nameOfAdviser);
+			$this->data['name'] = $nameOfAdviser;
+			$this->data['status'] = "success";
+		}
+		
+
+		echo json_encode($this->data);
+	}
+
 }
