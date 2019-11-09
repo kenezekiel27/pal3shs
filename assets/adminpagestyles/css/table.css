@@ -16,6 +16,70 @@
 	border-radius: 20px;
 	margin-top: 95px;
 }
+.add_section{
+	font-weight: bold;
+
+}
+.add_section select{
+	font-weight: lighter;
+
+}
+#add_section_form{
+	z-index: 5000;
+}
+#add_section_form_body{
+	background: #fff;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	width: 70%;
+	height: auto;
+	position: absolute;
+	border-radius: 20px;
+	margin-top: 95px;
+}
+#add_section_form_body .close_form{
+	right: 15px;
+	bottom: 75px;
+	position: relative; 
+	font-size: 32px; 
+	color: black;
+	opacity: 1;
+}
+
+
+.add_acadyear select{
+	font-weight: lighter;
+}
+.add_acadyear select option{
+	z-index: 6000;
+
+}
+#add_acadyear_form{
+	z-index: 1050;
+}
+#add_acadyear_form_body{
+	background: #fff;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	width: 50%;
+	height: auto;
+	position: absolute;
+	border-radius: 20px;
+	margin-top: 95px;
+}
+#add_acadyear_form_body .close_form{
+	right: 15px;
+	bottom: 75px;
+	position: relative; 
+	font-size: 32px; 
+	color: black;
+	opacity: 1;
+}
+
+
+
 #add_subject_form_body .close_form{
 	right: 15px;
 	bottom: 75px;
@@ -53,3 +117,4 @@
 	font-weight: bold;
 
 }
+

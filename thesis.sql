@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Nov 09, 2019 at 04:49 AM
+=======
+-- Generation Time: Nov 08, 2019 at 01:51 PM
+>>>>>>> 384111fd596b4a984fc694acf1c7a56197a720d0
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -45,6 +49,10 @@ CREATE TABLE `course_offer` (
 --
 
 INSERT INTO `course_offer` (`id`, `firstsemgrade11`, `secondsemgrade11`, `firstsemgrade12`, `secondsemgrade12`, `course_name`, `academic_track`, `academic_strand`, `subject_ids`) VALUES
+<<<<<<< HEAD
+=======
+(1, '[]', '', '[\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"8\"\n    },\n    {\n        \"id\": \"9\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"27\"\n    }\n]', '', 'Academic/Accountancy, Business and Management', 'Academic', 'Accountancy, Business and Management', '[\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    },\n    {\n        \"id\": \"19\"\n    },\n    {\n        \"id\": \"26\"\n    },\n    {\n        \"id\": \"27\"\n    },\n    {\n        \"id\": \"28\"\n    },\n    {\n        \"id\": \"29\"\n    },\n    {\n        \"id\": \"30\"\n    },\n    {\n        \"id\": \"32\"\n    },\n    {\n        \"id\": \"33\"\n    },\n    {\n        \"id\": \"34\"\n    },\n    {\n        \"id\": \"35\"\n    },\n    {\n        \"id\": \"36\"\n    },\n    {\n        \"id\": \"37\"\n    },\n    {\n        \"id\": \"38\"\n    },\n    {\n        \"id\": \"40\"\n    },\n    {\n        \"id\": \"41\"\n    },\n    {\n        \"id\": \"42\"\n    },\n    {\n        \"id\": \"43\"\n    },\n    {\n        \"id\": \"44\"\n    },\n    {\n        \"id\": \"45\"\n    },\n    {\n        \"id\": \"46\"\n    },\n    {\n        \"id\": \"47\"\n    },\n    {\n        \"id\": \"48\"\n    },\n    {\n        \"id\": \"71\"\n    },\n    {\n        \"id\": \"72\"\n    },\n    {\n        \"id\": \"73\"\n    },\n    {\n        \"id\": \"74\"\n    },\n    {\n        \"id\": \"75\"\n    },\n    {\n        \"id\": \"76\"\n    },\n    {\n        \"id\": \"77\"\n    },\n    {\n        \"id\": \"78\"\n    },\n    {\n        \"id\": \"79\"\n    },\n    {\n        \"id\": \"80\"\n    },\n    {\n        \"id\": \"81\"\n    },\n    {\n        \"id\": \"82\"\n    },\n    {\n        \"id\": \"83\"\n    },\n    {\n        \"id\": \"84\"\n    },\n    {\n        \"id\": \"85\"\n    },\n    {\n        \"id\": \"86\"\n    },\n    {\n        \"id\": \"87\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"89\"\n    },\n    {\n        \"id\": \"90\"\n    },\n    {\n        \"id\": \"5\"\n    }\n]'),
+>>>>>>> 384111fd596b4a984fc694acf1c7a56197a720d0
 (2, '', '', '', '', 'Academic/General Academic Strand', 'Academic', 'General Academic Strand', '[\n    {\n        \"id\": 5\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"8\"\n    },\n    {\n        \"id\": \"7\"\n    },\n    {\n        \"id\": \"9\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"11\"\n    },\n    {\n        \"id\": \"18\"\n    }\n]'),
 (3, '', '', '', '', 'Academic/Humanities and Social Sciences', 'Academic', 'Humanities and Social Sciences', ''),
 (4, '', '', '', '', 'Academic/Science and Technology, Engineering and Mathematics', 'Academic', 'Science and Technology, Engineering and Mathematics', ''),
@@ -114,10 +122,35 @@ INSERT INTO `list_of_subject` (`id`, `teachers_id`, `subject_code`, `subject_des
 (82, '', 'CESL', 'Community Engagement, Solidarity, and Leadership ', 'specialized'),
 (83, '', 'TNC21st', 'Trends, Networks, and Critical Thinking in the 21st Century Culture ', 'specialized'),
 (86, '', 'Phys1', 'General Physics 1', 'specialized'),
+<<<<<<< HEAD
 (87, '[]', 'CAP', 'Capstone', 'applied'),
+=======
+(87, '[\n    {\n        \"id\": \"4\"\n    }\n]', 'CAP', 'Capstone', 'applied'),
+>>>>>>> 384111fd596b4a984fc694acf1c7a56197a720d0
 (89, '', 'CHEM2', 'General Chemistry 2', 'specialized'),
 (90, '', 'PHYS2', 'General Physics 2', 'specialized'),
 (92, '', 'e', 'e', 'applied');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `open_course`
+--
+
+CREATE TABLE `open_course` (
+  `id` int(11) NOT NULL,
+  `acad_year` varchar(255) NOT NULL,
+  `course_open_id` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `open_course`
+--
+
+INSERT INTO `open_course` (`id`, `acad_year`, `course_open_id`) VALUES
+(1, '2016-2017', '[\n    {\n        \"id\": \"1\"\n    },\n    {\n        \"id\": \"2\"\n    },\n    {\n        \"id\": \"3\"\n    }\n]'),
+(2, '2018-2019', '[\n    {\n        \"id\": \"1\"\n    }\n]'),
+(3, '2019-2020', '[\n    {\n        \"id\": \"1\"\n    },\n    {\n        \"id\": \"2\"\n    },\n    {\n        \"id\": \"3\"\n    },\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"6\"\n    }\n]');
 
 -- --------------------------------------------------------
 
@@ -248,6 +281,12 @@ ALTER TABLE `list_of_subject`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `open_course`
+--
+ALTER TABLE `open_course`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pending_data`
 --
 ALTER TABLE `pending_data`
@@ -286,6 +325,12 @@ ALTER TABLE `course_offer`
 --
 ALTER TABLE `list_of_subject`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT for table `open_course`
+--
+ALTER TABLE `open_course`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pending_data`
