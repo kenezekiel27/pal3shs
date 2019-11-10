@@ -1003,11 +1003,13 @@ class Adminpage extends CI_Controller {
 				show_404();
 			}
 			else{
-
+				$fullname = "";
 				$teacher = $this->pal_model->viewTeacher($sectiondata['adviser']);
 				$teacherdata = json_decode($teacher['personal_info'], TRUE);
-				foreach ($teacherdata as $value) {
-					$fullname = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);		
+				if (count($teacher) > 0) {
+					foreach ($teacherdata as $value) {
+						$fullname = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);		
+					}
 				}
 				
 				$student = $this->pal_model->student_data();

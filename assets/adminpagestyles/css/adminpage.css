@@ -156,3 +156,13 @@
 .forSection ul li{
     float: left;
 }
+
+.nameofadviserhere ul{
+    list-style: none;
+}
+.nameofadviserhere ul li{
+    float: left;
+    width: 31%;
+    left: -23px;
+    position: relative;
+}

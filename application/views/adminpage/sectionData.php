@@ -42,12 +42,27 @@
 						<label>Section</label>
 						<input readonly type="text" class="form-control" value="<?php echo $sectiondata['section_name'] ?>">
 					</div>
-					<div class="col-md-4 form-group">
-						<label>Adviser</label>
-						<input readonly type="text" class="form-control" value="<?php echo $fullname ?>">
+					<div class="nameofadviserhere">
+						
+						<?php if ($fullname == ""): ?>
+							<div class="col-md-4 form-group">
+								<button class="btn btn-primary btn-sm assignAdviser" data-toggle="modal" data-target="#add_adviser_form">Assign Adviser</button>
+							</div>
+						<?php else: ?>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Adviser</label>
+							<ul>
+								<li><input readonly type="text" class="form-control" value="<?php echo $fullname ?>"></li>
+								<li>
+									<span title="Edit" data-toggle="tooltip">
+										<button data-toggle="modal" data-target="#add_adviser_form" class="btn btn-success btn-sm openUpdateAdviser"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+									</span>
+									
+								</li>
+							</ul>
+						<?php endif ?>
 					</div>
 				</div>
-
+				<hr>
 				<button class="btn btn-success openAddStudentBtn" data-toggle="modal" data-target="#add_studenttosection_form">Add student</button>
 				<br>
 				<h3>List of Student</h3>
@@ -74,7 +89,10 @@
 						
 					</tbody>
 				</table>
-				
+				<?php $noofstudent = json_decode($sectiondata['student_id'], TRUE) ?>
+				<input type="hidden" class="noofstudent" value="<?php echo count($noofstudent);  ?>">
+				<button class="btn btn-danger removeOneSection" id="<?php echo $sectiondata['id'] ?>" style="float: right;">Remove Section</button>
+				<br>
 			</div>
 			<div class="modal" id="add_studenttosection_form">
 				<div class="container add_studenttosection" id="add_studenttosection_form_body">
@@ -104,6 +122,32 @@
 				</div>
 			</div>
 
+			<div class="modal" id="add_adviser_form">
+				<div class="container add_adviser" id="add_adviser_form_body">
+					<br><br>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Adviser</p></center>
+					<span class="close close_form" data-dismiss="modal">&times;</span>
+					<hr>
+					<p class="add_section_warning" style="font-weight: lighter"></p>
+					<div class="modal_body form" style="width: 100% !important; left: 0px !important;">
+						<div class="hideifnoteacheravailable" >
+							<p class="addadvisertosectionwarningonesection" style="font-weight: lighter;"></p>
+							<br>
+							<p style="font-weight: lighter;">Available teacher</p>
+							<select class="form-control selectAdviserinOneSection" >
+								<option selected disabled>Select</option>
+								
+							</select>
+							<br>
 
+							<center><button class="btn btn-success addAdviserBtnToSection" style="width: 30%">Add</button></center>
+						</div>
+						<div class="showifnoteacheravailable" style="display: none;">
+							<center><p style="font-weight: lighter;">No available teacher.</p></center>
+						</div>
+					</div>
+					<br><br>
+				</div>
+			</div>
 		</div>
 	</div>
