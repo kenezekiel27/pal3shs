@@ -48,7 +48,7 @@
 					</div>
 				</div>
 
-				<button class="btn btn-success" data-toggle="modal" data-target="#add_studenttosection_form">Add student</button>
+				<button class="btn btn-success openAddStudentBtn" data-toggle="modal" data-target="#add_studenttosection_form">Add student</button>
 				<br>
 				<h3>List of Student</h3>
 				<br>
@@ -84,16 +84,19 @@
 					<hr>
 					<p class="add_tosection_warning" style="font-weight: lighter"></p>
 					<br>
-					<?php if ($student): ?>
+					
+					<div class="hidewhennostudent">
 						<p style="font-weight: lighter;">Available Student</p>
 						<select class="form-control availablestudent" multiple="multiple" style="width: 100%;">
-							<?php foreach($student as $value): ?>
+							<!-- <?php foreach($student as $value): ?>
 								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-							<?php endforeach ?>
+							<?php endforeach ?> -->
 						</select>
-					<?php else: ?>
+					</div>
+					<div class="showwhennostudent" style="display: none;">
 						<center><p style="font-weight: lighter;">No available student</p></center>
-					<?php endif ?>
+					</div>
+					
 					
 					<br><br>
 					<center><button class="btn btn-primary addStudentToSectionBtn" id="<?php echo $sectiondata['id'] ?>" style="width: 30%; display: none">Add</button></center>

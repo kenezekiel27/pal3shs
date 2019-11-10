@@ -441,4 +441,31 @@ $(document).ready(function(){
     		
     	}
     })
+
+    $('.openAddStudentBtn').click(function(){
+    	$('.availablestudent').empty();
+    	$.ajax({
+    		url: base_url + 'adminpage/openOneSection/'+$('.idofsecion').val(),
+			type: 'post',
+			dataType: "json",
+			data:{
+				'status': "foravailablestudent"
+			},
+			success: function(response){
+				if (response.student == "") {
+					$('.showwhennostudent').show();
+					$('.hidewhennostudent').hide();
+				}
+				else{
+					$('.showwhennostudent').hide();
+					$('.hidewhennostudent').show();
+					$.each(response.student, function(idx, obj) {
+				
+						$('.availablestudent').append($('<option value='+obj.id+'>'+obj.name+'</option>'));
+					});
+				}
+				
+			}
+    	});
+    })
 })

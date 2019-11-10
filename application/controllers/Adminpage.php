@@ -992,6 +992,10 @@ class Adminpage extends CI_Controller {
 	// OPENING OF ONE SECTION
 
 	public function openOneSection($id){
+		$status = "none";
+		if (isset($_POST['status'])) {
+			$status = "forcheck";
+		}
 		if (is_numeric($id)) {
 			$sectiondata = $this->pal_model->viewOnSection($id);
 
@@ -1061,9 +1065,14 @@ class Adminpage extends CI_Controller {
 				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;
 				$this->data['sectiondata'] = $sectiondata;
-				$this->load->view('adminpage/header');
-				$this->load->view('adminpage/sectionData', $this->data);
-				$this->load->view('adminpage/footer');
+				if ($status == "none") {
+					$this->load->view('adminpage/header');
+					$this->load->view('adminpage/sectionData', $this->data);
+					$this->load->view('adminpage/footer');
+				}
+				else{
+					echo json_encode($this->data);
+				}
 			}
 		}
 		else{
