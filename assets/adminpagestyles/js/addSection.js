@@ -252,7 +252,7 @@ $(document).ready(function(){
 					// var data = JSON.parse(string);
 					$.each(response.teachers, function(idx, obj) {
 					
-						$('.selectAdviser').append($('<option>'+obj.name+'</option>'));
+						$('.selectAdviser').append($('<option value='+obj.id+'>'+obj.name+'</option>'));
 					});
 				}
 				
@@ -260,13 +260,13 @@ $(document).ready(function(){
     	});
     })
     $('.addAdviserBtn').click(function(){
-    	var nameOfAdviser = $('.selectAdviser').val();
+    	var adviserid = $('.selectAdviser').val();
     	$.ajax({
     		url: base_url + 'adminpage/addAdviserToSection',
 			type: 'post',
 			dataType: "json",
 			data:{
-				'nameOfAdviser' : nameOfAdviser,
+				'adviserid' : adviserid,
 				'id': idOfSection
 			},
 			success: function(response){

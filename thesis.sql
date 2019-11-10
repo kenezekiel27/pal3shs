@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2019 at 07:56 AM
+-- Generation Time: Nov 10, 2019 at 03:21 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -149,11 +149,22 @@ CREATE TABLE `section_list` (
   `section_name` varchar(255) NOT NULL,
   `semester` varchar(255) NOT NULL,
   `academic_year` varchar(255) NOT NULL,
+  `academic_level` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   `course` varchar(255) NOT NULL,
   `student_id` text NOT NULL,
   `adviser` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section_list`
+--
+
+INSERT INTO `section_list` (`id`, `section_name`, `semester`, `academic_year`, `academic_level`, `status`, `course`, `student_id`, `adviser`) VALUES
+(1, 'Section 1', '2nd Semester', '2019-2020', 'Grade 12', 'Current', 'Academic/General Academic Strand', '', '1'),
+(3, 'Section 3', '2nd Semester', '2019-2020', 'Grade 12', 'Current', 'Academic/General Academic Strand', '', '10'),
+(7, 'Section 7', '2nd Semester', '2019-2020', 'Grade 12', 'Current', 'Academic/General Academic Strand', '', '4'),
+(8, 'Section 8', '2nd Semester', '2019-2020', 'Grade 12', 'Current', 'Academic/General Academic Strand', '', '5');
 
 -- --------------------------------------------------------
 
@@ -341,7 +352,7 @@ ALTER TABLE `open_course`
 -- AUTO_INCREMENT for table `section_list`
 --
 ALTER TABLE `section_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `student_data`
