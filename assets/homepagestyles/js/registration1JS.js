@@ -49,18 +49,18 @@ $(document).ready(function(){
                 'new_acad_level' :$('#new_acad_level').val(),
                 'new_course' :$('#new_course').val(),
                 'new_semester' :$('#new_semester').val(),
-                'new_yearfrom' :$('#new_yearfrom').val(),
-                'new_yearto' :$('#new_yearto').val(),
+                'new_year' :$('#new_year').val(),
+                /*'new_yearto' :$('#new_yearto').val(),*/
                 'old_course' :$('#old_course').val(),
                 'old_acad_level' :$('#old_acad_level').val(),
                 'old_semester' :$('#old_semester').val(),
-                'old_from' :$('#old_from').val(),
-                'old_to' :$('#old_to').val(),
+                'old_year' :$('#old_year').val(),
+                /*'old_to' :$('#old_to').val(),*/
                 'transfer_course' : $('#transfer_course').val(),
                 'transfer_acad_level' : $('#transfer_acad_level').val(),
                 'transfer_semester' : $('#transfer_semester').val(),
-                'transfer_from' : $('#transfer_from').val(),
-                'transfer_to' : $('#transfer_to').val(),
+                'transfer_year' : $('#transfer_year').val(),
+               /* 'transfer_to' : $('#transfer_to').val(),*/
                 //Personal Info
             	'lrn': $('#lrn').val(),
             	'lname': $('#lname').val(),

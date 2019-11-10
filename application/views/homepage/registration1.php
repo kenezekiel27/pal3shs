@@ -36,10 +36,7 @@
 					<form class="new_student" style="display: none;">
 						<h1>New Student</h1>
 						<div class="row">
-							<div class="col-md-4 form-group">
-								<label>Academic Level</label>
-								<input disabled type="text" class="form-control" value="Grade 11" id="new_acad_level">
-							</div>
+							
 							<div class="col-md-4 form-group">
 								<label>Course to Enroll</label>
 								<select class="form-control" id="new_course">
@@ -50,26 +47,30 @@
 									<?php endforeach ?>
 								</select>
 							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>Academic Level</label>
+								<input disabled type="text" class="form-control" value="Grade 11" id="new_acad_level">
+							</div>
 							<div class="col-md-4 form-group">
 								<label>Semester</label>
 								<input disabled type="text" class="form-control" value="1st Semester" id="new_semester">
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-md-4 form-group">
-								<label>Academic year from</label>
+								<label>Academic year</label>
 								<?php
 									$date_from = date("Y");
 									$date_to = date("Y")+1;
 									?>
-										<input disabled type="text" value="<?php echo $date_from;?>" class="form-control" id="new_yearfrom">
+										<input disabled type="text" value="<?php echo $date_from.'-'.$date_to;?>" class="form-control" id="new_year">
 									<?php 
 								?>
 							</div>
-							<div class="col-md-4 form-group">
+							<!-- <div class="col-md-4 form-group">
 								<label>To</label>
 								<input disabled type="text" value="<?php echo $date_to;?>" class="form-control" id="new_yearto"> 
-							</div>
+							</div> -->
 						</div>
 						<hr>
 					</form>
@@ -89,6 +90,9 @@
 									<?php endforeach ?>
 								</select>
 							</div>
+							
+						</div>
+						<div class="row">
 							<div class="col-md-4 form-group">
 								<label>Academic Level</label>
 								<select class="form-control" id="old_acad_level">
@@ -105,22 +109,20 @@
 									<option>2nd Semester</option>
 								</select>
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-md-4 form-group">
-								<label>Academic year from</label>
-								<select class="form-control" id="old_from">
+								<label>Academic year</label>
+								<select class="form-control" id="old_year">
 									<option selected disabled>Select</option>
 									<?php
-										for($year =date("Y"); $year >=1950; $year--){
+										for($year =date("Y"); $year >=2000; $year--){
 											?> 
-												<option value="<?php echo $year ?>"><?php echo $year ?></option>
+												<option value="<?php echo $year.' - '.($year+1) ?>"><?php echo $year.' - '.($year+1) ?></option>
 											<?php
 										}
 									?>
 								</select>
 							</div>
-							<div class="col-md-4 form-group">
+							<!-- <div class="col-md-4 form-group">
 								<label>To</label>
 								<select class="form-control" id="old_to">
 									<option selected disabled>Select</option>
@@ -132,7 +134,7 @@
 										}
 									?>
 								</select>
-							</div>
+							</div> -->
 						</div>
 						<hr>
 					</form>
@@ -152,6 +154,8 @@
 									<?php endforeach ?>
 								</select>
 							</div>
+						</div>
+						<div class="row">
 							<div class="col-md-4 form-group">
 								<label>Academic Level</label>
 								<select class="form-control" id="transfer_acad_level">
@@ -168,22 +172,20 @@
 									<option>2nd Semester</option>
 								</select>
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-md-4 form-group">
-								<label>Academic year from</label>
-								<select class="form-control" id="transfer_from">
+								<label>Academic year</label>
+								<select class="form-control" id="transfer_year">
 									<option selected disabled>Select</option>
 									<?php
-										for($year =date("Y"); $year >=1950; $year--){
+										for($year =date("Y"); $year >=2000; $year--){
 											?> 
-												<option value="<?php echo $year ?>"><?php echo $year ?></option>
+												<option value="<?php echo $year.' - '.($year+1) ?>"><?php echo $year.' - '.($year+1) ?></option>
 											<?php
 										}
 									?>
 								</select>
 							</div>
-							<div class="col-md-4 form-group">
+							<!-- <div class="col-md-4 form-group">
 								<label>To</label>
 								<select class="form-control" id="transfer_to">
 									<option selected disabled>Select</option>
@@ -195,7 +197,7 @@
 										}
 									?>
 								</select>
-							</div>
+							</div> -->
 						</div>
 						<hr>
 					</form>

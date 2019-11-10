@@ -83,18 +83,18 @@ class Homepage extends CI_Controller {
 		$new_acad_level = $_POST['new_acad_level'];
 		$new_course = $_POST['new_course'];
 		$new_semester = $_POST['new_semester'];
-		$new_yearfrom = $_POST['new_yearfrom'];
-		$new_yearto= $_POST['new_yearto'];
+		$new_year = $_POST['new_year'];
+		/*$new_yearto= $_POST['new_yearto'];*/
 		$old_course = $_POST['old_course'];
 		$old_acad_level = $_POST['old_acad_level'];
 		$old_semester = $_POST['old_semester'];
-		$old_from = $_POST['old_from'];
-		$old_to = $_POST['old_to'];
+		$old_year = $_POST['old_year'];
+		/*$old_to = $_POST['old_to'];*/
 		$transfer_course = $_POST['transfer_course'];
 		$transfer_acad_level = $_POST['transfer_acad_level'];
 		$transfer_semester = $_POST['transfer_semester'];
-		$transfer_from = $_POST['transfer_from'];
-		$transfer_to = $_POST['transfer_to'];
+		$transfer_year = $_POST['transfer_year'];
+		/*$transfer_to = $_POST['transfer_to'];*/
 		/*personal_info*/
 		$lrn = $_POST['lrn'];
 		$lname = $_POST['lname'];
@@ -186,8 +186,8 @@ class Homepage extends CI_Controller {
 						'acad_level' => $new_acad_level,
 						'course' => $new_course,
 						'semester' => $new_semester,
-						'yearfrom' => $new_yearfrom,
-						'yearto' => $new_yearto,
+						'acad_year' => $new_year,
+						/*'yearto' => $new_yearto,*/
 					)
 				);
 			}
@@ -195,11 +195,11 @@ class Homepage extends CI_Controller {
 				$acad_level = array(
 					array(
 						'acad_status' => 'Old Student',
-						'acad_level' => $old_course,
-						'course' => $old_acad_level,
+						'acad_level' => $old_acad_level,
+						'course' => $old_course,
 						'semester' => $old_semester,
-						'yearfrom' =>$old_from,
-						'yearto' => $old_to,
+						'acad_year' =>$old_year,
+						/*'yearto' => $old_to,*/
 					)
 				);
 			}
@@ -207,11 +207,11 @@ class Homepage extends CI_Controller {
 				$acad_level = array(
 					array(
 						'acad_status' => 'Transfer Student',
-						'acad_level' => $transfer_course,
-						'course' => $transfer_acad_level,
+						'acad_level' => $transfer_acad_level,
+						'course' => $transfer_course,
 						'semester' => $transfer_semester,
-						'yearfrom' =>$transfer_from,
-						'yearto' => $transfer_to,
+						'acad_year' =>$transfer_year,
+						/*'yearto' => $transfer_to,*/
 					)
 				);
 			}
@@ -288,6 +288,47 @@ class Homepage extends CI_Controller {
 			
 			echo json_encode($this->data);
 		}
+	}
+	public function enrollStudent(){
+		$id=$_POST['id'];
+		$course = $_POST['course'];
+		$acad_level = $_POST['acad_level'];
+		$acad_sem = $_POST['acad_sem'];
+		$acad_year = $_POST['acad_year'];
+		$acad_status = $_POST['acad_status'];
+
+		$this->form_validation->set_rules('course', "Course", 'required');
+		$this->form_validation->set_rules('acad_level', "academic level", 'required');
+		$this->form_validation->set_rules('acad_sem', "Semester", 'required');
+		$this->form_validation->set_rules('dummy', "Academic year", 'required');
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->data['status'] = 'error';
+			$this->data['msg'] = validation_errors();
+			$this->data['course'] = $course;
+			$this->data['level'] = $acad_level;
+			$this->data['semester'] = $acad_sem;
+			$this->data['year'] = $acad_year;
+		}
+		else{
+			$acad_level = array(
+				array(
+					'acad_status' => $acad_status,
+					'acad_level' => $acad_level,
+					'course' => $course,
+					'semester' => $acad_sem,
+					'acad_year' => $acad_year,
+					
+				)
+			);
+			
+			$courseadd =  $this->pal_model->enrollStudent($id,$acad_level);
+			$this->data['status'] = 'success';
+			$this->data['msg'] = "Successfully added.";
+		}
+		
+		
+		echo json_encode($this->data);
 	}
 	public function register2(){
 			

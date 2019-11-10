@@ -66,7 +66,7 @@
 					</form>
 				</li>
 				<li>
-					<a class="profile-pic" href="profile.php"> <img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/noimage.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Admin</b></a>
+					<a class="profile-pic" href="profile.php"> <img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/noimage.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Student</b></a>
 				</li>
 			</ul>
 		</div>

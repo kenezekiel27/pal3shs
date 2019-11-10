@@ -32,7 +32,9 @@ class Adminpage extends CI_Controller {
 	
 	public function dashboard(){
 		$teachers = $this->pal_model->teacher_data();
+		$students = $this->pal_model->student_data();
 		$this->data['personal_info'] = $teachers;
+		$this->data['student_info'] = $students;
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/dashboard', $this->data);
 		$this->load->view('adminpage/footer');
@@ -670,6 +672,8 @@ class Adminpage extends CI_Controller {
 	public function student_info($id){
 
 		$students = $this->pal_model->viewStudent($id);
+		$academicYear = $this->pal_model->academic_year();
+		$this->data['academicYear'] = $academicYear;
 		$this->data['student_info'] = $students;
 		$this->load->view('adminpage/header');
 		$this->load->view('adminpage/studentInfo', $this->data);
@@ -730,5 +734,47 @@ class Adminpage extends CI_Controller {
 		$this->data['open_course'] = $arr;
 		echo json_encode($this->data);
 	}
+	/*student page*/
+	public function student(){
+		
+		$teachers = $this->pal_model->teacher_data();
+		$students = $this->pal_model->student_data();
+		$this->data['personal_info'] = $teachers;
+		$this->data['student_info'] = $students;
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/student',$this->data);
+		$this->load->view('adminpage/footer');
+	}
+	public function student2($id){
+		
+		$students = $this->pal_model->viewStudent($id);
+		$academicYear = $this->pal_model->academic_year();
+		$this->data['academicYear'] = $academicYear;
+		$this->data['student_info'] = $students;
+		$this->load->view('adminpage/header');
+		$this->load->view('adminpage/student2',$this->data);
+		$this->load->view('adminpage/footer');
+	}
+	public function updateStudentPersonalInfo(){
+		$id=$_POST['id'];
+		$lname=$_POST['lname'];
+		$fname=$_POST['fname'];
+		$mname=$_POST['mname'];
 
+		$personal = array(
+			array(
+				'lname' => $lname,
+				'fname' => $fname,
+				'mname' => $mname,
+				
+			)
+		);
+			
+		$courseadd =  $this->pal_model->updatePersonalInfoStudent($id,$personal);
+		$this->data['status'] = 'success';
+		$this->data['msg'] = "Successfully added.";
+		
+		
+		echo json_encode($this->data);
+	}
 }

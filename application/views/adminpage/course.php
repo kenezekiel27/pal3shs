@@ -12,7 +12,7 @@
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="dashboard.php">Manage</a></li>
+                        <li><a href="<?php echo base_url(); ?>dashboard">Dashboard</a></li>
                         <li class="active">Manage Course</li>
                     </ol>
                 </div>

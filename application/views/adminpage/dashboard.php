@@ -58,11 +58,35 @@
 								<th>Name</th>
 								<th>Course</th>
 								<th>Academic Level</th>
-								<th>Academic Year</th>
+								
 							</tr>
 						</thead>
 						<tbody>
-							
+							<?php $key ?>
+							<?php 
+								foreach ($student_info as $key => $value) {
+									$new = json_decode($value->personal_info,true);
+									foreach ($new as $key => $value2) {
+										?>
+											<tr class="row-<?php echo $key  ?>">
+												<td><?php echo $value->lrn?></td>
+												<td><?php echo $value2['lname'].', '.$value2['fname'].' '.$value2['mname'] ?></td>
+												<?php
+													$new1 = json_decode($value->acad_level,true);
+													foreach ($new1 as $key => $value3) {
+													 	?>
+													 		<td><?php echo $value3['course'] ?></td>
+													 		<td><?php echo $value3['acad_level'].' '.$value3['semester'].' '.$value3['acad_year'] ?></td>
+													 		
+													 	<?php
+													 } 
+												?>
+											</tr>
+										<?php
+									}
+								}
+
+							 ?>
 						</tbody>
 					</table>
 				</div>

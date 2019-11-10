@@ -15,15 +15,14 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="white-box">
-						<button class="btn btn-success personalbtn">Personal Information</button>
-						<button class="btn btn-success addressbtn">Address</button>
-						<button class="btn btn-success guardianbtn">Guardian Information</button>
-						<button class="btn btn-success educationalbtn">Educational Background</button>
-						<button class="btn btn-success enrollmentbtn">Enrollment</button>
+						<button class="btn btn-success personal_btn">Personal Information</button>
+						<button class="btn btn-success address_btn">Address</button>
+						<button class="btn btn-success guardian_btn">Guardian Information</button>
+						<button class="btn btn-success educational_btn">Educational Background</button>
 						<hr>
-						<div class="Academic_info form-material" style="display: block;">
+						<div class="form-material" id="Academic_info "style="display: none;">
+							<label>Current</label>
 							<?php $key ?>
-							
 								<?php
 									$id="";
 									$course="";
@@ -46,11 +45,12 @@
 								<div class="col-md-4 form-group">
 									<label>Course</label>
 									<input type="text" class="form-control" value="<?php echo $course?>">
+
 								</div>
-								<div class="col-md-4 form-group">
+								<!-- <div class="col-md-4 form-group">
 									<label>Academic status</label>
-									<input type="text" class="form-control" value="<?php echo $reg_type?>" id="acad_status">
-								</div>
+									<input type="text" class="form-control" value="<?php echo $reg_type?>">
+								</div> -->
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
@@ -65,20 +65,15 @@
 									<label>Academic year</label>
 									<input type="text" class="form-control" value="<?php echo $acad_year ?>">
 								</div>
-								<!-- <div class="col-md-4 form-group">
-									<label>to:</label>
-									<input type="text" class="form-control" value="<?php echo $year_to ?>">
-								</div> -->
 							</div>
+							<hr>
 						</div>
-						<!-- enrollment -->
-						<div class="form-material enrollment" style="display: none;">
+						<div class="form-material" style="display: none;">
+							<label>Enroll to:</label>
 							<div class="row">
-								<p class="send_info_warning" style="display: none;"></p>
 								<div class="col-md-4 form-group">
 									<label>Course</label>
-									<!-- <input type="text" class="form-control" value="<?php echo $course?>"> -->
-									<select class="form-control" id="acad_course">
+									<select class="form-control" id="academic_course">
 										<option selected disabled>Select</option>
 									</select>
 								</div>
@@ -86,7 +81,7 @@
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Academic Level</label>
-									<select class="form-control" id="enroll_acad_level">
+									<select class="form-control" id="acad_level">
 										<option selected disabled>Select</option>
 										<option>Grade 11</option>
 										<option>Grade 12</option>
@@ -94,7 +89,7 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Semester</label>
-									<select class="form-control" id="enroll_acad_sem">
+									<select class="form-control" id="acad_sem">
 										<option selected disabled>Select</option>
 										<option>1st Semester</option>
 										<option>2nd Semester</option>
@@ -102,24 +97,17 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Academic year</label>
-									<input type="hidden" class="dummy">
-									<select class="form-control" id="acadyear_current">
-
+									<select class="form-control" id="academic_year">
 										<option selected disabled>Select</option>
 										<?php foreach($academicYear as $value): ?>
 											<option value="<?php echo $value->id ?>"><?php echo $value->acad_year ?></option>
 										<?php endforeach ?>
 									</select>
 								</div>
-								<div class="col-md-4 form-group">
-									<button class="btn btn-success enrollbtn" id="<?php echo $id ?>">Update</button>
-								</div>
 							</div>
-							<hr>
 						</div>
-						<!-- end of enrollment -->
 						<!-- div for personal info -->
-						<div class="form-material personal_information" style="display: block;">
+						<div class="form-material" id="personal_information" style="display: block;">
 							<?php $key ?>
 								<?php 
 									$lrn="";
@@ -158,27 +146,27 @@
 										$email=$value2['email'];
 									}
 									
-							 	?> 
-								
+							 	?> 	
 							<h1>Personal Information</h1>
+							<p class="personal_warning" style="display: none;"></p>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>LRN</label>
-									<input type="text" class="form-control" value="<?php echo $lrn?>">
+									<input readonly type="text" class="form-control" value="<?php echo $lrn?>" id="update_lrn">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Last Name</label>
-									<input type="text" class="form-control" value="<?php echo ucwords($lname);?>">
+									<input type="text" class="form-control"  value="<?php echo ucwords($lname);?>" id="update_lname">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>First Name</label>
-									<input type="text" class="form-control" value="<?php echo ucwords($fname);?>">
+									<input type="text" class="form-control"  value="<?php echo ucwords($fname);?>" id="update_fname">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Middle Name</label>
-									<input type="text" class="form-control" value="<?php echo ucwords($mname);?>">
+									<input type="text" class="form-control"  value="<?php echo ucwords($mname);?>" id="update_mname">
 								</div>
 							</div>
 							<div class="row">
@@ -192,7 +180,7 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Birth Place</label>
-									<input type="text" class="form-control" value="<?php echo ucwords($bplace)?>">
+									<input type="text" class="form-control"value="<?php echo ucwords($bplace)?>" >
 								</div>
 							</div>
 							<div class="row">
@@ -226,7 +214,7 @@
 							<div class="row">
 		 						<div class="col-md-4 form-group">
 		 							<label>Telephone Number</label>
-		 							<input type="text" class="form-control" value="<?php echo $telephone?>" >
+		 							<input type="text" class="form-control" value="<?php echo $telephone?>">
 		 						</div>
 		 						<div class="col-md-4 form-group">
 		 							<label>Mobile Number</label>
@@ -237,10 +225,11 @@
 		 							<input type="email" class="form-control" value="<?php echo $email?>">
 		 						</div>
 		 					</div>
+		 					<button class="btn btn-success update_personal_info" id="<?php echo $id ?>">Update</button>
 						</div>
 						<!-- end of personal info -->
 						<!-- Address -->
-						<div class="form-material address" style="display: none;">
+						<div class="form-material" id="address" style="display: none;">
 							<?php $key ?>
 								<?php 
 									$brgy="";
@@ -273,7 +262,7 @@
 						</div>
 						<!-- end of Address -->
 						<!-- guardian information -->
-						<div class="form-material guardian_info" style="display: none;">
+						<div class="form-material" id="guardian_info" style="display: none;">
 							<?php $key ?>
 								<?php 
 									$g_lname="";
@@ -309,7 +298,7 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Middle Name</label>
-									<input type="text" class="form-control" value="<?php echo ucwords($g_mname)?>" >
+									<input type="text" class="form-control"   value="<?php echo ucwords($g_mname)?>">
 								</div>
 							</div>
 							<div class="row">
@@ -319,13 +308,13 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Contact Number</label>
-									<input type="text" class="form-control" value="<?php echo $g_contact?>">
+									<input type="text" class="form-control"value="<?php echo $g_contact?>"> 
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
 		 							<label>House#/Street/Blk/Lot/Subdivision/Brgy</label>
-		 							<input type="text" class="form-control" value="<?php echo ucwords($g_brgy)?>">
+		 							<input type="text" class="form-control"value="<?php echo ucwords($g_brgy)?>"> 
 		 						</div>
 		 						<div class="col-md-4 form-group">
 		 							<label>Municipality</label>
@@ -339,7 +328,7 @@
 						</div>
 						<!-- end of guardian information -->
 						<!-- educational background -->
-						<div class="form-material educational_background" style="display: none;">
+						<div class="form-material" id="educational_background" style="display: none;">
 							<?php $key ?>
 								<?php 
 									$curriculum="";

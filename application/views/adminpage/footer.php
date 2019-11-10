@@ -36,8 +36,8 @@
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/remove_teacherJS.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/confirmStudentJS.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/confirmTeacherJS.js"></script>
-
-    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/addSection.js"></script>
+    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/confirmTeacherJS.js"></script>
+    <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/student2JS.js"></script>
 
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

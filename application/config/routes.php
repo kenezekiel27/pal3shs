@@ -67,7 +67,8 @@ $route['translate_uri_dashes'] = FALSE;
 // $route['stem'] = 'homepage/stem';
 // $route['courses'] = 'homepage/courses';
 // $route['contact'] = 'homepage/contact';
-
+$route['student'] = 'adminpage/student';
+$route['student2/(:any)'] = 'adminpage/student2/$1';
 $route['dashboard'] = 'adminpage/dashboard';
 $route['course'] = 'adminpage/course';
 $route['subject'] = 'adminpage/subject';
@@ -82,3 +83,4 @@ $route['pending-registration'] = 'adminpage/pending_registration';
 $route['student-information'] = 'adminpage/student_info';
 $route['teacher-information'] = 'adminpage/teacher_info';
 $route['(:any)'] = 'homepage/pages/$1';
+

@@ -96,7 +96,7 @@
 						</ul>
 					</li>
 					<li>
-						 <a href="student.php" class="waves-effect"><i style="color: black" class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>Student</a>
+						 <a href="<?php echo base_url(); ?>student" class="waves-effect"><i style="color: black" class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>Student</a>
 					</li>
 					<li>
 						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/users/teacher.png" alt="user-img" width="27" class="img-circle" style="margin-left: -2px">Teacher</a>

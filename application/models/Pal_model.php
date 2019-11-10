@@ -84,6 +84,22 @@
 			);
 			$this->db->insert('student_data', $newData);
 		}
+		public function enrollStudent($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'acad_level' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
+		public function updatePersonalInfoStudent($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
 		public function teacher_data(){
 			$query = $this->db->get_where('teacher_data', array('status' => '1'));
 			return $query->result();
@@ -94,7 +110,7 @@
 		}
 		/*viewing of student information*/
 		public function student_data(){
-			$query = $this->db->get_where('student_data');
+			$query = $this->db->get_where('student_data',array('status' => '1'));
 			return $query->result();
 		}
 		public function viewStudent($id){
