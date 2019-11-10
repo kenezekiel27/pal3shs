@@ -358,4 +358,51 @@ $(document).ready(function(){
     		}
     	}
     })
+
+    // ADD STUDENT TO SECTION
+
+    $('.addStudentToSectionBtn').click(function(e){
+    	var id = e.target.id;
+    	$.ajax({
+    		url: base_url + 'adminpage/addStudentToSection',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id': id,
+				'student' : $('.availablestudent').val()
+			},
+			success : function(response){
+				if (response.status == "danger") {
+					render_response(".add_tosection_warning", response.status, response.msg);
+				}
+				else{
+					
+					$('.addStudentToSectionBtn').prop("disabled", true);
+					$('.add_new_section').text("Loading");
+					$.toast({
+						heading: 'Student successfully added to section',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 4123000,
+						stack: 6,
+			      	});
+			      	setTimeout(function(){
+						window.location = base_url + 'section/'+id;
+					},2500);
+				}
+			}
+    	})
+    })
+
+    $('.availablestudent').change(function(){
+    	if ($(this).val() == null) {
+    		$('.addStudentToSectionBtn').hide();
+    	}
+    	else{
+    		$('.addStudentToSectionBtn').show();
+    	}
+    })
 })

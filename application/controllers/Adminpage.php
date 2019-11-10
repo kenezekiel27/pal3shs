@@ -1012,12 +1012,34 @@ class Adminpage extends CI_Controller {
 				$availablestudent = array();
 				foreach ($student as $key => $value) {
 					$data = json_decode($value->acad_level, TRUE);
+					$data2 = json_decode($value->personal_info, TRUE);
 					foreach ($data as $value2) {
 						if ($value2['acad_year'] == $sectiondata['academic_year']  && $value2['acad_level'] == $sectiondata['academic_level'] && $value2['course'] == $sectiondata['course'] && $value2['semester'] == $sectiondata['semester']) {
-							array_push($availablestudent, array("id" => $value->id));
+							
+							foreach ($data2 as  $value3) {
+								$studentname = ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']);
+								array_push($availablestudent, array("id" => $value->id, "name" => $studentname));
+							}
 						}
 					}
 				}
+
+				$sectionlist = $this->pal_model->section_list();
+
+				foreach ($sectionlist as $key => $value) {
+					$oldsectiondata = json_decode($value->student_id, TRUE);
+					if(count($oldsectiondata) > 0){
+						foreach ($oldsectiondata as $value2) {
+							foreach ($availablestudent as $key => $value3) {
+								if ($value2['id'] == $value3['id']) {
+									unset($availablestudent[$key]);
+								}
+							}
+						}
+					}
+					
+				}
+
 
 				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;
@@ -1032,5 +1054,32 @@ class Adminpage extends CI_Controller {
 		}
 		
 		
+	}
+
+	// ADD STUDENT TO SECTION
+
+	public function addStudentToSection(){
+		$id = $_POST['id'];
+		$student = $_POST['student'];
+		
+
+		$sectiondata = $this->pal_model->viewOnSection($id);
+		$newData = array();
+
+		$oldData = json_decode($sectiondata['student_id']);
+		if(count($oldData) > 0){
+			foreach ($oldData as $value) {
+				array_push($newData, array('id' => $value->id));
+			}	
+		}
+		for ($i=0; $i < count($student); $i++) { 
+			array_push($newData, array('id' => $student[$i]));
+		}
+		$result = $this->pal_model->update_sectionlist_data($id, $newData);
+
+		$this->data['status'] = "success";
+		$this->data['msg'] = $student;
+		
+		echo json_encode($this->data);
 	}
 }

@@ -255,5 +255,15 @@
 			return $query->row_array();
 		}
 
+		// UPDATE SECTION DATA
+
+		public function update_sectionlist_data($id, $data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = [
+	            'student_id' => $data,
+	        ];
+	        $this->db->where('id', $id);
+	        $this->db->update('section_list', $newData);
+		}
 		
 	}

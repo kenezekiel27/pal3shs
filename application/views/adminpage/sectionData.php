@@ -52,10 +52,7 @@
 				<h3>List of Student</h3>
 				<br>
 
-				<?php foreach($student as $value): ?>
-					<?php echo $value['id'] ?>
-					<br>
-				<?php endforeach ?>
+				
 			</div>
 			<div class="modal" id="add_studenttosection_form">
 				<div class="container add_studenttosection" id="add_studenttosection_form_body">
@@ -63,15 +60,21 @@
 					<center><p style="font-size: 20px; font-weight: lighter;">Add Student</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
 					<hr>
-					<p class="add_section_warning" style="font-weight: lighter"></p>
+					<p class="add_tosection_warning" style="font-weight: lighter"></p>
 					<br>
-					<p style="font-weight: lighter;">Available Student</p>
-					<select class="form-control availablestudent" multiple="multiple" style="width: 100%;">
-						<option>asd</option>
-						<option>asd</option>
-					</select>
+					<?php if ($student): ?>
+						<p style="font-weight: lighter;">Available Student</p>
+						<select class="form-control availablestudent" multiple="multiple" style="width: 100%;">
+							<?php foreach($student as $value): ?>
+								<option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+							<?php endforeach ?>
+						</select>
+					<?php else: ?>
+						<center><p style="font-weight: lighter;">No available student</p></center>
+					<?php endif ?>
+					
 					<br><br>
-					<center><button class="btn btn-primary" style="width: 30%">Add</button></center>
+					<center><button class="btn btn-primary addStudentToSectionBtn" id="<?php echo $sectiondata['id'] ?>" style="width: 30%; display: none">Add</button></center>
 					<br><br>
 				</div>
 			</div>
