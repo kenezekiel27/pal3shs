@@ -58,6 +58,8 @@
             $('.teachers').select2();
             $('.removeteachers').select2();
             $('.openCourse').select2();
+            $('.availablestudent').select2();
+
 
             $('#example').DataTable();
             $('#example1').DataTable();

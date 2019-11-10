@@ -47,11 +47,34 @@
 					</div>
 				</div>
 
-
+				<button class="btn btn-success" data-toggle="modal" data-target="#add_studenttosection_form">Add student</button>
+				<br>
 				<h3>List of Student</h3>
+				<br>
 
+				<?php foreach($student as $value): ?>
+					<?php echo $value['id'] ?>
+					<br>
+				<?php endforeach ?>
 			</div>
-
+			<div class="modal" id="add_studenttosection_form">
+				<div class="container add_studenttosection" id="add_studenttosection_form_body">
+					<br><br>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Student</p></center>
+					<span class="close close_form" data-dismiss="modal">&times;</span>
+					<hr>
+					<p class="add_section_warning" style="font-weight: lighter"></p>
+					<br>
+					<p style="font-weight: lighter;">Available Student</p>
+					<select class="form-control availablestudent" multiple="multiple" style="width: 100%;">
+						<option>asd</option>
+						<option>asd</option>
+					</select>
+					<br><br>
+					<center><button class="btn btn-primary" style="width: 30%">Add</button></center>
+					<br><br>
+				</div>
+			</div>
 
 
 		</div>

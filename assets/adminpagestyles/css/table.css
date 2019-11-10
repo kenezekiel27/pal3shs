@@ -150,3 +150,34 @@
 	color: black;
 	opacity: 1;
 }
+
+.add_studenttosection{
+	font-weight: bold;
+
+}
+.add_studenttosection select{
+	font-weight: lighter;
+
+}
+#add_studenttosection_form{
+	z-index: 1050;
+}
+#add_studenttosection_form_body{
+	background: #fff;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	width: 30%;
+	height: auto;
+	position: absolute;
+	border-radius: 20px;
+	margin-top: 95px;
+}
+#add_studenttosection_form_body .close_form{
+	right: 15px;
+	bottom: 75px;
+	position: relative; 
+	font-size: 32px; 
+	color: black;
+	opacity: 1;
+}

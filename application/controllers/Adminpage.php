@@ -1005,6 +1005,21 @@ class Adminpage extends CI_Controller {
 				foreach ($teacherdata as $value) {
 					$fullname = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);		
 				}
+				
+				$student = $this->pal_model->student_data();
+				// $availablestudent = $this->pal_model->studentavailableforsection($sectiondata['academic_year']);
+				//$this->data['availablestudent'] = $availablestudent;
+				$availablestudent = array();
+				foreach ($student as $key => $value) {
+					$data = json_decode($value->acad_level, TRUE);
+					foreach ($data as $value2) {
+						if ($value2['acad_year'] == $sectiondata['academic_year']  && $value2['acad_level'] == $sectiondata['academic_level'] && $value2['course'] == $sectiondata['course'] && $value2['semester'] == $sectiondata['semester']) {
+							array_push($availablestudent, array("id" => $value->id));
+						}
+					}
+				}
+
+				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;
 				$this->data['sectiondata'] = $sectiondata;
 				$this->load->view('adminpage/header');

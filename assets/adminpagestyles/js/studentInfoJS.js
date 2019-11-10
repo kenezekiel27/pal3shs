@@ -62,7 +62,7 @@ $(document).ready(function(){
                 $('#acad_course').append(optionSelected);
                 $.each(response.open_course, function(idx, obj) {
                     console.log(obj.id);
-                    $('#acad_course').append($('<option value='+obj.course_name+'>'+obj.course_name+'</option>'));
+                    $('#acad_course').append($('<option value='+obj.id+'>'+obj.course_name+'</option>'));
                 });
 
             }
