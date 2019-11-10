@@ -139,3 +139,20 @@
     padding: 4px 6px;
     border: 1px black solid;
 }
+
+
+.forSection{
+    width: 100%;
+}
+.forSection input{
+    width: 250px !important;
+}
+.forSection .subjectType{
+    width: 250px !important;
+}
+.forSection ul{
+    list-style: none;
+}
+.forSection ul li{
+    float: left;
+}

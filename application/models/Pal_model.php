@@ -247,4 +247,11 @@
 			$query = $this->db->delete('section_list');
 			return $query;
 		}
+
+		// VIEWING OF ONE SECTION
+
+		public function viewOnSection($id){
+			$query = $this->db->get_where('section_list', array('id' => $id));
+			return $query->row_array();
+		}
 	}

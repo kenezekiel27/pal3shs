@@ -74,7 +74,7 @@
 										</td>
 										
 										<td style="text-align: center;">
-											<a href="<?php echo base_url();?>section" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
+											<a href="<?php echo base_url();?>section/<?php echo $value->id ?>" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
 											<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm removeSectionBtn removesection<?php echo $value->id  ?>" id="<?php echo $value->id;?>" ><i id="<?php echo $value->id;?>" class="fa fa-times" ></i></button>
 										</td>
 									</tr>

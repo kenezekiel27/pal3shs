@@ -989,5 +989,33 @@ class Adminpage extends CI_Controller {
 		echo json_encode($this->data);
 	}
 
+	// OPENING OF ONE SECTION
 
+	public function openOneSection($id){
+		if (is_numeric($id)) {
+			$sectiondata = $this->pal_model->viewOnSection($id);
+
+			if(empty($sectiondata)){
+				show_404();
+			}
+			else{
+
+				$teacher = $this->pal_model->viewTeacher($sectiondata['adviser']);
+				$teacherdata = json_decode($teacher['personal_info'], TRUE);
+				foreach ($teacherdata as $value) {
+					$fullname = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);		
+				}
+				$this->data['fullname'] = $fullname;
+				$this->data['sectiondata'] = $sectiondata;
+				$this->load->view('adminpage/header');
+				$this->load->view('adminpage/sectionData', $this->data);
+				$this->load->view('adminpage/footer');
+			}
+		}
+		else{
+			show_404();
+		}
+		
+		
+	}
 }
