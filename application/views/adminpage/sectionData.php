@@ -18,6 +18,7 @@
 			<div class="white-box" >
 				<div class="row form-material">
 					<div class="col-md-4 form-group">
+						<input type="hidden" class="idofsecion" value="<?php echo $sectiondata['id'] ?>">
 						<label>Academic Year</label>
 						<input readonly type="text" class="form-control" value="<?php echo $sectiondata['academic_year'] ?>">
 					</div>
@@ -51,7 +52,28 @@
 				<br>
 				<h3>List of Student</h3>
 				<br>
-
+				<table id="sectionTable" class="table table-striped table-bordered" style="width: 100%">
+					<thead>
+						<tr>
+							<th style="text-align: center;">LRN</th>
+							<th style="text-align: center;">Name</th>
+							<th style="text-align: center;">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($studentinsection as $value): ?>
+							<tr class="studentinsectionrow-<?php echo $value['id']  ?>">
+								<th style="font-weight: lighter; text-align: center;"><?php echo $value['lrn'] ?></th>
+								<th style="font-weight: lighter; text-align: center;"><?php echo $value['name'] ?></th>
+								<th style="font-weight: lighter; text-align: center;">
+									<a href="<?php echo base_url();?>student2/<?php echo $value['id'] ?>" title="View" data-toggle="tooltip" class="btn btn-success idofviewbtn<?php echo $value['id'] ?>  btn-sm"><i class="fa fa-eye"></i></a>
+									<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm removeStudentinSection idofremovebtn<?php echo $value['id'] ?>" id="<?php echo $value['id'];?>" ><i id="<?php echo $value['id'];?>" class="fa fa-times" ></i></button>
+								</th>
+							</tr>
+						<?php endforeach ?>
+						
+					</tbody>
+				</table>
 				
 			</div>
 			<div class="modal" id="add_studenttosection_form">

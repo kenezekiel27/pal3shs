@@ -405,4 +405,40 @@ $(document).ready(function(){
     		$('.addStudentToSectionBtn').show();
     	}
     })
+
+
+    $('.removeStudentinSection').click(function(e){
+    	var id = e.target.id;
+    	var idofsection = $('.idofsecion').val();
+    	var answer = confirm("Are you sure you want to remove this?")
+    	if (answer) {
+    		$.ajax({
+    			url: base_url + 'adminpage/removeStudentToSection',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'id': id,
+					'idofsection' : idofsection
+				},
+				success: function(response){
+					$('.idofremovebtn'+id).prop("disabled", true);
+		    		$('.idofviewbtn'+id).attr("disabled", true);
+		    		setTimeout(function(){
+						$.toast({
+							heading: 'Student has been removed',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#dc3545',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+		            	$('.studentinsectionrow-'+id).hide("slow");
+		            }, 1000);
+				}
+    		})
+    		
+    	}
+    })
 })

@@ -1039,8 +1039,25 @@ class Adminpage extends CI_Controller {
 					}
 					
 				}
+				$studentinsection = array();
+				$sectionStudentData = json_decode($sectiondata['student_id']);
+				if (count($sectionStudentData) > 0) {
+					foreach ($sectionStudentData as $value) {
+						foreach ($student as $value2) {
+							if ($value->id == $value2->id) {
+								$personal_info = json_decode($value2->personal_info, TRUE);
+								foreach ($personal_info as $value3) {
+									$nameofstudent = ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']);		
+									array_push($studentinsection, array("id" => $value2->id, "name" => $nameofstudent, "lrn" => $value2->lrn ));
+								}
+								
+							}
+						}
+					}
+				}
 
 
+				$this->data['studentinsection'] = $studentinsection;
 				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;
 				$this->data['sectiondata'] = $sectiondata;
@@ -1080,6 +1097,28 @@ class Adminpage extends CI_Controller {
 		$this->data['status'] = "success";
 		$this->data['msg'] = $student;
 		
+		echo json_encode($this->data);
+	}
+
+
+	// REMOVE STUDENT TO SECTION
+
+	public function removeStudentToSection(){
+		$id = $_POST['id'];
+		$idofsection = $_POST['idofsection'];
+		$sectiondata = $this->pal_model->viewOnSection($idofsection);
+		$old = json_decode($sectiondata['student_id'], TRUE);
+		$newData = array();
+		foreach ($old as $key => $value) {
+			if ($value['id'] == $id) {
+			}
+			else{
+				array_push($newData, array("id" => $value['id']));
+			}
+		}
+
+		$this->pal_model->update_sectionlist_data($idofsection, $newData);
+		$this->data['status'] = "success";
 		echo json_encode($this->data);
 	}
 }
