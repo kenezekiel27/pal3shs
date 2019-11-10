@@ -18,12 +18,90 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="white-box">
-						<button data-toggle ="modal" data-target="#add_section_form" class="btn btn-success add_sectionBtn" type="button">Add Section</button>
+						<button data-toggle ="modal" data-target="#add_section_form" class="btn btn-success add_sectionBtn" type="button">Add New Section</button>
 						<button class="btn btn-success" data-toggle="modal" data-target="#add_acadyear_form" type="button">Add Academic Year</button>
+						<button class="btn btn-success" data-toggle="modal" data-target="#" type="button">Add Section To Existing Data</button>
 						<hr>
-						<h3>List of Section</h3>
+						
 						<br>
+						<button class="btn btn-primary">Filter data</button>
+						
+						<br><br>
+						<h3>List of Section: All</h3>
+						<table id="sectionTable" class="table table-striped table-bordered" style="width: 100%">
+							<thead>
+								<tr>
+									<th style="text-align: center;">Academic Year</th>
+									<th style="text-align: center; width: 120px">Course</th>
+									<th style="text-align: center;">Status</th>
+									<th style="text-align: center;">Section</th>
+									<th style="text-align: center;">Grade</th>
+									<td style="text-align: center; font-weight: bold; color:#666">Semester</td>
+									<th style="text-align: center;">Student</th>
+									<th style="text-align: center;">Adviser</th>
+									<th style="text-align: center;">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($section_list as $value): ?>
+									<tr class="sectionrow-<?php echo $value->id ?>">
+										<td style="text-align: center;"><?php echo $value->academic_year ?></td>
+										<td style="text-align: center; width: 120px"><?php echo $value->course ?></td>
+										<td style="text-align: center;"><?php echo $value->status ?></td>
+										<td style="text-align: center;"><?php echo $value->section_name ?></td>
+										<td style="text-align: center;"><?php echo $value->academic_level ?></td>
+										<td style="text-align: center;"><?php echo $value->semester ?></td>
+										<td style="text-align: center;">
+											<?php $listofstudent = json_decode($value->student_id, TRUE) ?>
+											<input type="hidden" class="noOfStudent<?php echo $value->id ?>" value="<?php echo count($listofstudent); ?>">
+											<?php echo count($listofstudent); ?>
+										</td>
+										<td style="text-align: center;" class="adviser<?php echo $value->id ?>">
+											<?php if ($value->adviser == ""): ?>
+												<button class="btn btn-primary btn-sm openAdviser adviser<?php echo $value->id ?>" data-toggle="modal" data-target="#add_adviser_form" id="<?php echo $value->id;?>">Assign</button>
+											<?php else: ?>
+												<?php echo ucfirst($value->adviser) ?>
+											<?php endif ?>
+										</td>
+										
+										<td style="text-align: center;">
+											<a href="<?php echo base_url();?>section" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
+											<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm removeSectionBtn removesection<?php echo $value->id  ?>" id="<?php echo $value->id;?>" ><i id="<?php echo $value->id;?>" class="fa fa-times" ></i></button>
+										</td>
+									</tr>
+								<?php endforeach ?>
+								
+							</tbody>
+						</table>
 					</div>
+				</div>
+			</div>
+
+			<div class="modal" id="add_adviser_form">
+				<div class="container add_adviser" id="add_adviser_form_body">
+					<br><br>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Adviser</p></center>
+					<span class="close close_form" data-dismiss="modal">&times;</span>
+					<hr>
+					<p class="add_section_warning" style="font-weight: lighter"></p>
+					<div class="modal_body form" style="width: 100% !important; left: 0px !important;">
+						<div class="hideifnoteacheravailable" >
+							<p class="addadvisertosectionwarning" style="font-weight: lighter;"></p>
+							<br>
+							<p style="font-weight: lighter;">Available teacher</p>
+							<select class="form-control selectAdviser" >
+								<option selected disabled>Select</option>
+								
+							</select>
+							<br>
+
+							<center><button class="btn btn-success addAdviserBtn" style="width: 30%">Add</button></center>
+						</div>
+						<div class="showifnoteacheravailable" style="display: none;">
+							<center><p style="font-weight: lighter;">No available teacher.</p></center>
+						</div>
+					</div>
+					<br><br>
 				</div>
 			</div>
 
@@ -35,31 +113,8 @@
 					<hr>
 					<p class="add_section_warning" style="font-weight: lighter"></p>
 					<div class="modal_body form-material" style="width: 100% !important; left: 0px !important;">
-						<div class="row">
-							<div class="col-md-4">
-								<label>No of section</label>
-								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
-							</div>
-							
-							<div class="col-md-4">
-								<label>Academic Level</label>
-								<select class="form-control" id="sec_acad_level">
-									<option selected disabled>Select</option>
-									<option>Grade 11</option>
-									<option>Grade 12</option>
-								</select>
-							</div>	
-							<div class="col-md-4">
-								<label>Semester</label>
-								<select class="form-control" id="sec_semester">
-									<option disabled selected>Select</option>
-									<option>1st Semester</option>
-									<option>2nd Semester</option>
-								</select>
-							</div>
-							
-						</div>
-						<br>
+						
+						
 						<div class="row"> 
 							<div class="col-md-4">
 								<label>Academic Year</label>
@@ -72,7 +127,7 @@
 							</div>
 							<div class="col-md-4">
 								<label>Status</label>
-								<select class="form-control">
+								<select class="form-control" id="sec_status">
 									<option selected disabled>Select</option>
 									<option>Current</option>
 									<option>Previous</option>
@@ -82,15 +137,35 @@
 								<label>Course</label>
 								<select class="form-control " id="sec_acad_course">
 									<option selected disabled>Select</option>
-									<!-- <?php foreach ($courses as $key => $value): ?>
-										<option class="form-control"><?php echo $value->course_name ?></option>
-									<?php endforeach ?> -->
+									<option disabled>Select a academic year to show the courses</option>>
 								</select>
 							</div>
 						</div>
 						<br>
-						<p style="font-weight: lighter; color:red; font-size: 12px;">*Select academic year to show the open courses.</p>
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of section</label>
+								<input type="number"  class="form-control noOfSection" value="1" min="1" max="20">
+							</div>
+							
+							<div class="col-md-4">
+								<label>Academic Level</label>
+								<select class="form-control" id="sec_grade">
+									<option selected disabled>Select</option>
+									<option disabled>Select a course and status to show the levels</option>
+								</select>
+							</div>	
+							<div class="col-md-4">
+								<label>Semester</label>
+								<select class="form-control" id="sec_semester">
+									<option disabled selected>Select</option>
+									<option disabled>Select a level to show the semester</option>
+								</select>
+							</div>
+							
+						</div>
 						<br>
+						
 						<center><button class="btn btn-success add_new_section" type="button" style="width: 40%;">Add</button></center>
 						<br><br><br>
 					</div>

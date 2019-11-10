@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2019 at 07:30 AM
+-- Generation Time: Nov 10, 2019 at 07:42 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -134,9 +134,37 @@ CREATE TABLE `open_course` (
 --
 
 INSERT INTO `open_course` (`id`, `acad_year`, `course_open_id`) VALUES
+(1, '2018-2019', '[\n    {\n        \"id\": \"2\"\n    },\n    {\n        \"id\": \"3\"\n    }\n]'),
+(2, '2019-2020', '[\n    {\n        \"id\": \"2\"\n    }\n]'),
 (1, '2018-2019', '[\n    {\n        \"id\": \"3\"\n    },\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    }\n]'),
 (2, '2019-2020', '[\n    {\n        \"id\": \"2\"\n    },\n    {\n        \"id\": \"3\"\n    },\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"7\"\n    }\n]'),
 (3, '2014-2015', '[\n    {\n        \"id\": \"2\"\n    },\n    {\n        \"id\": \"3\"\n    },\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"6\"\n    },\n    {\n        \"id\": \"7\"\n    }\n]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_list`
+--
+
+CREATE TABLE `section_list` (
+  `id` int(11) NOT NULL,
+  `section_name` varchar(255) NOT NULL,
+  `academic_level` varchar(255) NOT NULL,
+  `semester` varchar(255) NOT NULL,
+  `academic_year` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `course` varchar(255) NOT NULL,
+  `student_id` text NOT NULL,
+  `adviser` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section_list`
+--
+
+INSERT INTO `section_list` (`id`, `section_name`, `academic_level`, `semester`, `academic_year`, `status`, `course`, `student_id`, `adviser`) VALUES
+(10, 'Section 1', 'Grade 11', '1st Semester', '2019-2020', 'Current', 'Academic/General Academic Strand', '', ''),
+(11, 'Section 2', 'Grade 11', '1st Semester', '2019-2020', 'Current', 'Academic/General Academic Strand', '', '');
 
 -- --------------------------------------------------------
 
@@ -154,18 +182,6 @@ CREATE TABLE `student_data` (
   `education` text NOT NULL,
   `status` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `student_data`
---
-
-INSERT INTO `student_data` (`id`, `lrn`, `acad_level`, `personal_info`, `address`, `guardian_info`, `education`, `status`) VALUES
-(10, '3123123', '[\n    {\n        \"acad_status\": \"Old Student\",\n        \"acad_level\": \"Grade 11\",\n        \"course\": \"Academic\\/Humanities\",\n        \"semester\": \"2nd Semester\",\n        \"acad_year\": \"2019-2020\"\n    }\n]', '[\n    {\n        \"lname\": \"3333333\",\n        \"fname\": \"33333\",\n        \"mname\": \"33333333333\",\n        \"sex\": \"Male\",\n        \"bday\": \"11\\/14\\/2019\",\n        \"bplace\": \"3333333\",\n        \"age\": \"3\",\n        \"height\": \"333\",\n        \"weight\": \"33\",\n        \"language\": \"3333333\",\n        \"religion\": \"Catholic\",\n        \"ethnic_group\": \"Filipino\",\n        \"telephone\": \"333333\",\n        \"mobile\": \"3333333\",\n        \"email\": \"3333333\"\n    }\n]', '[\n    {\n        \"brgy\": \"3333333\",\n        \"municipality\": \"33333\",\n        \"province\": \"3333333333\"\n    }\n]', '[\n    {\n        \"g_lname\": \"33333333\",\n        \"g_fname\": \"333333\",\n        \"g_mname\": \"33333333\",\n        \"g_relationship\": \"33333333333\",\n        \"g_contact\": \"333333\",\n        \"g_brgy\": \"33333333\",\n        \"g_municipality\": \"33333333333\",\n        \"g_province\": \"3333333333\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Old Curriculum\",\n        \"school\": \"333\",\n        \"brgy\": \"3333333\",\n        \"municipality\": \"3333333\",\n        \"province\": \"3333333\",\n        \"yearfrom\": \"2004\",\n        \"yearto\": \"2008\",\n        \"average\": \"555\"\n    }\n]', '0'),
-(11, '12345', '[\r\n    {\r\n        \"acad_status\": \"Transferee Student\",\r\n        \"acad_level\": \"Grade 12\",\r\n        \"course\": \"Academic\\/Science and Technology, Engineering and Mathematics\",\r\n        \"semester\": \"1st Semester\",\r\n        \"acad_year\": \"2019-2020\"\r\n    }\r\n]', '[\n    {\n        \"lname\": \"rrr\",\n        \"fname\": \"rr\",\n        \"mname\": \"rrr\",\n        \"sex\": \"Male\",\n        \"bday\": \"10\\/31\\/2019\",\n        \"bplace\": \"rr\",\n        \"age\": \"1\",\n        \"height\": \"32\",\n        \"weight\": \"44\",\n        \"language\": \"ff\",\n        \"religion\": \"Catholic\",\n        \"ethnic_group\": \"Aeta\",\n        \"telephone\": \"ff\",\n        \"mobile\": \"rrr\",\n        \"email\": \"rrr\"\n    }\n]', '[\n    {\n        \"brgy\": \"rrr\",\n        \"municipality\": \"rrr\",\n        \"province\": \"rr\"\n    }\n]', '[\n    {\n        \"g_lname\": \"rr\",\n        \"g_fname\": \"rr\",\n        \"g_mname\": \"rr\",\n        \"g_relationship\": \"rr\",\n        \"g_contact\": \"rr\",\n        \"g_brgy\": \"rr\",\n        \"g_municipality\": \"rr\",\n        \"g_province\": \"rr\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Old Curriculum\",\n        \"school\": \"rr\",\n        \"brgy\": \"rr\",\n        \"municipality\": \"rr\",\n        \"province\": \"rr\",\n        \"yearfrom\": \"2002\",\n        \"yearto\": \"2006\",\n        \"average\": \"77\"\n    }\n]', '1'),
-(12, '23213', '[\r\n    {\r\n        \"acad_status\": \"Old Student\",\r\n        \"acad_level\": \"Grade 12\",\r\n        \"course\": \"Academic\\/Science and Technology, Engineering and Mathematics\",\r\n        \"semester\": \"1st Semester\",\r\n        \"acad_year\": \"2019-2020\"\r\n    }\r\n]', '[\n    {\n        \"lname\": \"eee\",\n        \"fname\": \"eee\",\n        \"mname\": \"ee\",\n        \"sex\": \"Female\",\n        \"bday\": \"10\\/15\\/2019\",\n        \"bplace\": \"ee\",\n        \"age\": \"1\",\n        \"height\": \"eee\",\n        \"weight\": \"ee\",\n        \"language\": \"ee\",\n        \"religion\": \"Baptist\",\n        \"ethnic_group\": \"Maranao\",\n        \"telephone\": \"ee\",\n        \"mobile\": \"ee\",\n        \"email\": \"ee\"\n    }\n]', '[\n    {\n        \"brgy\": \"ee\",\n        \"municipality\": \"ee\",\n        \"province\": \"ee\"\n    }\n]', '[\n    {\n        \"g_lname\": \"ee\",\n        \"g_fname\": \"ee\",\n        \"g_mname\": \"ee\",\n        \"g_relationship\": \"ee\",\n        \"g_contact\": \"ee\",\n        \"g_brgy\": \"ee\",\n        \"g_municipality\": \"ee\",\n        \"g_province\": \"ee\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Junior High School\",\n        \"school\": \"ee\",\n        \"brgy\": \"ee\",\n        \"municipality\": \"ee\",\n        \"province\": \"ee\",\n        \"yearfrom\": \"2007\",\n        \"yearto\": \"2010\",\n        \"average\": \"55\"\n    }\n]', '1'),
-(13, '123123', '[\r\n    {\r\n        \"acad_status\": \"New Student\",\r\n        \"acad_level\": \"Grade 11\",\r\n        \"course\": \"Academic\\/Science and Technology, Engineering and Mathematics\",\r\n        \"semester\": \"1st Semester\",\r\n        \"acad_year\": \"2019-2020\"\r\n    }\r\n]', '[\n    {\n        \"lname\": \"333\",\n        \"fname\": \"333\",\n        \"mname\": \"333\",\n        \"sex\": \"Female\",\n        \"bday\": \"10\\/02\\/2019\",\n        \"bplace\": \"33\",\n        \"age\": \"33\",\n        \"height\": \"33\",\n        \"weight\": \"33\",\n        \"language\": \"33\",\n        \"religion\": \"Christian\",\n        \"ethnic_group\": \"Mangyan\",\n        \"telephone\": \"33\",\n        \"mobile\": \"33\",\n        \"email\": \"33\"\n    }\n]', '[\n    {\n        \"brgy\": \"33\",\n        \"municipality\": \"33\",\n        \"province\": \"33\"\n    }\n]', '[\n    {\n        \"g_lname\": \"33\",\n        \"g_fname\": \"33\",\n        \"g_mname\": \"33\",\n        \"g_relationship\": \"33\",\n        \"g_contact\": \"33\",\n        \"g_brgy\": \"33\",\n        \"g_municipality\": \"33\",\n        \"g_province\": \"33\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Old Curriculum\",\n        \"school\": \"33\",\n        \"brgy\": \"33\",\n        \"municipality\": \"33\",\n        \"province\": \"33\",\n        \"yearfrom\": \"2008\",\n        \"yearto\": \"2012\",\n        \"average\": \"55\"\n    }\n]', '1'),
-(14, '3123', '[\n    {\n        \"acad_status\": \"New Student\",\n        \"acad_level\": \"Grade 12\",\n        \"course\": \"TVL\\/Beauty\",\n        \"semester\": \"1st Semester\",\n        \"acad_year\": \"2018-2019\"\n    }\n]', '[\n    {\n        \"lname\": \"tttttt\",\n        \"fname\": \"ttttt\",\n        \"mname\": \"tttttttt\",\n        \"sex\": \"Male\",\n        \"bday\": \"11\\/28\\/2019\",\n        \"bplace\": \"ttttttt\",\n        \"age\": \"1\",\n        \"height\": \"ttttt\",\n        \"weight\": \"ttttt\",\n        \"language\": \"ttttt\",\n        \"religion\": \"Baptist\",\n        \"ethnic_group\": \"Maranao\",\n        \"telephone\": \"ttt\",\n        \"mobile\": \"tttttt\",\n        \"email\": \"ttttttt\"\n    }\n]', '[\n    {\n        \"brgy\": \"ttttt\",\n        \"municipality\": \"ttttttt\",\n        \"province\": \"tttttt\"\n    }\n]', '[\n    {\n        \"g_lname\": \"ttttt\",\n        \"g_fname\": \"ttttttt\",\n        \"g_mname\": \"ttttttttt\",\n        \"g_relationship\": \"tttttt\",\n        \"g_contact\": \"tttttttt\",\n        \"g_brgy\": \"tttt\",\n        \"g_municipality\": \"ttttttt\",\n        \"g_province\": \"ttttttt\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Junior High School\",\n        \"school\": \"ttttt\",\n        \"brgy\": \"ttttt\",\n        \"municipality\": \"ttttt\",\n        \"province\": \"ttttt\",\n        \"yearfrom\": \"2013\",\n        \"yearto\": \"2015\",\n        \"average\": \"666\"\n    }\n]', '1'),
-(15, '5555', '[\n    {\n        \"acad_status\": \"New Student\",\n        \"acad_level\": \"Grade 12\",\n        \"course\": \"Academic\\/Science and Technology, Engineering and Mathematics\",\n        \"semester\": \"1st Semester\",\n        \"acad_year\": \"2019-2020\"\n    }\n]', '[\r\n    {\r\n        \"lname\": \"tttttt\",\r\n        \"fname\": \"ttttt\",\r\n        \"mname\": \"tttttttt\",\r\n        \"sex\": \"Male\",\r\n        \"bday\": \"11\\/28\\/2019\",\r\n        \"bplace\": \"ttttttt\",\r\n        \"age\": \"1\",\r\n        \"height\": \"ttttt\",\r\n        \"weight\": \"ttttt\",\r\n        \"language\": \"ttttt\",\r\n        \"religion\": \"Baptist\",\r\n        \"ethnic_group\": \"Maranao\",\r\n        \"telephone\": \"ttt\",\r\n        \"mobile\": \"tttttt\",\r\n        \"email\": \"ttttttt\"\r\n    }\r\n]', '[\n    {\n        \"brgy\": \"3424\",\n        \"municipality\": \"42343\",\n        \"province\": \"4234\"\n    }\n]', '[\n    {\n        \"g_lname\": \"g\",\n        \"g_fname\": \"gggggg\",\n        \"g_mname\": \"ggggggg\",\n        \"g_relationship\": \"gggg\",\n        \"g_contact\": \"gggggg\",\n        \"g_brgy\": \"gggggg\",\n        \"g_municipality\": \"gggg\",\n        \"g_province\": \"ggggg\"\n    }\n]', '[\n    {\n        \"curriculum\": \"Old Curriculum\",\n        \"school\": \"gggg\",\n        \"brgy\": \"ggg\",\n        \"municipality\": \"ggggg\",\n        \"province\": \"gggg\",\n        \"yearfrom\": \"2007\",\n        \"yearto\": \"2010\",\n        \"average\": \"66\"\n    }\n]', '1');
 
 -- --------------------------------------------------------
 
@@ -207,65 +223,9 @@ INSERT INTO `teacher_data` (`id`, `lrn`, `personal_info`, `address`, `guardian_i
 (5, '131313', '[\n    {\n        \"lname\": \"limbag\",\n        \"fname\": \"marlon\",\n        \"mname\": \"bernales\",\n        \"sex\": \"Male\",\n        \"bday\": \"03\\/03\\/1996\",\n        \"bplace\": \"dasmarinas, cavite\",\n        \"age\": \"24\",\n        \"height\": \"178\",\n        \"weight\": \"66\",\n        \"language\": \"dsadsa\",\n        \"religion\": \"Christian\",\n        \"ethnic_group\": \"Filipino\",\n        \"telephone\": \"12345\",\n        \"mobile\": \"12345678\",\n        \"email\": \"meynardbernales@gmail.com\"\n    }\n]', '[\n    {\n        \"brgy\": \"dasdas\",\n        \"municipality\": \"sdasd\",\n        \"province\": \"sadas\"\n    }\n]', '[     {         \"g_lname\": \"dddd\",         \"g_fname\": \"ddd\",         \"g_mname\": \"ddd\",         \"g_relationship\": \"dd\",         \"g_contact\": \"333\",         \"g_brgy\": \"dd\",         \"g_municipality\": \"ddd\",         \"g_province\": \"ddd\"     } ]', '[     {         \"school_name\": \"dd\",         \"degree\": \"Bachelor of Science\",         \"course\": \"ffff\",         \"s_brgy\": \"ddd\",         \"s_municipality\": \"ddd\",         \"s_province\": \"dd\",         \"year_from\": \"2006\",         \"year_to\": \"2010\"     } ]', '1'),
 (10, '2222222', '[\n    {\n        \"lname\": \"dddd\",\n        \"fname\": \"dddd\",\n        \"mname\": \"dddd\",\n        \"sex\": \"Female\",\n        \"bday\": \"06\\/23\\/1992\",\n        \"bplace\": \"dddd\",\n        \"age\": \"23\",\n        \"height\": \"333\",\n        \"weight\": \"44\",\n        \"language\": \"dsad\",\n        \"religion\": \"Muslim\",\n        \"ethnic_group\": \"Tagalog\",\n        \"telephone\": \"22222\",\n        \"mobile\": \"333333\",\n        \"email\": \"meynardbernales@gmail.com\"\n    }\n]', '[\n    {\n        \"brgy\": \"dddd\",\n        \"municipality\": \"ddddd\",\n        \"province\": \"ddd\"\n    }\n]', '[\n    {\n        \"g_lname\": \"dddd\",\n        \"g_fname\": \"ddd\",\n        \"g_mname\": \"ddd\",\n        \"g_relationship\": \"dd\",\n        \"g_contact\": \"333\",\n        \"g_brgy\": \"dd\",\n        \"g_municipality\": \"ddd\",\n        \"g_province\": \"ddd\"\n    }\n]', '[\n    {\n        \"school_name\": \"dd\",\n        \"degree\": \"Bachelor of Science\",\n        \"course\": \"ffff\",\n        \"s_brgy\": \"ddd\",\n        \"s_municipality\": \"ddd\",\n        \"s_province\": \"dd\",\n        \"year_from\": \"2006\",\n        \"year_to\": \"2010\"\n    }\n]', '1');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users_data`
---
-
-CREATE TABLE `users_data` (
-  `id` int(11) NOT NULL,
-  `username` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `restriction` varchar(250) NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_data`
---
-
-INSERT INTO `users_data` (`id`, `username`, `password`, `restriction`, `time_stamp`) VALUES
-(1, 'admin', '123456', 'admin', '2019-10-21 23:10:03'),
-(2, '12', '123456', 'student', '2019-11-07 22:59:18'),
-(4, '3123123', '123456', 'student', '2019-11-09 03:29:09'),
-(5, '121212', '123456', 'teacher', '2019-11-09 03:42:59'),
-(6, '111111', '123456', 'teacher', '2019-11-09 23:08:34'),
-(7, '131313', '123456', 'teacher', '2019-11-09 23:08:35'),
-(8, '2222222', '123456', 'teacher', '2019-11-09 23:08:35'),
-(9, '3123', '123456', 'student', '2019-11-10 02:39:29'),
-(10, '12345', '123456', 'student', '2019-11-10 02:39:31'),
-(11, '5555', '123456', 'student', '2019-11-10 02:39:32'),
-(12, '23213', '123456', 'student', '2019-11-10 02:39:33'),
-(13, '123123', '123456', 'student', '2019-11-10 02:39:35');
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `course_offer`
---
-ALTER TABLE `course_offer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `list_of_subject`
---
-ALTER TABLE `list_of_subject`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `open_course`
---
-ALTER TABLE `open_course`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `student_data`
---
-ALTER TABLE `student_data`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subject_grade_per_student`
@@ -280,38 +240,8 @@ ALTER TABLE `teacher_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users_data`
---
-ALTER TABLE `users_data`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `course_offer`
---
-ALTER TABLE `course_offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `list_of_subject`
---
-ALTER TABLE `list_of_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
-
---
--- AUTO_INCREMENT for table `open_course`
---
-ALTER TABLE `open_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `student_data`
---
-ALTER TABLE `student_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `subject_grade_per_student`
@@ -324,12 +254,6 @@ ALTER TABLE `subject_grade_per_student`
 --
 ALTER TABLE `teacher_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `users_data`
---
-ALTER TABLE `users_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

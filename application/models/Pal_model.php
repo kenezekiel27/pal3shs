@@ -212,4 +212,39 @@
 			$query = $this->db->get_where('open_course', array('id' => $id));
 			return $query->row_array();
 		}
+
+
+		// adding of new section
+
+		public function add_section($data){
+			$this->db->insert('section_list', $data);
+		}
+
+		// check academic level for adding of section
+
+		public function check_academic_level($course, $academicyear,$status){
+			$query = $this->db->get_where('section_list', array('course' => $course, 'academic_year' => $academicyear, 'status' => $status));
+			return $query->result();
+		}
+
+		// get section list
+
+		public function section_list(){
+			$query = $this->db->get('section_list');
+			return $query->result();
+		}
+
+		// add adviser to section
+		public function add_adviser_to_section($id, $adviser){
+			$this->db->where('id', $id);
+			$query = $this->db->update('section_list', array('adviser' =>$adviser));
+		}
+
+		// REMOVE SECTION
+
+		public function remove_section($id){
+			$this->db->where('id', $id);
+			$query = $this->db->delete('section_list');
+			return $query;
+		}
 	}
