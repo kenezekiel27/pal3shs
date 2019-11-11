@@ -99,6 +99,7 @@
 						<tr>
 							<th style="text-align: center;">Subject Code</th>
 							<th style="text-align: center;">Subject Description</th>
+							<th style="text-align: center;">Teacher</th>
 							<th style="text-align: center;">Action</th>
 						</tr>
 					</thead>
@@ -107,6 +108,7 @@
 							<tr>
 								<th style="text-align: center; font-weight: lighter;"><?php echo $value['subjectcode'] ?></th>
 								<th style="text-align: center; font-weight: lighter;"><?php echo $value['subjectdescription'] ?></th>
+								<th style="text-align: center; font-weight: lighter;">Teacher name</th>
 								<th style="text-align: center; font-weight: lighter;">
 									<a href="<?php echo base_url();?>subject/<?php echo $value['id']?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm "><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
 								</th>
