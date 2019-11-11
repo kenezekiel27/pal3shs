@@ -265,5 +265,9 @@
 	        $this->db->where('id', $id);
 	        $this->db->update('section_list', $newData);
 		}
-		
+		// OPEN COURSE BY NAME
+		public function open_course_by_name($course){
+			$query = $this->db->get_where('course_offer', array('course_name' => $course));
+			return $query->row_array();
+		}
 	}

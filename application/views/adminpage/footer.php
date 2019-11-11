@@ -66,6 +66,7 @@
             $('#example2').DataTable();
             $('#example3').DataTable();
             $('#sectionTable').DataTable();
+            $('#subjectTable').DataTable();
         } );
     </script>
     <script>

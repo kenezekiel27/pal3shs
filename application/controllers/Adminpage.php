@@ -1029,6 +1029,8 @@ class Adminpage extends CI_Controller {
 						}
 					}
 				}
+				$subject = $this->pal_model->open_course_by_name($sectiondata['course']);
+				$allsubject = $this->pal_model->subject();
 
 				$sectionlist = $this->pal_model->section_list();
 
@@ -1061,8 +1063,33 @@ class Adminpage extends CI_Controller {
 						}
 					}
 				}
+				$allsubject = $this->pal_model->subject();
+				$rowname = "";
+				if ($sectiondata['academic_level'] == "Grade 11" && $sectiondata['semester'] == "1st Semester") {
+					$rowname = $subject['firstsemgrade11'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 11" && $sectiondata['semester'] == "2nd Semester"){
+					$rowname = $subject['secondsemgrade11'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 12" && $sectiondata['semester'] == "1st Semester"){
+					$rowname = $subject['firstsemgrade12'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 12" && $sectiondata['semester'] == "2nd Semester"){
+					$rowname = $subject['secondsemgrade12'];
+				}
+				$data = json_decode($rowname);
+				$allsubjectNew = array();
+				if (count($data) > 0) {
+					foreach($data as $value){
+						foreach ($allsubject as $key => $value2) {
+							if ($value->id == $value2->id) {
+								array_push($allsubjectNew, array("id"=>$value2->id, "subjectcode" => $value2->subject_code, "subjectdescription" => $value2->subject_description));
+							}
+						}
+					}
+				}
 
-
+				$this->data['subject'] = $allsubjectNew;
 				$this->data['studentinsection'] = $studentinsection;
 				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;
