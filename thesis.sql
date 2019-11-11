@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2019 at 03:21 AM
+-- Generation Time: Nov 11, 2019 at 04:55 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -62,6 +62,7 @@ INSERT INTO `course_offer` (`id`, `firstsemgrade11`, `secondsemgrade11`, `firsts
 CREATE TABLE `list_of_subject` (
   `id` int(11) NOT NULL,
   `teachers_id` text NOT NULL,
+  `teachers_of_this_subject` text NOT NULL,
   `subject_code` varchar(250) NOT NULL,
   `subject_description` varchar(500) NOT NULL,
   `subject_type` varchar(250) NOT NULL
@@ -71,51 +72,51 @@ CREATE TABLE `list_of_subject` (
 -- Dumping data for table `list_of_subject`
 --
 
-INSERT INTO `list_of_subject` (`id`, `teachers_id`, `subject_code`, `subject_description`, `subject_type`) VALUES
-(7, '[\n    {\n        \"id\": \"3\"\n    }\n]', 'GenMath', 'General Mathematics', 'applied'),
-(8, '[\n    {\n        \"id\": \"1\"\n    }\n]', 'KPWK', 'Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino\r\n', 'applied'),
-(9, '[\n    {\n        \"id\": \"3\"\n    }\n]', 'Oral', 'Oral Communication', 'applied'),
-(10, '', 'PerDev', 'Personal Development', 'applied'),
-(11, '', 'PE1', 'Physical Education 1', 'applied'),
-(18, '', 'Math1', 'Business Math', 'core'),
-(19, '', 'MIL', 'Media and Information Literacy', 'applied'),
-(26, '', 'PE2', 'Physical Education 2', 'applied'),
-(27, '', 'PhySci', 'Physical Science', 'applied'),
-(28, '', 'RAW', 'Reading and Writing', 'applied'),
-(29, '', 'Stat', 'Statistics and Probability', 'applied'),
-(30, '', 'PR1', 'Practical Research 1', 'core'),
-(32, '', 'OAM', 'Organization and Management', 'specialized'),
-(33, '', 'PHP', 'Introduction to the Philosophy of the Human Person (IPHP)', 'applied'),
-(34, '', 'PE3', 'Physical Education 3', 'applied'),
-(35, '', 'EmpTech', 'Empowerment Technologies', 'core'),
-(36, '', 'Entrep', 'Entrepreneurship', 'core'),
-(37, '', 'Fil1', 'Filipino sa Piling Larang:', 'core'),
-(38, '', 'PR2', 'Practical Research 2', 'core'),
-(40, '', 'POM', 'Principles of Marketing', 'specialized'),
-(41, '', 'PE4', 'Physical Education 4', 'applied'),
-(42, '', 'UCSP', 'Understanding Culture, Society, and Politics (UCSP)', 'applied'),
-(43, '', 'English1', 'English for Academic and Professional Purposes', 'core'),
-(44, '', 'IRCABS', 'Immersion/Research/Culminating Activity/Business Simulation', 'specialized'),
-(45, '', 'Econ1', 'Applied Economics', 'specialized'),
-(46, '', 'Ethics1', 'Business Ethics and Responsibility', 'specialized'),
-(47, '', 'Finance', 'Business Finance', 'specialized'),
-(48, '', 'Inq/Inv/Imm', 'Inquiries, Investigation and Immersion', 'specialized'),
-(71, '', 'CreWrite', 'Creative Writing', 'core'),
-(72, '', 'DISS', 'Disciplines and Ideas in the Social Sciences (DISS)', 'specialized'),
-(73, '', 'DRR', 'Disaster Readiness and Reduction', 'specialized'),
-(75, '', 'Chem1', 'General Chemistry 1', 'specialized'),
-(76, '', 'IWRB', 'Introduction to World Religions and Beliefs', 'specialized'),
-(77, '', 'TVL1', 'TVL  Major 1', 'specialized'),
-(78, '', 'TVL2', 'TVL  Major 2', 'specialized'),
-(79, '', 'CNF', 'Creative Nonfiction', 'specialized'),
-(80, '', 'DIASS', 'Disciplines and Ideas in the Applied Social Sciences (DIASS)', 'specialized'),
-(81, '', 'PPG', 'Philippine Politics and Governance (PPG)', 'specialized'),
-(82, '[\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"1\"\n    }\n]', 'CESL', 'Community Engagement, Solidarity, and Leadership ', 'specialized'),
-(83, '', 'TNC21st', 'Trends, Networks, and Critical Thinking in the 21st Century Culture ', 'specialized'),
-(86, '', 'Phys1', 'General Physics 1', 'specialized'),
-(87, '[\n    {\n        \"id\": \"4\"\n    }\n]', 'CAP', 'Capstone', 'applied'),
-(89, '', 'CHEM2', 'General Chemistry 2', 'specialized'),
-(90, '', 'PHYS2', 'General Physics 2', 'specialized');
+INSERT INTO `list_of_subject` (`id`, `teachers_id`, `teachers_of_this_subject`, `subject_code`, `subject_description`, `subject_type`) VALUES
+(7, '[\r\n    {\r\n        \"id\": \"4\"\r\n    }\r\n]', '', 'GenMath', 'General Mathematics', 'applied'),
+(8, '[\n    {\n        \"id\": \"1\"\n    }\n]', '', 'KPWK', 'Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino\r\n', 'applied'),
+(9, '[\n    {\n        \"id\": \"3\"\n    }\n]', '', 'Oral', 'Oral Communication', 'applied'),
+(10, '', '', 'PerDev', 'Personal Development', 'applied'),
+(11, '', '', 'PE1', 'Physical Education 1', 'applied'),
+(18, '', '', 'Math1', 'Business Math', 'core'),
+(19, '', '', 'MIL', 'Media and Information Literacy', 'applied'),
+(26, '', '', 'PE2', 'Physical Education 2', 'applied'),
+(27, '', '', 'PhySci', 'Physical Science', 'applied'),
+(28, '', '', 'RAW', 'Reading and Writing', 'applied'),
+(29, '', '', 'Stat', 'Statistics and Probability', 'applied'),
+(30, '', '', 'PR1', 'Practical Research 1', 'core'),
+(32, '', '', 'OAM', 'Organization and Management', 'specialized'),
+(33, '', '', 'PHP', 'Introduction to the Philosophy of the Human Person (IPHP)', 'applied'),
+(34, '', '', 'PE3', 'Physical Education 3', 'applied'),
+(35, '', '', 'EmpTech', 'Empowerment Technologies', 'core'),
+(36, '', '', 'Entrep', 'Entrepreneurship', 'core'),
+(37, '', '', 'Fil1', 'Filipino sa Piling Larang:', 'core'),
+(38, '', '', 'PR2', 'Practical Research 2', 'core'),
+(40, '', '', 'POM', 'Principles of Marketing', 'specialized'),
+(41, '', '', 'PE4', 'Physical Education 4', 'applied'),
+(42, '', '', 'UCSP', 'Understanding Culture, Society, and Politics (UCSP)', 'applied'),
+(43, '[\n    {\n        \"id\": \"1\"\n    },\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"10\"\n    }\n]', '[\n    {\n        \"idofteacher\": \"4\",\n        \"academic_year\": \"2019-2020\",\n        \"course\": \"Academic\\/General Academic Strand\",\n        \"academic_level\": \"Grade 12\",\n        \"semester\": \"2nd Semester\",\n        \"status\": \"Current\",\n        \"sectionName\": \"Section 1\"\n    },\n    {\n        \"idofteacher\": \"10\",\n        \"academic_year\": \"2019-2020\",\n        \"course\": \"Academic\\/General Academic Strand\",\n        \"academic_level\": \"Grade 12\",\n        \"semester\": \"2nd Semester\",\n        \"status\": \"Current\",\n        \"sectionName\": \"Section 3\"\n    }\n]', 'English1', 'English for Academic and Professional Purposes', 'core'),
+(44, '', '', 'IRCABS', 'Immersion/Research/Culminating Activity/Business Simulation', 'specialized'),
+(45, '', '', 'Econ1', 'Applied Economics', 'specialized'),
+(46, '', '', 'Ethics1', 'Business Ethics and Responsibility', 'specialized'),
+(47, '', '', 'Finance', 'Business Finance', 'specialized'),
+(48, '', '', 'Inq/Inv/Imm', 'Inquiries, Investigation and Immersion', 'specialized'),
+(71, '', '', 'CreWrite', 'Creative Writing', 'core'),
+(72, '', '', 'DISS', 'Disciplines and Ideas in the Social Sciences (DISS)', 'specialized'),
+(73, '', '', 'DRR', 'Disaster Readiness and Reduction', 'specialized'),
+(75, '', '', 'Chem1', 'General Chemistry 1', 'specialized'),
+(76, '', '', 'IWRB', 'Introduction to World Religions and Beliefs', 'specialized'),
+(77, '', '', 'TVL1', 'TVL  Major 1', 'specialized'),
+(78, '', '', 'TVL2', 'TVL  Major 2', 'specialized'),
+(79, '', '', 'CNF', 'Creative Nonfiction', 'specialized'),
+(80, '', '', 'DIASS', 'Disciplines and Ideas in the Applied Social Sciences (DIASS)', 'specialized'),
+(81, '', '', 'PPG', 'Philippine Politics and Governance (PPG)', 'specialized'),
+(82, '[\n    {\n        \"id\": \"4\"\n    },\n    {\n        \"id\": \"5\"\n    },\n    {\n        \"id\": \"10\"\n    },\n    {\n        \"id\": \"1\"\n    }\n]', '', 'CESL', 'Community Engagement, Solidarity, and Leadership ', 'specialized'),
+(83, '', '', 'TNC21st', 'Trends, Networks, and Critical Thinking in the 21st Century Culture ', 'specialized'),
+(86, '', '', 'Phys1', 'General Physics 1', 'specialized'),
+(87, '[\n    {\n        \"id\": \"4\"\n    }\n]', '', 'CAP', 'Capstone', 'applied'),
+(89, '', '', 'CHEM2', 'General Chemistry 2', 'specialized'),
+(90, '', '', 'PHYS2', 'General Physics 2', 'specialized');
 
 -- --------------------------------------------------------
 

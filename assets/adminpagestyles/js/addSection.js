@@ -609,4 +609,86 @@ $(document).ready(function(){
     		}
     	}
     })
+
+    // FOR ASSIGNIN TEACHER IN SUBJECT
+    var idofsubject;
+    $('.assignTeacherToSubject').click(function(e){
+    	idofsubject = e.target.id;
+    	$('.selectTeacherToSubject').empty();
+    	$.ajax({
+    		url: base_url + 'adminpage/getTeacherPerSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'idofsubject': idofsubject,
+				'academicYear': $('.academicYear').val(),
+				'course': $('.course').val(),
+				'academicLevel': $('.academicLevel').val(),
+				'semester' : $('.semester').val(),
+				'status' : $('.status').val(),
+				'sectionName': $('.sectionName').val(),
+			},
+			success: function(response){
+				var optionSelected = $('<option selected disabled>Select</option>');
+				$('.selectTeacherToSubject').append(optionSelected);
+				if (response.availableteachers == "") {
+					$('.hideifnoteacheravailable').hide();
+					$('.showifnoteacheravailable').show();
+				}
+				else{
+					$('.hideifnoteacheravailable').show();
+					$('.showifnoteacheravailable').hide();
+					$.each(response.availableteachers, function(idx, obj) {
+						console.log(obj.id);
+						$('.selectTeacherToSubject').append($('<option value="'+obj.id+'">'+obj.name+'</option>'));
+					});
+				}
+				
+			}
+    	})
+    })
+
+    $('.addTeacherBtnToSubject').click(function(){
+    	$.ajax({
+    		url: base_url + 'adminpage/addOneTeacherToSubject',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'idofsubject': idofsubject,
+				'academicYear': $('.academicYear').val(),
+				'course': $('.course').val(),
+				'academicLevel': $('.academicLevel').val(),
+				'semester' : $('.semester').val(),
+				'status' : $('.status').val(),
+				'sectionName': $('.sectionName').val(),
+				'teacher' : $('.selectTeacherToSubject').val()
+			},
+			success: function (response){
+				if (response.status == "danger") {
+					render_response(".addadvisertosectionwarningonesection", response.status, response.msg);
+				}
+				else{
+					$('.addTeacherBtnToSubject').prop('disabled', true);
+					$('.addTeacherBtnToSubject').text("Loading");
+					setTimeout(function(){
+			      		$('.teacherHere'+idofsubject).empty();
+						$('.teacherHere'+idofsubject).append("<p>"+$('.selectTeacherToSubject option:selected').text()+"</p>");
+			      		$('.addTeacherBtnToSubject').text("Add");
+			    		$('.addTeacherBtnToSubject').prop("disabled", false);
+			      		$.toast({
+							heading: 'Teacher has been assigned',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#28a745',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+						$('#add_teachertosubject_form').modal('hide');
+					},2500);
+				}
+			}
+    	})
+    })
 })

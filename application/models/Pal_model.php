@@ -398,4 +398,14 @@
 			$query = $this->db->get_where('course_offer', array('course_name' => $course));
 			return $query->row_array();
 		}
+
+		// INSERTING TEACHER TO A SUBJECT
+		public function update_subject_teacher($id, $data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = [
+	            'teachers_of_this_subject' => $data,
+	        ];
+	        $this->db->where('id', $id);
+	        $this->db->update('list_of_subject', $newData);
+		}
 	}
