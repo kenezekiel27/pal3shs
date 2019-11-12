@@ -86,8 +86,8 @@
 						<a href="#" class="waves-effect"><i style="color: black" class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
 						<ul class="nav" id="side-menu">
 							<li>
-								<a href="#" class="waves-effect" style="left: 30px">Information</a>
-								<a href="#" class="waves-effect" style="left: 30px">Accounts</a>
+								<a href="<?php echo base_url(); ?>information-student" class="waves-effect" style="left: 30px">Information</a>
+								<a href="<?php echo base_url(); ?>account" class="waves-effect" style="left: 30px">Accounts</a>
 							</li>
 						</ul>
 					</li>

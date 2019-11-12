@@ -25,8 +25,8 @@
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/js/dashboard1.js"></script>
     <script src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 
-    <script src="<?php echo base_url(); ?>assets/studentstyles/js/informationJS.js"></script>
-    
+    <script src="<?php echo base_url(); ?>assets/teacherstyle/js/informationJS.js"></script>
+
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />

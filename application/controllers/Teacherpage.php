@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Studentpage extends CI_Controller {
+class Teacherpage extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,18 +25,18 @@ class Studentpage extends CI_Controller {
 		$this->isLogin();
 	}
 	private function isLogin(){
-		if($this->session->userdata('user_data') == "" || $this->session->userdata('restriction') == "admin" ){
+		if($this->session->userdata('user_data') == "" || $this->session->userdata('restriction') == "student" ){
 			redirect('home');
 		}
 	}
 	
-	public function dashboardStudent(){
+	public function dashboardTeacher(){
 		// $teachers = $this->pal_model->teacher_data();
 		// $this->data['personal_info'] = $teachers;
 	
-		$this->load->view('studentpage/header');
-		$this->load->view('studentpage/dashboard');
-		$this->load->view('studentpage/footer');
+		$this->load->view('teacherpage/header');
+		$this->load->view('teacherpage/dashboard');
+		$this->load->view('teacherpage/footer');
 	}
 	public function logout(){
 		session_destroy();
@@ -45,21 +45,17 @@ class Studentpage extends CI_Controller {
 
 		redirect('home');
 	}
+	
 	public function information(){
 		$username = $this->session->userdata('user_data');
 
-		$students = $this->pal_model->viewStudent2($username['username']);
-		$this->data['student_info'] = $students;
-		$this->load->view('studentpage/header');
-		$this->load->view('studentpage/information', $this->data);
-		$this->load->view('studentpage/footer');
+		$teacher = $this->pal_model->viewTeacher2($username['username']);
+		$this->data['teacher_info'] = $teacher;
+		$this->load->view('teacherpage/header');
+		$this->load->view('teacherpage/information', $this->data);
+		$this->load->view('teacherpage/footer');
 	}
-	public function account(){
-		$this->load->view('studentpage/header');
-		$this->load->view('studentpage/account');
-		$this->load->view('studentpage/footer');
-	}
-	public function updateStudentPersonalInfo(){
+	public function updateTeacherPersonalInfo(){
 		$lrn=$_POST['lrn'];
 		$lname=$_POST['lname'];
 		$fname=$_POST['fname'];
@@ -98,14 +94,14 @@ class Studentpage extends CI_Controller {
 			)
 		);
 			
-		$courseadd =  $this->pal_model->updatePersonalInfoStudent2($lrn,$personal);
+		$courseadd =  $this->pal_model->updatePersonalInfoTeacher2($lrn,$personal);
 		$this->data['status'] = 'success';
 		$this->data['msg'] = "Successfully added.";
 		
 		
 		echo json_encode($this->data);
 	}
-	public function updateStudentAddressInfo(){
+	public function updateTeacherAddressInfo(){
 		$lrn=$_POST['lrn'];
 		$brgy=$_POST['brgy'];
 		$municipality=$_POST['municipality'];
@@ -120,14 +116,14 @@ class Studentpage extends CI_Controller {
 			)
 		);
 			
-		$courseadd =  $this->pal_model->updateAddressInfoStudent2($lrn,$address);
+		$courseadd =  $this->pal_model->updateAddressInfoTeacher2($lrn,$address);
 		$this->data['status'] = 'success';
 		$this->data['msg'] = "Successfully added.";
 		
 		
 		echo json_encode($this->data);
 	}
-	public function updateStudentGuardianInfo(){
+	public function updateTeacherGuardianInfo(){
 		$lrn=$_POST['lrn'];
 		$g_lname=$_POST['g_lname'];
 		$g_fname=$_POST['g_fname'];
@@ -152,38 +148,38 @@ class Studentpage extends CI_Controller {
 			)
 		);
 			
-		$courseadd =  $this->pal_model->updateGuardianInfoStudent2($lrn,$guardian);
+		$courseadd =  $this->pal_model->updateGuardianInfoTeacher2($lrn,$guardian);
 		$this->data['status'] = 'success';
 		$this->data['msg'] = "Successfully added.";
 		
 		
 		echo json_encode($this->data);
 	}
-	public function updateStudentEducationalInfo(){
+	public function updateTeacherEducationalInfo(){
 		$lrn=$_POST['lrn'];
-		$curriculum=$_POST['curriculum'];
 		$school=$_POST['school'];
-		$s_brgy=$_POST['s_brgy'];
-		$s_municipality=$_POST['s_municipality'];
-		$s_province=$_POST['s_province'];
-		$s_yearfrom=$_POST['s_yearfrom'];
-		$s_yearto=$_POST['s_yearto'];
-		$s_average=$_POST['s_average'];
-
+		$degree=$_POST['degree'];
+		$course=$_POST['course'];
+		$brgy=$_POST['brgy'];
+		$municipality=$_POST['municipality'];
+		$province=$_POST['province'];
+		$yearfrom=$_POST['yearfrom'];
+		$yearto=$_POST['yearto'];
 		$education = array(
 			array(
-				'curriculum' => $curriculum,
-				'school' => $school,
-				'brgy' => $s_brgy,
-				'municipality' => $s_municipality,
-				'province' => $s_province,
-				'yearfrom' => $s_yearfrom,
-				'yearto' => $s_yearto,
-				'average' => $s_average,											
+				'school_name' => $school,
+				'degree' => $degree,
+				'course' => $course,
+				's_brgy' => $brgy,
+				's_municipality' => $municipality,
+				's_province' => $province,
+				'year_from' => $yearfrom,
+				'year_to' => $yearto,										
 				
 			)
 		);
-		$courseadd =  $this->pal_model->updateEducationalInfoStudent2($lrn,$education);
+			
+		$courseadd =  $this->pal_model->updateEducationalInfoTeacher2($lrn,$education);
 		$this->data['status'] = 'success';
 		$this->data['msg'] = "Successfully added.";
 		

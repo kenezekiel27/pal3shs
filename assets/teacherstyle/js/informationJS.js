@@ -1,78 +1,34 @@
 $(document).ready(function(){
-    $('.personal_btn').click(function(){
-        $('#Academic_info1').hide();
-        $('#Academic_info2').hide();
+     $('#personalbtn').click(function(){
         $('#personal_information').show();
         $('#address').hide();
         $('#guardian_info').hide();
         $('#educational_background').hide();
-        
     });
-    $('.address_btn').click(function(){
-        $('#Academic_info1').hide();
-        $('#Academic_info2').hide();
+    $('#addressbtn').click(function(){
         $('#personal_information').hide();
         $('#address').show();
         $('#guardian_info').hide();
         $('#educational_background').hide();
-        $('#enrollment').hide();
     });
-    $('.guardian_btn').click(function(){
-         $('#Academic_info1').hide();
-        $('#Academic_info2').hide();
+    $('#guardianbtn').click(function(){
         $('#personal_information').hide();
         $('#address').hide();
         $('#guardian_info').show();
         $('#educational_background').hide();
-        $('#enrollment').hide();
     });
-    $('.educational_btn').click(function(){
-         $('#Academic_info1').hide();
-        $('#Academic_info2').hide();
+    $('#educationalbtn').click(function(){
         $('#personal_information').hide();
         $('#address').hide();
         $('#guardian_info').hide();
         $('#educational_background').show();
-        $('#enrollment').hide();
     });
-    $('.enrollment_btn').click(function(){
-         $('#Academic_info1').hide();
-        $('#Academic_info2').hide();
-        $('#personal_information').hide();
-        $('#address').hide();
-        $('#guardian_info').hide();
-        $('#educational_background').hide();
-        $('#enrollment').show();
-    });
-    $('#academic_year').change(function(){
-        $('.dummy').val("sad");
-        $('#academic_course').empty();
-        $.ajax({
-            url: base_url + 'adminpage/getOpenCoursePerAcadYear',
-            type: 'post',
-            dataType: "json",
-            data:{
-                'id' : $('#academic_year').val()
-            },
-            success: function(response){
-                var optionSelected = $('<option selected disabled>Select</option>');
-                $('#academic_course').append(optionSelected);
-                $.each(response.open_course, function(idx, obj) {
-                    console.log(obj.id);
-                    $('#academic_course').append($('<option value='+obj.course_name+'>'+obj.course_name+'</option>'));
-                });
-
-            }
-        });
-    })
-    $('.update_personal_info').click(function(e){
-        var id = e.target.id;
+    $('.update_teacher_personal_info').click(function(){
         $.ajax({
             type: "POST",
-            url: base_url + 'adminpage/updateStudentPersonalInfo',
+            url: base_url + 'teacherpage/updateTeacherPersonalInfo',
             dataType: 'json',
             data: {
-                'id':id,
                 'lrn':$('#update_lrn').val(),
                 'lname':$('#update_lname').val(),
                 'fname':$('#update_fname').val(),
@@ -102,14 +58,13 @@ $(document).ready(function(){
             }
         })
     });
-    $('.update_address_info').click(function(e){
-        var id = e.target.id;
+    $('.update_teacher_address').click(function(){
         $.ajax({
             type: "POST",
-            url: base_url + 'adminpage/updateStudentAddressInfo',
+            url: base_url + 'teacherpage/updateTeacherAddressInfo',
             dataType: 'json',
             data: {
-                'id':id,
+                'lrn':$('#update_lrn').val(),
                 'brgy':$('#update_brgy').val(),
                 'municipality':$('#update_municipality').val(),
                 'province':$('#update_province').val(),
@@ -126,14 +81,13 @@ $(document).ready(function(){
             }
         })
     });
-    $('.update_guardian_info').click(function(e){
-        var id = e.target.id;
+    $('.update_teacher_guardian').click(function(){
         $.ajax({
             type: "POST",
-            url: base_url + 'adminpage/updateStudentGuardianInfo',
+            url: base_url + 'teacherpage/updateTeacherGuardianInfo',
             dataType: 'json',
             data: {
-                'id':id,
+                'lrn':$('#update_lrn').val(),
                 'g_lname':$('#update_g_lname').val(),
                 'g_fname':$('#update_g_fname').val(),
                 'g_mname':$('#update_g_mname').val(),
@@ -155,22 +109,21 @@ $(document).ready(function(){
             }
         })
     });
-    $('.update_education_info').click(function(e){
-        var id = e.target.id;
+    $('.update_teacher_education').click(function(){
         $.ajax({
             type: "POST",
-            url: base_url + 'adminpage/updateStudentEducationalInfo',
+            url: base_url + 'teacherpage/updateTeacherEducationalInfo',
             dataType: 'json',
             data: {
-                'id':id,
-                'curriculum':$('#update_curriculum').val(),
+                'lrn':$('#update_lrn').val(),
                 'school':$('#update_school').val(),
-                's_brgy':$('#update_sbrgy').val(),
-                's_municipality':$('#update_smunicipality').val(),
-                's_province':$('#update_sprovince').val(),
-                's_yearfrom':$('#update_syearfrom').val(),
-                's_yearto':$('#update_syearto').val(),
-                's_average':$('#update_saverage').val(),
+                'degree':$('#update_degree').val(),
+                'course':$('#update_course').val(),
+                'brgy':$('#update_sbrgy').val(),
+                'municipality':$('#update_smunicipality').val(),
+                'province':$('#update_sprovince').val(),
+                'yearfrom':$('#update_syearfrom').val(),
+                'yearto':$('#update_syearto').val(),
             },
             success: function(response){
                 $('.education_warning').show();

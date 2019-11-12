@@ -92,12 +92,132 @@
 			$this->db->where('id', $id);
 			$this->db->update('student_data', $newData);
 		}
+		public function updatePersonalInfoTeacher($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updatePersonalInfoTeacher2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateAddressInfoTeacher($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'address' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateAddressInfoTeacher2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'address' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateGuardianInfoTeacher($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'guardian_info' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateGuardianInfoTeacher2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'guardian_info' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateEducationalInfoTeacher($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'education' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('teacher_data', $newData);
+		}
+		public function updateEducationalInfoTeacher2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'education' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('teacher_data', $newData);
+		}
 		public function updatePersonalInfoStudent($id,$data){
 			$data = json_encode($data, JSON_PRETTY_PRINT);
 			$newData = array(
 				'personal_info' => $data,
 			);
 			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
+		public function updatePersonalInfoStudent2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'personal_info' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateAddressInfoStudent($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'address' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateAddressInfoStudent2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'address' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateGuardianInfoStudent($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'guardian_info' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateGuardianInfoStudent2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'guardian_info' => $data,
+			);
+			$this->db->where('lrn', $lrn);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateEducationalInfoStudent($id,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'education' => $data,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('student_data', $newData);
+		}
+		public function updateEducationalInfoStudent2($lrn,$data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = array(
+				'education' => $data,
+			);
+			$this->db->where('lrn', $lrn);
 			$this->db->update('student_data', $newData);
 		}
 		public function teacher_data(){
@@ -108,6 +228,10 @@
 			$query = $this->db->get_where('teacher_data', array('id' => $id));
 			return $query->row_array();
 		}
+		public function viewTeacher2($lrn){
+			$query = $this->db->get_where('teacher_data', array('lrn' => $lrn));
+			return $query->row_array();
+		}
 		/*viewing of student information*/
 		public function student_data(){
 			$query = $this->db->get_where('student_data',array('status' => '1'));
@@ -115,6 +239,10 @@
 		}
 		public function viewStudent($id){
 			$query = $this->db->get_where('student_data', array('id' => $id));
+			return $query->row_array();
+		}
+		public function viewStudent2($lrn){
+			$query = $this->db->get_where('student_data', array('lrn' => $lrn));
 			return $query->row_array();
 		}
 		/*pending teacher for viewing*/

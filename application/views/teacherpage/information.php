@@ -4,114 +4,28 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-
 	<!-- page content -->
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row bg-title">
 				<div div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					<h4 class="page-title">Student Information</h4>
+					<h4 class="page-title">Teacher Information</h4>
 				</div>
 			</div>
 			<!-- section 1 -->
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="white-box">
-						<button class="btn btn-success personal_btn">Personal Information</button>
-						<button class="btn btn-success address_btn">Address</button>
-						<button class="btn btn-success guardian_btn">Guardian Information</button>
-						<button class="btn btn-success educational_btn">Educational Background</button>
+						<button class="btn btn-success" id="personalbtn">Personal Information</button>
+						<button class="btn btn-success" id="addressbtn">Address</button>
+						<button class="btn btn-success" id="guardianbtn">Guardian Information</button>
+						<button class="btn btn-success" id="educationalbtn">Educational Background</button>
 						<hr>
-						<div class="form-material" id="Academic_info1"style="display: block;">
-							<label>Current</label>
-							<?php $key ?>
-								<?php
-									$id="";
-									$course="";
-									$acad_level="";
-									$semester="";
-									$acad_year="";
-									$reg_type="";
-									$new = json_decode($student_info['acad_level'],true);
-									foreach ($new as $key => $value1) {
-										$id=$student_info['id'];
-										$course=$value1['course'];
-										$acad_level=$value1['acad_level'];
-										$semester=$value1['semester'];
-										$acad_year=$value1['acad_year'];
-										$reg_type=$value1['acad_status'];
-									}
-									
-							 	?> 
-							<div class="row">
-								<div class="col-md-4 form-group">
-									<label>Course</label>
-									<input type="text" class="form-control" value="<?php echo $course?>">
-
-								</div>
-								<!-- <div class="col-md-4 form-group">
-									<label>Academic status</label>
-									<input type="text" class="form-control" value="<?php echo $reg_type?>">
-								</div> -->
-							</div>
-							<div class="row">
-								<div class="col-md-4 form-group">
-									<label>Academic Level</label>
-									<input type="text" class="form-control" value="<?php echo $acad_level ?>">
-								</div>
-								<div class="col-md-4 form-group">
-									<label>Semester</label>
-									<input type="text" class="form-control" value="<?php echo $semester ?>">
-								</div>
-								<div class="col-md-4 form-group">
-									<label>Academic year</label>
-									<input type="text" class="form-control" value="<?php echo $acad_year ?>">
-								</div>
-							</div>
-							<hr>
-						</div>
-						<div class="form-material" id="Academic_info2" style="display: block;">
-							<label>Enroll to:</label>
-							<div class="row">
-								<div class="col-md-4 form-group">
-									<label>Course</label>
-									<select class="form-control" id="academic_course">
-										<option selected disabled>Select</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-4 form-group">
-									<label>Academic Level</label>
-									<select class="form-control" id="acad_level">
-										<option selected disabled>Select</option>
-										<option>Grade 11</option>
-										<option>Grade 12</option>
-									</select>
-								</div>
-								<div class="col-md-4 form-group">
-									<label>Semester</label>
-									<select class="form-control" id="acad_sem">
-										<option selected disabled>Select</option>
-										<option>1st Semester</option>
-										<option>2nd Semester</option>
-									</select>
-								</div>
-								<div class="col-md-4 form-group">
-									<label>Academic year</label>
-									<select class="form-control" id="academic_year">
-										<option selected disabled>Select</option>
-										<?php foreach($academicYear as $value): ?>
-											<option value="<?php echo $value->id ?>"><?php echo $value->acad_year ?></option>
-										<?php endforeach ?>
-									</select>
-								</div>
-							</div>
-						</div>
 						<!-- div for personal info -->
-						<div class="form-material" id="personal_information" style="display: block;">
+						<div class="form-material" id="personal_information" style="display: none;">
 							<?php $key ?>
 								<?php 
+									$id="";
 									$lrn="";
 									$lname="";
 									$fname="";
@@ -128,27 +42,29 @@
 									$telephone="";
 									$mobile="";
 									$email="";
-									$new = json_decode($student_info['personal_info'],true);
-									foreach ($new as $key => $value2) {
-										$lrn=$student_info['lrn'];
-										$lname=$value2['lname'];
-										$fname=$value2['fname'];
-										$mname=$value2['mname'];
-										$sex=$value2['sex'];
-										$bday=$value2['bday'];
-										$bplace=$value2['bplace'];
-										$age=$value2['age'];
-										$height=$value2['height'];
-										$weight=$value2['weight'];
-										$language=$value2['language'];
-										$religion=$value2['religion'];
-										$egroup=$value2['ethnic_group'];
-										$telephone=$value2['telephone'];
-										$mobile=$value2['mobile'];
-										$email=$value2['email'];
+									$new = json_decode($teacher_info['personal_info'],true);
+									foreach ($new as $key => $value1) {
+										$id=$teacher_info['id'];
+										$lrn=$teacher_info['lrn'];
+										$lname=$value1['lname'];
+										$fname=$value1['fname'];
+										$mname=$value1['mname'];
+										$sex=$value1['sex'];
+										$bday=$value1['bday'];
+										$bplace=$value1['bplace'];
+										$age=$value1['age'];
+										$height=$value1['height'];
+										$weight=$value1['weight'];
+										$language=$value1['language'];
+										$religion=$value1['religion'];
+										$egroup=$value1['ethnic_group'];
+										$telephone=$value1['telephone'];
+										$mobile=$value1['mobile'];
+										$email=$value1['email'];
+										
 									}
 									
-							 	?> 	
+							 	?> 
 							<h1>Personal Information</h1>
 							<p class="personal_warning" style="display: none;"></p>
 							<div class="row">
@@ -160,22 +76,22 @@
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Last Name</label>
-									<input type="text" class="form-control"  value="<?php echo ucwords($lname);?>" id="update_lname">
+									<input type="text" class="form-control" value="<?php echo ucwords($lname)?>" id="update_lname">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>First Name</label>
-									<input type="text" class="form-control"  value="<?php echo ucwords($fname);?>" id="update_fname">
+									<input type="text" class="form-control" value="<?php echo ucwords($fname)?>" id="update_fname">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Middle Name</label>
-									<input type="text" class="form-control"  value="<?php echo ucwords($mname);?>" id="update_mname">
+									<input type="text" class="form-control" value="<?php echo ucwords($mname)?>" id="update_mname">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Sex</label>
 									<select class="form-control" id="update_sex">
-										<option selected disabled value="<?php echo ucfirst($sex);?>"><?php echo ucfirst($sex);?> </option>
+										<option selected value="<?php echo ucfirst($sex)?>"><?php echo ucfirst($sex)?></option>
 										<option>Male</option>
 										<option>Female</option>
 									</select>
@@ -186,7 +102,7 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Birth Place</label>
-									<input type="text" class="form-control"value="<?php echo ucwords($bplace)?>" id="update_bplace">
+									<input type="text" class="form-control" value="<?php echo $bplace?>" id="update_bplace">
 								</div>
 							</div>
 							<div class="row">
@@ -211,7 +127,7 @@
 		 						<div class="col-md-4 form-group">
 		 							<label>Religion</label>
 		 							<select class="form-control" id="update_religion">
-		 								<option selected disabled value="<?php echo ucfirst($religion)?>"><?php echo ucfirst($religion)?></option>
+		 								<option selected value="<?php echo ucwords($religion)?>"><?php echo ucwords($religion)?></option>
 		 								<option value="Catholic">Catholic</option>
 		 								<option value="Christian">Christian</option>
 		 								<option value="Iglesia">Iglesia</option>
@@ -228,7 +144,7 @@
 		 						<div class="col-md-4 form-group">
 		 							<label>Ethnic Group</label>
 		 							<select class="form-control" id="update_egroup">
-		 								<option selected disabled value="<?php echo ucfirst($egroup)?>"><?php echo ucfirst($egroup)?></option>
+		 								<option selected value="<?php echo ucfirst($egroup)?>"><?php echo ucfirst($egroup)?></option>
 		 								<option value="Filipino">Filipino</option>
 		 								<option value="Aeta">Aeta</option>
 		 								<option value="Visayans">Visayans</option>
@@ -242,7 +158,7 @@
 		 								<option value="Waray">Waray</option>
 		 								<option value="Pangasinan">Pangasinan</option>
 		 								<option value="Zamboangueño">Zamboangueño</option>
-		 							</select>
+		 							</select>	
 		 						</div>	
 							</div>
 							<div class="row">
@@ -259,7 +175,7 @@
 		 							<input type="email" class="form-control" value="<?php echo $email?>" id="update_email">
 		 						</div>
 		 					</div>
-		 					<button class="btn btn-success update_personal_info" id="<?php echo $id ?>">Update</button>
+		 					<button class="btn btn-success update_teacher_personal_info">Update</button>
 						</div>
 						<!-- end of personal info -->
 						<!-- Address -->
@@ -269,16 +185,16 @@
 									$brgy="";
 									$municipality="";
 									$province="";
-									$new = json_decode($student_info['address'],true);
-									foreach ($new as $key => $value3) {
+									$new = json_decode($teacher_info['address'],true);
+									foreach ($new as $key => $value2) {
 										
-										$brgy=$value3['brgy'];
-										$municipality=$value3['municipality'];
-										$province=$value3['province'];
+										$brgy=$value2['brgy'];
+										$municipality=$value2['municipality'];
+										$province=$value2['province'];
 									}
 									
 							 	?> 
-							<h1>Learner's Address</h1>
+							<h1>Teacher's Address</h1>
 							<p class="address_warning" style="display: none;"></p>
 							<div class="row">
 								<div class="col-md-4 form-group">
@@ -294,7 +210,7 @@
 		 							<input type="text" class="form-control" value="<?php echo ucwords($province)?>" id="update_province">
 		 						</div>
 							</div>
-							<button class="btn btn-success update_address_info" id="<?php echo $id ?>">Update</button>
+							<button class="btn btn-success update_teacher_address">Update</button>
 						</div>
 						<!-- end of Address -->
 						<!-- guardian information -->
@@ -309,16 +225,16 @@
 									$g_brgy="";
 									$g_municipality="";
 									$g_province="";
-									$new = json_decode($student_info['guardian_info'],true);
-									foreach ($new as $key => $value4) {
-										$g_lname=$value4['g_lname'];
-										$g_fname=$value4['g_fname'];
-										$g_mname=$value4['g_mname'];
-										$g_relation=$value4['g_relationship'];
-										$g_contact=$value4['g_contact'];
-										$g_brgy=$value4['g_brgy'];
-										$g_municipality=$value4['g_municipality'];
-										$g_province=$value4['g_province'];
+									$new = json_decode($teacher_info['guardian_info'],true);
+									foreach ($new as $key => $value3) {
+										$g_lname=$value3['g_lname'];
+										$g_fname=$value3['g_fname'];
+										$g_mname=$value3['g_mname'];
+										$g_relation=$value3['g_relationship'];
+										$g_contact=$value3['g_contact'];
+										$g_brgy=$value3['g_brgy'];
+										$g_municipality=$value3['g_municipality'];
+										$g_province=$value3['g_province'];
 									}
 									
 							 	?> 
@@ -330,12 +246,12 @@
 									<input type="text" class="form-control" value="<?php echo ucwords($g_lname)?>" id="update_g_lname">
 								</div>
 								<div class="col-md-4 form-group">
-									<label>First Name</label>
+									<label>first Name</label>
 									<input type="text" class="form-control" value="<?php echo ucwords($g_fname)?>" id="update_g_fname">
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Middle Name</label>
-									<input type="text" class="form-control"   value="<?php echo ucwords($g_mname)?>" id="update_g_mname">
+									<input type="text" class="form-control" value="<?php echo ucwords($g_mname)?>" id="update_g_mname">
 								</div>
 							</div>
 							<div class="row">
@@ -345,13 +261,13 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Contact Number</label>
-									<input type="text" class="form-control"value="<?php echo $g_contact?>" id="update_g_contact"> 
+									<input type="text" class="form-control" value="<?php echo $g_contact?>" id="update_g_contact">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 form-group">
 		 							<label>House#/Street/Blk/Lot/Subdivision/Brgy</label>
-		 							<input type="text" class="form-control"value="<?php echo ucwords($g_brgy)?>" id="update_g_brgy"> 
+		 							<input type="text" class="form-control" value="<?php echo ucwords($g_brgy)?>" id="update_g_brgy">
 		 						</div>
 		 						<div class="col-md-4 form-group">
 		 							<label>Municipality</label>
@@ -362,42 +278,58 @@
 		 							<input type="text" class="form-control" value="<?php echo ucwords($g_province)?>" id="update_g_province">
 		 						</div>
 							</div>
-							<button class="btn btn-success update_guardian_info" id="<?php echo $id ?>">Update</button>		
+							<button class="btn btn-success update_teacher_guardian">Update</button>		
 						</div>
 						<!-- end of guardian information -->
 						<!-- educational background -->
-						<div class="form-material" id="educational_background" style="display: none;">
+						<div class="form-material" id="educational_background" style="display: block;">
 							<?php $key ?>
 								<?php 
-									$curriculum="";
 									$school="";
+									$degree="";
+									$course="";
 									$s_brgy="";
 									$s_municipality="";
 									$s_province="";
 									$s_yearfrom="";
 									$s_yearto="";
-									$s_average="";
+									
 
-									$new = json_decode($student_info['education'],true);
-									foreach ($new as $key => $value5) {
-										$curriculum=$value5['curriculum'];
-										$school=$value5['school'];
-										$s_brgy=$value5['brgy'];
-										$s_municipality=$value5['municipality'];
-										$s_province=$value5['province'];
-										$s_yearfrom=$value5['yearfrom'];
-										$s_yearto=$value5['yearto'];
-										$s_average=$value5['average'];
+									$new = json_decode($teacher_info['education'],true);
+									foreach ($new as $key => $value4) {
+										$school=$value4['school_name'];
+										$degree=$value4['degree'];
+										$course=$value4['course'];
+										$s_brgy=$value4['s_brgy'];
+										$s_municipality=$value4['s_municipality'];
+										$s_province=$value4['s_province'];
+										$s_yearfrom=$value4['year_from'];
+										$s_yearto=$value4['year_to'];
+					
 									}
 									
 							 	?> 
-							<h1 value="<?php echo ucwords($curriculum)?>"><?php echo ucwords($curriculum)?></h1>
-							<input value="<?php echo ucwords($curriculum)?>" id="update_curriculum" hidden>
+							<h1>Educational Background</h1>
 							<p class="education_warning" style="display: none;"></p>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>School name</label>
 									<input type="text" class="form-control" value="<?php echo ucwords($school)?>" id="update_school">
+								</div>
+								<div class="col-md-4 form-group">
+									<label>Degree</label>
+									<select class="form-control" id="update_degree">
+										<option selected value="<?php $degree?>"><?php echo $degree?></option>
+										<option>Bachelor of Science</option>
+										<option>Bachelor of Arts</option>
+										<option>Bachelor in Secondary Education</option>
+										<option>Bachelor in Elementary Education</option>
+										<option>Bachelor in Secondary Education Major in</option>
+									</select>
+								</div>
+								<div class="col-md-4 form-group">
+									<label>Course</label>
+									<input type="text" class="form-control" value="<?php echo ucwords($course)?>" id="update_course">
 								</div>
 							</div>
 							<div class="row">
@@ -418,7 +350,7 @@
 								<div class="col-md-4 form-group">
 									<label>Academic year from</label>
 									<select class="form-control" id="update_syearfrom">
-										<option selected disabled value="<?php echo $s_yearfrom?>" ><?php echo $s_yearfrom?></option>
+										<option selected value="<?php echo $s_yearfrom?>" ><?php echo $s_yearfrom?></option>
 										<?php 
 											for($year =date("Y"); $year >=2000; $year--){
 												?> 
@@ -431,7 +363,7 @@
 								<div class="col-md-4 form-group">
 									<label>to</label>
 									<select class="form-control" id="update_syearto">
-										<option selected disabled value="<?php echo $s_yearto?>" ><?php echo $s_yearto?></option>
+										<option selected value="<?php echo $s_yearto?>" ><?php echo $s_yearto?></option>
 										<?php 
 											for($year =date("Y")+1; $year >=2000; $year--){
 												?> 
@@ -441,15 +373,10 @@
 										?>
 									</select>
 								</div>
-								<div class="col-md-4 form-group">
-									<label>Average</label>
-									<input type="text" class="form-control" value="<?php echo $s_average?>" id="update_saverage">
-								</div>
 							</div>
-							<button class="btn btn-success update_education_info" id="<?php echo $id ?>">Update</button>	
+							<button class="btn btn-success update_teacher_education">Update</button>	
 						</div>
 						<!-- end of educational background -->
-						
 					</div>
 				</div>
 			</div>
