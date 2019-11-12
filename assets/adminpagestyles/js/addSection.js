@@ -360,8 +360,11 @@ $(document).ready(function(){
     })
 
     // ADD STUDENT TO SECTION
-
+    $('#add_studenttosection_form').on('hidden.bs.modal', function(){
+      $('.availablestudent').select2("val","");
+    });
     $('.addStudentToSectionBtn').click(function(e){
+    	
     	var id = e.target.id;
     	$.ajax({
     		url: base_url + 'adminpage/addStudentToSection',

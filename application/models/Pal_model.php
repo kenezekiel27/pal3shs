@@ -413,4 +413,5 @@
 			$query = $this->db->get_where('section_list', array('adviser' => $id));
 			return $query->row_array();
 		}
+
 	}
