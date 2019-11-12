@@ -398,4 +398,10 @@
 			$query = $this->db->get_where('course_offer', array('course_name' => $course));
 			return $query->row_array();
 		}
+
+		// VIEWING OF ADVISORY OF TEACHER
+		public function view_advisory($id){
+			$query = $this->db->get_where('section_list', array('adviser' => $id));
+			return $query->row_array();
+		}
 	}

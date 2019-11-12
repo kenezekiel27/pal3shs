@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['dashboard-student'] = 'studentpage/dashboardStudent';
 $route['information-student'] = 'studentpage/information';
 $route['information-teacher'] = 'teacherpage/information';
+$route['class-advisory'] = 'teacherpage/advisory';
 $route['account'] = 'studentpage/account';
 $route['dashboard-teacher'] = 'teacherpage/dashboardTeacher';
 $route['subject/(:any)'] = 'adminpage/viewOneSubject/$1';
