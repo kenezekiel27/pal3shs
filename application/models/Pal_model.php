@@ -375,4 +375,27 @@
 			$query = $this->db->delete('section_list');
 			return $query;
 		}
+
+		// VIEWING OF ONE SECTION
+
+		public function viewOnSection($id){
+			$query = $this->db->get_where('section_list', array('id' => $id));
+			return $query->row_array();
+		}
+
+		// UPDATE SECTION DATA
+
+		public function update_sectionlist_data($id, $data){
+			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$newData = [
+	            'student_id' => $data,
+	        ];
+	        $this->db->where('id', $id);
+	        $this->db->update('section_list', $newData);
+		}
+		// OPEN COURSE BY NAME
+		public function open_course_by_name($course){
+			$query = $this->db->get_where('course_offer', array('course_name' => $course));
+			return $query->row_array();
+		}
 	}

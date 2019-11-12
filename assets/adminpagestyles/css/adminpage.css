@@ -139,3 +139,30 @@
     padding: 4px 6px;
     border: 1px black solid;
 }
+
+
+.forSection{
+    width: 100%;
+}
+.forSection input{
+    width: 250px !important;
+}
+.forSection .subjectType{
+    width: 250px !important;
+}
+.forSection ul{
+    list-style: none;
+}
+.forSection ul li{
+    float: left;
+}
+
+.nameofadviserhere ul{
+    list-style: none;
+}
+.nameofadviserhere ul li{
+    float: left;
+    width: 31%;
+    left: -23px;
+    position: relative;
+}

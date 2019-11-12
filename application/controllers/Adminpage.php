@@ -657,13 +657,13 @@ class Adminpage extends CI_Controller {
 
 	public function openSection(){
 		$courses = $this->pal_model->courses_offer();
-		//$teachers = $this->pal_model->teacher_data();
+		$teachers = $this->pal_model->teacher_data();
 		$academicYear = $this->pal_model->academic_year();
 		$sectionlist = $this->pal_model->section_list();
 
 		$this->data['courses'] = $courses;
 		$this->data['academicYear'] = $academicYear;
-		
+		$this->data['teachers'] = $teachers;
 		$this->data['section_list'] = $sectionlist;
 
 		//$this->data['teachers'] = $teachers;
@@ -1179,15 +1179,21 @@ class Adminpage extends CI_Controller {
 	// ADD ADVISER TO A SECTION
 	public function addAdviserToSection(){
 		$id = $_POST['id'];
-		$nameOfAdviser = $_POST['nameOfAdviser'];
-		$this->form_validation->set_rules('nameOfAdviser', "adviser", 'required');
+		$adviserid = $_POST['adviserid'];
+		$this->form_validation->set_rules('adviserid', "adviser", 'required');
 		if ($this->form_validation->run() == FALSE) {
 
 			$this->data['status'] = "danger";
 			$this->data['msg'] = validation_errors();
 		}
 		else{
-			$this->pal_model->add_adviser_to_section($id, $nameOfAdviser);
+			$teachers = $this->pal_model->viewTeacher($adviserid);
+			
+			$teacherdata = json_decode($teachers['personal_info'], TRUE);
+			foreach ($teacherdata as $value) {
+				$nameOfAdviser = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);
+			}
+			$this->pal_model->add_adviser_to_section($id, $adviserid);
 			$this->data['name'] = $nameOfAdviser;
 			$this->data['status'] = "success";
 		}
@@ -1201,30 +1207,26 @@ class Adminpage extends CI_Controller {
 	public function checkIfAdviser(){
 		$teachers = $this->pal_model->teacher_data();
 		$sectionlist = $this->pal_model->section_list();
-		// $this->data['section_list'] = $sectionlist;
-		// $this->data['teachers'] = $teachers;
 		$arr = array();
-		foreach ($teachers as $key => $value) {
-			$old = json_decode($value->personal_info, TRUE);
-			foreach ($old as $key => $value2) {
-				$fullname = ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']);
-				
-				foreach ($sectionlist as $key => $value3) {
-					if ($value3->adviser == $fullname) {
-						unset($teachers[$key]);
-					}
+		foreach ($sectionlist as $key => $value2) {
+			foreach ($teachers as $key => $value) {
+			
+				if ($value2->adviser == $value->id) {
+					unset($teachers[$key]);
 				}
 			}
+				
 		}
-
 		foreach ($teachers as $value) {
 			$old = json_decode($value->personal_info, TRUE);
 			foreach ($old as $value2) {
 				$fullname = ucfirst($value2['fname']).' '.ucfirst($value2['mname'][0]).'. '. ucfirst($value2['lname']);
-				array_push($arr, array("name" => $fullname));
+				array_push($arr, array("name" => $fullname, "id" => $value->id));
 			}
+			
+			
 		}
-
+		$this->data['asd'] = $teachers;
 		$this->data['teachers'] = $arr;
 		$this->data['status'] = "success";
 		echo json_encode($this->data);
@@ -1241,5 +1243,174 @@ class Adminpage extends CI_Controller {
 		echo json_encode($this->data);
 	}
 
+	// OPENING OF ONE SECTION
 
+	public function openOneSection($id){
+		$status = "none";
+		if (isset($_POST['status'])) {
+			$status = "forcheck";
+		}
+		if (is_numeric($id)) {
+			$sectiondata = $this->pal_model->viewOnSection($id);
+
+			if(empty($sectiondata)){
+				show_404();
+			}
+			else{
+				$fullname = "";
+				$teacher = $this->pal_model->viewTeacher($sectiondata['adviser']);
+				$teacherdata = json_decode($teacher['personal_info'], TRUE);
+				if (count($teacher) > 0) {
+					foreach ($teacherdata as $value) {
+						$fullname = ucfirst($value['fname']).' '.ucfirst($value['mname'][0]).'. '. ucfirst($value['lname']);		
+					}
+				}
+				
+				$student = $this->pal_model->student_data();
+				// $availablestudent = $this->pal_model->studentavailableforsection($sectiondata['academic_year']);
+				//$this->data['availablestudent'] = $availablestudent;
+				$availablestudent = array();
+				foreach ($student as $key => $value) {
+					$data = json_decode($value->acad_level, TRUE);
+					$data2 = json_decode($value->personal_info, TRUE);
+					foreach ($data as $value2) {
+						if ($value2['acad_year'] == $sectiondata['academic_year']  && $value2['acad_level'] == $sectiondata['academic_level'] && $value2['course'] == $sectiondata['course'] && $value2['semester'] == $sectiondata['semester']) {
+							
+							foreach ($data2 as  $value3) {
+								$studentname = ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']);
+								array_push($availablestudent, array("id" => $value->id, "name" => $studentname));
+							}
+						}
+					}
+				}
+				$subject = $this->pal_model->open_course_by_name($sectiondata['course']);
+				$allsubject = $this->pal_model->subject();
+
+				$sectionlist = $this->pal_model->section_list();
+
+				foreach ($sectionlist as $key => $value) {
+					$oldsectiondata = json_decode($value->student_id, TRUE);
+					if(count($oldsectiondata) > 0){
+						foreach ($oldsectiondata as $value2) {
+							foreach ($availablestudent as $key => $value3) {
+								if ($value2['id'] == $value3['id']) {
+									unset($availablestudent[$key]);
+								}
+							}
+						}
+					}
+					
+				}
+				$studentinsection = array();
+				$sectionStudentData = json_decode($sectiondata['student_id']);
+				if (count($sectionStudentData) > 0) {
+					foreach ($sectionStudentData as $value) {
+						foreach ($student as $value2) {
+							if ($value->id == $value2->id) {
+								$personal_info = json_decode($value2->personal_info, TRUE);
+								foreach ($personal_info as $value3) {
+									$nameofstudent = ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']);		
+									array_push($studentinsection, array("id" => $value2->id, "name" => $nameofstudent, "lrn" => $value2->lrn ));
+								}
+								
+							}
+						}
+					}
+				}
+				$allsubject = $this->pal_model->subject();
+				$rowname = "";
+				if ($sectiondata['academic_level'] == "Grade 11" && $sectiondata['semester'] == "1st Semester") {
+					$rowname = $subject['firstsemgrade11'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 11" && $sectiondata['semester'] == "2nd Semester"){
+					$rowname = $subject['secondsemgrade11'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 12" && $sectiondata['semester'] == "1st Semester"){
+					$rowname = $subject['firstsemgrade12'];
+				}
+				else if($sectiondata['academic_level'] == "Grade 12" && $sectiondata['semester'] == "2nd Semester"){
+					$rowname = $subject['secondsemgrade12'];
+				}
+				$data = json_decode($rowname);
+				$allsubjectNew = array();
+				if (count($data) > 0) {
+					foreach($data as $value){
+						foreach ($allsubject as $key => $value2) {
+							if ($value->id == $value2->id) {
+								array_push($allsubjectNew, array("id"=>$value2->id, "subjectcode" => $value2->subject_code, "subjectdescription" => $value2->subject_description));
+							}
+						}
+					}
+				}
+
+				$this->data['subject'] = $allsubjectNew;
+				$this->data['studentinsection'] = $studentinsection;
+				$this->data['student'] = $availablestudent;
+				$this->data['fullname'] = $fullname;
+				$this->data['sectiondata'] = $sectiondata;
+				if ($status == "none") {
+					$this->load->view('adminpage/header');
+					$this->load->view('adminpage/sectionData', $this->data);
+					$this->load->view('adminpage/footer');
+				}
+				else{
+					echo json_encode($this->data);
+				}
+			}
+		}
+		else{
+			show_404();
+		}
+		
+		
+	}
+
+	// ADD STUDENT TO SECTION
+
+	public function addStudentToSection(){
+		$id = $_POST['id'];
+		$student = $_POST['student'];
+		
+
+		$sectiondata = $this->pal_model->viewOnSection($id);
+		$newData = array();
+
+		$oldData = json_decode($sectiondata['student_id']);
+		if(count($oldData) > 0){
+			foreach ($oldData as $value) {
+				array_push($newData, array('id' => $value->id));
+			}	
+		}
+		for ($i=0; $i < count($student); $i++) { 
+			array_push($newData, array('id' => $student[$i]));
+		}
+		$result = $this->pal_model->update_sectionlist_data($id, $newData);
+
+		$this->data['status'] = "success";
+		$this->data['msg'] = $student;
+		
+		echo json_encode($this->data);
+	}
+
+
+	// REMOVE STUDENT TO SECTION
+
+	public function removeStudentToSection(){
+		$id = $_POST['id'];
+		$idofsection = $_POST['idofsection'];
+		$sectiondata = $this->pal_model->viewOnSection($idofsection);
+		$old = json_decode($sectiondata['student_id'], TRUE);
+		$newData = array();
+		foreach ($old as $key => $value) {
+			if ($value['id'] == $id) {
+			}
+			else{
+				array_push($newData, array("id" => $value['id']));
+			}
+		}
+
+		$this->pal_model->update_sectionlist_data($idofsection, $newData);
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
+	}
 }

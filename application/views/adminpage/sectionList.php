@@ -60,12 +60,21 @@
 											<?php if ($value->adviser == ""): ?>
 												<button class="btn btn-primary btn-sm openAdviser adviser<?php echo $value->id ?>" data-toggle="modal" data-target="#add_adviser_form" id="<?php echo $value->id;?>">Assign</button>
 											<?php else: ?>
-												<?php echo ucfirst($value->adviser) ?>
+												<?php foreach($teachers as $value2): ?>
+													<?php $data = json_decode($value2->personal_info , TRUE) ?>
+
+													<?php foreach($data as $value3): ?>
+														<?php if ($value->adviser == $value2->id): ?>
+															<?php echo ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']) ?>
+														<?php endif ?>
+													<?php endforeach ?>
+												<?php endforeach ?>
+												
 											<?php endif ?>
 										</td>
 										
 										<td style="text-align: center;">
-											<a href="<?php echo base_url();?>section" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
+											<a href="<?php echo base_url();?>section/<?php echo $value->id ?>" title="View" data-toggle="tooltip" class="btn btn-success viewSectionBtn<?php echo $value->id ?> btn-sm"><i class="fa fa-eye"></i></a>
 											<button  title="Remove" data-toggle="tooltip" class="btn btn-danger btn-sm removeSectionBtn removesection<?php echo $value->id  ?>" id="<?php echo $value->id;?>" ><i id="<?php echo $value->id;?>" class="fa fa-times" ></i></button>
 										</td>
 									</tr>

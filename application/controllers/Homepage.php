@@ -311,11 +311,13 @@ class Homepage extends CI_Controller {
 			$this->data['year'] = $acad_year;
 		}
 		else{
+			$courseData = $this->pal_model->update_course($course);
+
 			$acad_level = array(
 				array(
 					'acad_status' => $acad_status,
 					'acad_level' => $acad_level,
-					'course' => $course,
+					'course' => $courseData['course_name'],
 					'semester' => $acad_sem,
 					'acad_year' => $acad_year,
 					

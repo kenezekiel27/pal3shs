@@ -252,7 +252,7 @@ $(document).ready(function(){
 					// var data = JSON.parse(string);
 					$.each(response.teachers, function(idx, obj) {
 					
-						$('.selectAdviser').append($('<option>'+obj.name+'</option>'));
+						$('.selectAdviser').append($('<option value='+obj.id+'>'+obj.name+'</option>'));
 					});
 				}
 				
@@ -260,13 +260,13 @@ $(document).ready(function(){
     	});
     })
     $('.addAdviserBtn').click(function(){
-    	var nameOfAdviser = $('.selectAdviser').val();
+    	var adviserid = $('.selectAdviser').val();
     	$.ajax({
     		url: base_url + 'adminpage/addAdviserToSection',
 			type: 'post',
 			dataType: "json",
 			data:{
-				'nameOfAdviser' : nameOfAdviser,
+				'adviserid' : adviserid,
 				'id': idOfSection
 			},
 			success: function(response){
@@ -350,6 +350,257 @@ $(document).ready(function(){
 									stack: 6,
 						      	});
 			                	$('.sectionrow-'+id).hide("slow");
+			                }, 1000);
+						}
+						
+					}
+    			})
+    		}
+    	}
+    })
+
+    // ADD STUDENT TO SECTION
+
+    $('.addStudentToSectionBtn').click(function(e){
+    	var id = e.target.id;
+    	$.ajax({
+    		url: base_url + 'adminpage/addStudentToSection',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'id': id,
+				'student' : $('.availablestudent').val()
+			},
+			success : function(response){
+				if (response.status == "danger") {
+					render_response(".add_tosection_warning", response.status, response.msg);
+				}
+				else{
+					
+					$('.addStudentToSectionBtn').prop("disabled", true);
+					$('.add_new_section').text("Loading");
+					$.toast({
+						heading: 'Student successfully added to section',
+						position: 'bottom-center',
+						loaderBg: '#ff6849',
+						bgColor: '#28a745',
+						textColor:'white',
+						textAlign: 'center',
+						hideAfter: 4123000,
+						stack: 6,
+			      	});
+			      	setTimeout(function(){
+						window.location = base_url + 'section/'+id;
+					},2500);
+				}
+			}
+    	})
+    })
+
+    $('.availablestudent').change(function(){
+    	if ($(this).val() == null) {
+    		$('.addStudentToSectionBtn').hide();
+    	}
+    	else{
+    		$('.addStudentToSectionBtn').show();
+    	}
+    })
+
+
+    $('.removeStudentinSection').click(function(e){
+    	var id = e.target.id;
+    	var idofsection = $('.idofsecion').val();
+    	var answer = confirm("Are you sure you want to remove this?")
+    	if (answer) {
+    		$.ajax({
+    			url: base_url + 'adminpage/removeStudentToSection',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'id': id,
+					'idofsection' : idofsection
+				},
+				success: function(response){
+					$('.idofremovebtn'+id).prop("disabled", true);
+		    		$('.idofviewbtn'+id).attr("disabled", true);
+		    		var totalno = parseInt($('.noofstudent').val()) - 1;
+		    		setTimeout(function(){
+						$.toast({
+							heading: 'Student has been removed',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#dc3545',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+		            	$('.studentinsectionrow-'+id).hide("slow");
+		            	$('.noofstudent').val(totalno);
+		            }, 1000);
+				}
+    		})
+    		
+    	}
+    })
+
+    $('.openAddStudentBtn').click(function(){
+    	$('.availablestudent').empty();
+    	$.ajax({
+    		url: base_url + 'adminpage/openOneSection/'+$('.idofsecion').val(),
+			type: 'post',
+			dataType: "json",
+			data:{
+				'status': "foravailablestudent"
+			},
+			success: function(response){
+				if (response.student == "") {
+					$('.showwhennostudent').show();
+					$('.hidewhennostudent').hide();
+				}
+				else{
+					$('.showwhennostudent').hide();
+					$('.hidewhennostudent').show();
+					$.each(response.student, function(idx, obj) {
+				
+						$('.availablestudent').append($('<option value='+obj.id+'>'+obj.name+'</option>'));
+					});
+				}
+				
+			}
+    	});
+    })
+
+    $(document).on('click','.openUpdateAdviser',function(){
+    	callAdviser();
+    })
+    $('.assignAdviser').click(function(){
+    	callAdviser();
+    })
+
+    $('.addAdviserBtnToSection').click(function(){
+    	var adviserid = $('.selectAdviserinOneSection').val();
+    	$.ajax({
+    		url: base_url + 'adminpage/addAdviserToSection',
+			type: 'post',
+			dataType: "json",
+			data:{
+				'adviserid' : adviserid,
+				'id': $('.idofsecion').val()
+			},
+			success: function(response){
+				if (response.status == "danger") {
+					render_response('.addadvisertosectionwarningonesection', response.status, response.msg)
+				}
+				else{
+					
+			    	$('.addAdviserBtnToSection').text("Loading");
+			    	$('.addAdviserBtnToSection').prop("disabled", true);
+
+			      	setTimeout(function(){
+			      		$('.nameofadviserhere').empty();
+				    	$('.nameofadviserhere').append(
+				    		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Adviser</label>'+
+				    		'<ul>'+
+				    			'<li><input readonly type="text" class="form-control" value="'+response.name+'"></li>'+
+				    			'<li><button data-toggle="modal" data-target="#add_adviser_form" class="btn btn-success btn-sm openUpdateAdviser"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></li>'
+				    		+'</ul>'
+				    	);
+			      		$('.addAdviserBtnToSection').text("Add");
+			    		$('.addAdviserBtnToSection').prop("disabled", false);
+			      		$.toast({
+							heading: 'Teacher has been assigned',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#28a745',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+						$('#add_adviser_form').modal('hide');
+					},2500);
+				}
+			}
+    	})
+    })
+
+    function callAdviser(){
+    	$('.selectAdviserinOneSection').empty();
+    	$.ajax({
+    		url: base_url + 'adminpage/checkIfAdviser',
+			type: 'post',
+			dataType: "json",
+			data:{},
+			success: function(response){
+				if (response.teachers == "") {
+					$('.hideifnoteacheravailable').hide();
+					$('.showifnoteacheravailable').show();
+				}
+				else{
+					$('.hideifnoteacheravailable').show();
+					$('.showifnoteacheravailable').hide();
+					var optionSelected = $('<option selected disabled>Select</option>');
+					$('.selectAdviserinOneSection').append(optionSelected);
+					// var string = JSON.stringify(response.teachers);
+					// var data = JSON.parse(string);
+					$.each(response.teachers, function(idx, obj) {
+					
+						$('.selectAdviserinOneSection').append($('<option value='+obj.id+'>'+obj.name+'</option>'));
+					});
+				}
+				
+			}
+    	});
+    }
+
+
+
+    $('.removeOneSection').click(function(e){
+    	var id = e.target.id;
+    	var answer = confirm("Are you sure you want to remove this?");
+    	if (answer) {
+    		if ($('.noofstudent').val() != '0') {
+    			
+    			$.toast({
+					heading: "Can't remove section with existing student.",
+					position: 'bottom-center',
+					loaderBg: '#ff6849',
+					bgColor: '#dc3545',
+					textColor:'white',
+					textAlign: 'center',
+					hideAfter: 2000,
+					stack: 6,
+		      	});
+    		}
+    		else{
+    			
+
+    			$.ajax({
+    				url: base_url + 'adminpage/removeSection',
+					type: 'post',
+					dataType: "json",
+					data:{
+						'id': id
+					},
+					success: function(response){
+						if (response.status == "success") {
+							
+							$('.adviser'+id).prop("disabled", true);
+			    			$('.removesection'+id).prop("disabled", true);
+			    			$('.viewSectionBtn'+id).attr("disabled", true);
+			    			$.toast({
+								heading: 'Section has been removed',
+								position: 'bottom-center',
+								loaderBg: '#ff6849',
+								bgColor: '#28a745',
+								textColor:'white',
+								textAlign: 'center',
+								hideAfter: 2123000,
+								stack: 6,
+					      	});
+			    			setTimeout(function(){
+			    				window.location = base_url + 'section';
 			                }, 1000);
 						}
 						
