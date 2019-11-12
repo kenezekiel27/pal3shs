@@ -612,7 +612,7 @@ $(document).ready(function(){
 
     // FOR ASSIGNIN TEACHER IN SUBJECT
     var idofsubject;
-    $('.assignTeacherToSubject').click(function(e){
+    $(document).on("click",'.assignTeacherToSubject',function(e){
     	idofsubject = e.target.id;
     	$('.selectTeacherToSubject').empty();
     	$.ajax({
@@ -673,6 +673,10 @@ $(document).ready(function(){
 					setTimeout(function(){
 			      		$('.teacherHere'+idofsubject).empty();
 						$('.teacherHere'+idofsubject).append("<p>"+$('.selectTeacherToSubject option:selected').text()+"</p>");
+						$('.buttonshere'+idofsubject).append("<button class='btn btn-danger btn-sm removeTeacherinSubject removeid"+idofsubject+"' id="+idofsubject+" data-toggle='tooltip' data-title='Remove Teacher'>"+
+							"<i id="+idofsubject+" class='fa fa-trash' ></i></button><input type='hidden' class='idofteacherToRemove"+idofsubject+"' value='"+response.idofteacher+"'>");
+
+
 			      		$('.addTeacherBtnToSubject').text("Add");
 			    		$('.addTeacherBtnToSubject').prop("disabled", false);
 			      		$.toast({
@@ -690,5 +694,46 @@ $(document).ready(function(){
 				}
 			}
     	})
+    })
+
+    $(document).on("click", ".removeTeacherinSubject", function(e){
+    	var id = e.target.id;
+    	var idofteacher = $('.idofteacherToRemove'+id).val();
+    	var answer = confirm("Are you sure you want to remove teacher?");
+    	if (answer) {
+    		
+    		$.ajax({
+	    		url: base_url + 'adminpage/removeTeacherinOnSubject',
+				type: 'post',
+				dataType: "json",
+				data:{
+					'idofsubject': id,
+					'academicYear': $('.academicYear').val(),
+					'course': $('.course').val(),
+					'academicLevel': $('.academicLevel').val(),
+					'semester' : $('.semester').val(),
+					'status' : $('.status').val(),
+					'sectionName': $('.sectionName').val(),
+					'teacherid' : idofteacher
+				},
+				success: function(response){
+					if (response.status == "success") {
+						$.toast({
+							heading: 'Teacher has been removed',
+							position: 'bottom-center',
+							loaderBg: '#ff6849',
+							bgColor: '#dc3545',
+							textColor:'white',
+							textAlign: 'center',
+							hideAfter: 2000,
+							stack: 6,
+				      	});
+				      	$('.removeid'+id).hide("slow");
+				      	$('.teacherHere'+id).empty();
+				      	$('.teacherHere'+id).append("<button class='btn btn-primary assignTeacherToSubject' id="+id+" data-toggle='modal' data-target='#add_teachertosubject_form'>Assign</button>")
+					}
+				}
+	    	})
+    	}
     })
 })

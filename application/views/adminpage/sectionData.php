@@ -114,12 +114,13 @@
 										<button class="btn btn-primary assignTeacherToSubject" id="<?php echo $value['id'] ?>" data-toggle="modal" data-target="#add_teachertosubject_form">Assign</button>
 									<?php else: ?>
 										<?php echo $value['name'] ?>
+										<input type="hidden" class="idofteacherToRemove<?php echo $value['id'] ?>" value="<?php echo $value['idofteacher'] ?>">
 									<?php endif ?>
 								</td>
-								<td style="text-align: center; font-weight: lighter;">
+								<td style="text-align: center; font-weight: lighter;" class="buttonshere<?php echo $value['id'] ?>">
 									<a href="<?php echo base_url();?>subject/<?php echo $value['id']?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm "><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
 									<?php if ( $value['name'] != 'non'): ?>
-										<button class="btn btn-danger btn-sm" data-toggle="tooltip" data-title="Remove Teacher"><i id="<?php echo $value['id'];?>" class="fa fa-trash" ></i></button>
+										<button class="btn btn-danger btn-sm removeTeacherinSubject removeid<?php echo $value['id'];?>" id="<?php echo $value['id'];?>" data-toggle="tooltip" data-title="Remove Teacher"><i id="<?php echo $value['id'];?>" class="fa fa-trash" ></i></button>
 									<?php endif ?>
 								</td>
 							</tr>
