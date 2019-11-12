@@ -9,6 +9,7 @@ $(document).ready(function(){
 		var sectionName = $('.sectionName'+id).val();
 		var subject_code = $('.subject_code'+id).val();
 		var subject_description = $('.subject_description'+id).val();
+		//alert(sectionName);
 		$.ajax({
 			url: base_url + 'teacherpage/setSessionForData',
 			type: 'post',
