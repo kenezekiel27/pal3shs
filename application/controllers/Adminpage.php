@@ -1343,8 +1343,33 @@ class Adminpage extends CI_Controller {
 					}
 				}
 				$allteachers = $this->pal_model->teacher_data();
+				$d = array();
+				$nameofteacher = "";
+				foreach($allsubjectNew as $key => $value){
+					$data = json_decode($value['teachersofthissubject'], TRUE);
+					if (count($data) > 0){
+						foreach($data as $value2){
+							if ($sectiondata['academic_year'] == $value2['academic_year'] && $sectiondata['course'] == $value2['course'] && $sectiondata['academic_level'] == $value2['academic_level'] && $sectiondata['semester'] == $value2['semester'] && $sectiondata['status'] == $value2['status'] && $sectiondata['section_name'] == $value2['sectionName']){
+								foreach($allteachers as $value3){
+									if ($value3->id == $value2['idofteacher']){
+										$personalinfo = json_decode($value3->personal_info, TRUE);
+										foreach($personalinfo as $value4){
+											$nameofteacher = ucfirst($value4['fname']).' '.ucfirst($value4['mname'][0]).'. '. ucfirst($value4['lname']);
+											array_push($d, array("name" => $nameofteacher, "id"=>$value['id'], "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
+											unset($allsubjectNew[$key]);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				foreach($allsubjectNew as $value){
+					array_push($d, array("name" => "non", "id"=>$value['id'], "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
+				}
+				$this->data['nameofteacher'] = $nameofteacher;
 				$this->data['allteachers'] = $allteachers;
-				$this->data['subject'] = $allsubjectNew;
+				$this->data['subject'] = $d;
 				$this->data['studentinsection'] = $studentinsection;
 				$this->data['student'] = $availablestudent;
 				$this->data['fullname'] = $fullname;

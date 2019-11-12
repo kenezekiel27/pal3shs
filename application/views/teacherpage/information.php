@@ -22,7 +22,7 @@
 						<button class="btn btn-success" id="educationalbtn">Educational Background</button>
 						<hr>
 						<!-- div for personal info -->
-						<div class="form-material" id="personal_information" style="display: none;">
+						<div class="form-material" id="personal_information" style="display: block;">
 							<?php $key ?>
 								<?php 
 									$id="";
@@ -282,7 +282,7 @@
 						</div>
 						<!-- end of guardian information -->
 						<!-- educational background -->
-						<div class="form-material" id="educational_background" style="display: block;">
+						<div class="form-material" id="educational_background" style="display: none;">
 							<?php $key ?>
 								<?php 
 									$school="";

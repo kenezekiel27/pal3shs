@@ -92,6 +92,9 @@
 						</ul>
 					</li>
 					<li>
+						<a href="<?php echo base_url(); ?>class-advisory" class="waves-effect"><i style="color: black" class="fa fa-users fa-fw" aria-hidden="true" ></i>My Advisory</a>
+					</li>
+					<li>
 
 						<a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/adminpagestyles/plugins/images/bulletinicon.png" alt="user-img" width="24"  style="margin-left: -7px"> Bulletin Board</a>
 						<ul class="nav" id="side-menu">

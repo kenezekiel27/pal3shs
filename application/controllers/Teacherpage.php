@@ -45,7 +45,36 @@ class Teacherpage extends CI_Controller {
 
 		redirect('home');
 	}
-	
+	public function advisory(){
+		$username = $this->session->userdata('user_data');
+		$teacher = $this->pal_model->viewTeacher2($username['username']);
+		$sectiondata = $this->pal_model->view_advisory($teacher['id']);
+		
+		$allstudent = $this->pal_model->student_data();
+		$listofstudent = json_decode($sectiondata['student_id'], TRUE);
+		$arr = array();
+		if (count($listofstudent) > 0) {
+			foreach ($listofstudent as $key => $value) {
+				foreach ($allstudent as $key => $value2) {
+					if ($value['id'] == $value2->id) {
+						$olddata = json_decode($value2->personal_info, TRUE);
+						
+						foreach ($olddata as $key => $value3) {
+							$fullname = ucfirst($value3['fname']).' '.ucfirst($value3['mname'][0]).'. '. ucfirst($value3['lname']);
+							array_push($arr, array("id"=>$value2->id,"lrn" => $value2->lrn, "fullname" => $fullname));
+						}
+					}
+				}
+			}
+		}
+		
+		$this->data['advisory'] = $arr;
+
+		$this->data['sectiondata'] = $sectiondata;
+		$this->load->view('teacherpage/header');
+		$this->load->view('teacherpage/advisory', $this->data);
+		$this->load->view('teacherpage/footer');
+	}
 	public function information(){
 		$username = $this->session->userdata('user_data');
 

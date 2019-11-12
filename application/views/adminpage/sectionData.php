@@ -110,27 +110,17 @@
 								<td style="text-align: center; font-weight: lighter;"><?php echo $value['subjectcode'] ?></td>
 								<td style="text-align: center; font-weight: lighter;"><?php echo $value['subjectdescription'] ?></td>
 								<td style="text-align: center; font-weight: lighter;" class="teacherHere<?php echo $value['id'] ?>">
-									<?php $data = json_decode($value['teachersofthissubject'], TRUE) ?>
-									<?php if (count($data) > 0): ?>
-										<?php foreach($data as $value2): ?>
-											<?php if ($sectiondata['academic_year'] == $value2['academic_year'] && $sectiondata['course'] == $value2['course'] && $sectiondata['academic_level'] == $value2['academic_level'] && $sectiondata['semester'] == $value2['semester'] && $sectiondata['status'] == $value2['status'] && $sectiondata['section_name'] == $value2['sectionName']): ?>
-												<?php foreach($allteachers as $value3): ?>
-													<?php if ($value3->id == $value2['idofteacher']): ?>
-														<?php $personalinfo = json_decode($value3->personal_info, TRUE) ?>
-														<?php foreach($personalinfo as $value4): ?>
-															<?php echo ucfirst($value4['fname']).' '.ucfirst($value4['mname'][0]).'. '. ucfirst($value4['lname']); ?>
-														<?php endforeach ?>
-													<?php endif ?>
-												<?php endforeach ?>
-
-											<?php endif ?>
-										<?php endforeach ?>
-									<?php elseif (count($data) == 0 || $status): ?>
-										<button class="btn btn-primary btn-sm assignTeacherToSubject teachertosubject<?php echo $value['id'] ?>" id="<?php echo $value['id'] ?>" data-toggle="modal" data-target="#add_teachertosubject_form" >Assign2</button>
+									<?php if ( $value['name'] == 'non'): ?>
+										<button class="btn btn-primary assignTeacherToSubject" id="<?php echo $value['id'] ?>" data-toggle="modal" data-target="#add_teachertosubject_form">Assign</button>
+									<?php else: ?>
+										<?php echo $value['name'] ?>
 									<?php endif ?>
 								</td>
 								<td style="text-align: center; font-weight: lighter;">
 									<a href="<?php echo base_url();?>subject/<?php echo $value['id']?>" title="Edit" data-toggle="tooltip"  class="btn btn-success btn-sm "><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+									<?php if ( $value['name'] != 'non'): ?>
+										<button class="btn btn-danger btn-sm" data-toggle="tooltip" data-title="Remove Teacher"><i id="<?php echo $value['id'];?>" class="fa fa-trash" ></i></button>
+									<?php endif ?>
 								</td>
 							</tr>
 						<?php endforeach ?>
