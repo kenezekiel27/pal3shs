@@ -1374,7 +1374,7 @@ class Adminpage extends CI_Controller {
 										$personalinfo = json_decode($value3->personal_info, TRUE);
 										foreach($personalinfo as $value4){
 											$nameofteacher = ucfirst($value4['fname']).' '.ucfirst($value4['mname'][0]).'. '. ucfirst($value4['lname']);
-											array_push($d, array("name" => $nameofteacher, "id"=>$value['id'], "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
+											array_push($d, array("name" => $nameofteacher, "id" => $value['id'], "idofteacher"=>$value3->id, "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
 											unset($allsubjectNew[$key]);
 										}
 									}
@@ -1384,7 +1384,7 @@ class Adminpage extends CI_Controller {
 					}
 				}
 				foreach($allsubjectNew as $value){
-					array_push($d, array("name" => "non", "id"=>$value['id'], "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
+					array_push($d, array("name" => "non", "id" => $value['id'], "subjectcode" => $value['subjectcode'], "subjectdescription" => $value['subjectdescription'], "teachersofthissubject" => $value['teachersofthissubject']));
 				}
 				$this->data['nameofteacher'] = $nameofteacher;
 				$this->data['allteachers'] = $allteachers;
@@ -1479,17 +1479,17 @@ class Adminpage extends CI_Controller {
 
 		$subjectdata = json_decode($subject['teachers_of_this_subject'], TRUE);
 		
-		if (count($parseTeacher) > 0){
-			foreach ($parseTeacher as $key => $value){
-				if (count($subjectdata) > 0){
-					foreach ($subjectdata as $value2) {
-						if ($value['id'] == $value2['idofteacher']) {
-							unset($parseTeacher[$key]);
-						}
-					}
-				}
-			}
-		}
+		// if (count($parseTeacher) > 0){
+		// 	foreach ($parseTeacher as $key => $value){
+		// 		if (count($subjectdata) > 0){
+		// 			foreach ($subjectdata as $value2) {
+		// 				if ($value['id'] == $value2['idofteacher']) {
+							
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		if (count($parseTeacher) > 0) {
 			foreach ($parseTeacher as $value) {
@@ -1549,15 +1549,15 @@ class Adminpage extends CI_Controller {
 
 			array_push($data, array(
 				"idofteacher" => $teacher,
-					"academic_year" => $academicYear,
-					"course" => $course,
-					"academic_level" => $academicLevel,
-					"semester" => $semester,
-					"status" => $status,
-					"sectionName" => $sectionName
+				"academic_year" => $academicYear,
+				"course" => $course,
+				"academic_level" => $academicLevel,
+				"semester" => $semester,
+				"status" => $status,
+				"sectionName" => $sectionName
 			));
 
-
+			$this->data['idofteacher'] = $teacher;
 			$result = $this->pal_model->update_subject_teacher($idofsubject, $data);
 
 
@@ -1566,5 +1566,40 @@ class Adminpage extends CI_Controller {
 			echo json_encode($this->data);
 		}
 		
+	}
+
+	public function removeTeacherinOnSubject(){
+		$idofsubject = $_POST['idofsubject'];
+		$academicYear = $_POST['academicYear'];
+		$course = $_POST['course'];
+		$academicLevel = $_POST['academicLevel'];
+		$semester = $_POST['semester'];
+		$status = $_POST['status'];
+		$sectionName = $_POST['sectionName'];
+		$teacherid = $_POST['teacherid'];
+
+		$subject = $this->pal_model->viewSubject($idofsubject);
+		$parseSubject = json_decode($subject['teachers_of_this_subject'], TRUE);
+		foreach ($parseSubject as $key => $value) {
+			if ($value['idofteacher'] == $teacherid && $value['academic_year'] == $academicYear && $value['course'] == $course && $value['academic_level'] == $academicLevel && $value['semester'] == $semester && $value['status'] == $status && $value['sectionName'] == $sectionName) {
+				unset($parseSubject[$key]);
+			}
+		}
+		$newData = array();
+		foreach ($parseSubject as $value) {
+			array_push($newData, array(
+				"idofteacher" => $value['idofteacher'],
+				"academic_year" => $value['academic_year'],
+				"course" => $value['course'],
+				"academic_level" => $value['academic_level'],
+				"semester" => $value['semester'],
+				"status" => $value['status'],
+				"sectionName" => $value['sectionName']
+
+			));
+		}
+		$result = $this->pal_model->update_subject_teacher($idofsubject, $newData);
+		$this->data['status'] = "success";
+		echo json_encode($this->data);
 	}
 }
