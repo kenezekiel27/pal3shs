@@ -899,6 +899,9 @@ class Adminpage extends CI_Controller {
 		$this->load->view('adminpage/footer');
 	}
 	public function student2($id){
+
+		$courses = $this->pal_model->courses_offer();
+		$this->data['courses'] = $courses;
 		
 		$students = $this->pal_model->viewStudent($id);
 		$academicYear = $this->pal_model->academic_year();
@@ -909,6 +912,13 @@ class Adminpage extends CI_Controller {
 		$this->load->view('adminpage/footer');
 	}
 	public function updateStudentPersonalInfo(){
+		/*acad_info*/
+        $acad_status=$_POST['acad_status'];
+		$course=$_POST['course'];
+		$acad_level=$_POST['acad_level'];
+		$acad_sem=$_POST['acad_sem'];
+		$academic_year=$_POST['academic_year'];
+		/*personal info*/
 		$id=$_POST['id'];
 		$lname=$_POST['lname'];
 		$fname=$_POST['fname'];
@@ -946,8 +956,17 @@ class Adminpage extends CI_Controller {
 				
 			)
 		);
+		$acad_info = array(
+			array(
+				'acad_status' => $acad_status,
+				'acad_level' => $acad_level,
+				'course' => $course,
+				'semester' => $acad_sem,
+				'acad_year' => $academic_year,
+			)
+		);
 			
-		$courseadd =  $this->pal_model->updatePersonalInfoStudent($id,$personal);
+		$courseadd =  $this->pal_model->updatePersonalInfoStudent($id,$personal,$acad_info);
 		$this->data['status'] = 'success';
 		$this->data['msg'] = "Successfully added.";
 		

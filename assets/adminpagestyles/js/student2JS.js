@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.personal_btn').click(function(){
-        $('#Academic_info1').hide();
+        $('#Academic_info1').show();
         $('#Academic_info2').hide();
         $('#personal_information').show();
         $('#address').hide();
@@ -72,6 +72,12 @@ $(document).ready(function(){
             url: base_url + 'adminpage/updateStudentPersonalInfo',
             dataType: 'json',
             data: {
+                /*acad_info*/
+                'acad_status':$('#update_acad_status').val(),
+                'course':$('#update_course').val(),
+                'acad_level':$('#update_acad_level').val(),
+                'acad_sem':$('#update_acad_sem').val(),
+                'academic_year':$('#update_academic_year option:selected').text(),
                 'id':id,
                 'lrn':$('#update_lrn').val(),
                 'lname':$('#update_lname').val(),

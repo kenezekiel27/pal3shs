@@ -23,7 +23,8 @@
 						<button class="btn btn-success educational_btn">Educational Background</button>
 						<hr>
 						<div class="form-material" id="Academic_info1"style="display: block;">
-							<label>Current</label>
+							<p class="personal_warning" style="display: none;"></p>
+							<!-- <label>Current</label> -->
 							<?php $key ?>
 								<?php
 									$id="";
@@ -45,8 +46,16 @@
 							 	?> 
 							<div class="row">
 								<div class="col-md-4 form-group">
+									<input type="text" value="<?php echo $reg_type?>" hidden id="update_acad_status">
 									<label>Course</label>
-									<input type="text" class="form-control" value="<?php echo $course?>">
+									<!-- <input type="text" class="form-control" value="<?php echo $course?>"> -->
+									<select class="form-control" id="update_course">
+										<option selected value="<?php echo $course?>"><?php echo $course?></option>
+										<?php $key ?>
+										<?php foreach ($courses as $key => $value): ?>
+											<option value="<?php echo $value->course_name; ?>"><?php echo $value->course_name; ?></option>
+										<?php endforeach ?>
+									</select>
 
 								</div>
 								<!-- <div class="col-md-4 form-group">
@@ -57,20 +66,37 @@
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>Academic Level</label>
-									<input type="text" class="form-control" value="<?php echo $acad_level ?>">
+									<!-- <input type="text" class="form-control" value="<?php echo $acad_level ?>"> -->
+									<select class="form-control" id="update_acad_level">
+										<option selected value="<?php echo $acad_level ?>"><?php echo $acad_level ?></option>
+										<option>Grade 11</option>
+										<option>Grade 12</option>
+									</select>
+									
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Semester</label>
-									<input type="text" class="form-control" value="<?php echo $semester ?>">
+									<!-- <input type="text" class="form-control" value="<?php echo $semester ?>"> -->
+									<select class="form-control" id="update_acad_sem">
+										<option selected value="<?php echo $semester ?>"><?php echo $semester ?></option>
+										<option>1st Semester</option>
+										<option>2nd Semester</option>
+									</select>
 								</div>
 								<div class="col-md-4 form-group">
 									<label>Academic year</label>
-									<input type="text" class="form-control" value="<?php echo $acad_year ?>">
+									<!-- <input type="text" class="form-control" value="<?php echo $acad_year ?>"> -->
+									<select class="form-control" id="update_academic_year">
+										<option selected value="<?php echo $acad_year ?>"><?php echo $acad_year ?></option>
+										<?php foreach($academicYear as $value): ?>
+											<option value="<?php echo $value->id ?>"><?php echo $value->acad_year ?></option>
+										<?php endforeach ?>
+									</select>
 								</div>
 							</div>
 							<hr>
 						</div>
-						<div class="form-material" id="Academic_info2" style="display: block;">
+						<!-- <div class="form-material" id="Academic_info2" style="display: none;">
 							<label>Enroll to:</label>
 							<div class="row">
 								<div class="col-md-4 form-group">
@@ -107,7 +133,7 @@
 									</select>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- div for personal info -->
 						<div class="form-material" id="personal_information" style="display: block;">
 							<?php $key ?>
@@ -150,7 +176,6 @@
 									
 							 	?> 	
 							<h1>Personal Information</h1>
-							<p class="personal_warning" style="display: none;"></p>
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label>LRN</label>
@@ -175,7 +200,7 @@
 								<div class="col-md-4 form-group">
 									<label>Sex</label>
 									<select class="form-control" id="update_sex">
-										<option selected disabled value="<?php echo ucfirst($sex);?>"><?php echo ucfirst($sex);?> </option>
+										<option selected value="<?php echo ucfirst($sex);?>"><?php echo ucfirst($sex);?> </option>
 										<option>Male</option>
 										<option>Female</option>
 									</select>
@@ -211,7 +236,7 @@
 		 						<div class="col-md-4 form-group">
 		 							<label>Religion</label>
 		 							<select class="form-control" id="update_religion">
-		 								<option selected disabled value="<?php echo ucfirst($religion)?>"><?php echo ucfirst($religion)?></option>
+		 								<option selected value="<?php echo ucfirst($religion)?>"><?php echo ucfirst($religion)?></option>
 		 								<option value="Catholic">Catholic</option>
 		 								<option value="Christian">Christian</option>
 		 								<option value="Iglesia">Iglesia</option>
@@ -228,7 +253,7 @@
 		 						<div class="col-md-4 form-group">
 		 							<label>Ethnic Group</label>
 		 							<select class="form-control" id="update_egroup">
-		 								<option selected disabled value="<?php echo ucfirst($egroup)?>"><?php echo ucfirst($egroup)?></option>
+		 								<option selected value="<?php echo ucfirst($egroup)?>"><?php echo ucfirst($egroup)?></option>
 		 								<option value="Filipino">Filipino</option>
 		 								<option value="Aeta">Aeta</option>
 		 								<option value="Visayans">Visayans</option>
@@ -418,7 +443,7 @@
 								<div class="col-md-4 form-group">
 									<label>Academic year from</label>
 									<select class="form-control" id="update_syearfrom">
-										<option selected disabled value="<?php echo $s_yearfrom?>" ><?php echo $s_yearfrom?></option>
+										<option selected value="<?php echo $s_yearfrom?>" ><?php echo $s_yearfrom?></option>
 										<?php 
 											for($year =date("Y"); $year >=2000; $year--){
 												?> 
@@ -431,7 +456,7 @@
 								<div class="col-md-4 form-group">
 									<label>to</label>
 									<select class="form-control" id="update_syearto">
-										<option selected disabled value="<?php echo $s_yearto?>" ><?php echo $s_yearto?></option>
+										<option selected value="<?php echo $s_yearto?>" ><?php echo $s_yearto?></option>
 										<?php 
 											for($year =date("Y")+1; $year >=2000; $year--){
 												?> 

@@ -156,9 +156,11 @@
 			$this->db->where('lrn', $lrn);
 			$this->db->update('teacher_data', $newData);
 		}
-		public function updatePersonalInfoStudent($id,$data){
+		public function updatePersonalInfoStudent($id,$data,$data2){
 			$data = json_encode($data, JSON_PRETTY_PRINT);
+			$data2 = json_encode($data2, JSON_PRETTY_PRINT);
 			$newData = array(
+				'acad_level' => $data2,
 				'personal_info' => $data,
 			);
 			$this->db->where('id', $id);
