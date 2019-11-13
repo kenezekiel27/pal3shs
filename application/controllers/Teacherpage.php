@@ -227,10 +227,10 @@ class Teacherpage extends CI_Controller {
 		foreach ($allsubjects as $value) {
 			$parseTeacherinSubjects = json_decode($value->teachers_of_this_subject, TRUE);
 			if (count($parseTeacherinSubjects) > 0) {
-				foreach ($parseTeacherinSubjects as $value2) {
+				foreach ($parseTeacherinSubjects as $key => $value2) {
 					if ($value2['idofteacher'] == $teacher['id']) {
 						array_push($data, array(
-							"id" => $value->id,
+							"id" => $key.''.rand(1,100),
 							"academic_year" => $value2['academic_year'],
 							"course" => $value2['course'],
 							"academic_level" => $value2['academic_level'],

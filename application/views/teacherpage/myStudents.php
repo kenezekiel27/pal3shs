@@ -44,14 +44,14 @@
 									<td style="text-align: center;"><?php echo $value['subject_code'] ?></td>
 									<td style="text-align: center;"><?php echo $value['subject_description'] ?></td>
 									<td style="text-align: center;">
-										<button href="<?php echo base_url();?>subject/<?php echo $value['id']?>" title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewStudent" id="<?php echo $value['id'] ?>"><i id="<?php echo $value['id'] ?>" class="fa fa-eye"></i></button>
+										<button  title="View" data-toggle="tooltip" class="btn btn-success btn-sm viewStudent" id="<?php echo $value['id'] ?>"><i id="<?php echo $value['id'] ?>" class="fa fa-eye"></i></button>
 									</td>
 									<input type="hidden" class="academic_year<?php echo $value['id'] ?>" value="<?php echo $value['academic_year'] ?>">
 									<input type="hidden" class="academic_level<?php echo $value['id'] ?>" value="<?php echo $value['academic_level'] ?>">
 									<input type="hidden" class="status<?php echo $value['id'] ?>" value="<?php echo $value['status'] ?>">
 									<input type="hidden" class="course<?php echo $value['id'] ?>" value="<?php echo $value['course'] ?>">
 									<input type="hidden" class="semester<?php echo $value['id'] ?>" value="<?php echo $value['semester'] ?>">
-									<input type="hidden" class="sectionName<?php echo $value['id'] ?>" value="<?php echo $value['sectionName'] ?>">
+									<input type="h" class="sectionName<?php echo $value['id'] ?>" value="<?php echo $value['sectionName'] ?>">
 									<input type="hidden" class="subject_code<?php echo $value['id'] ?>" value="<?php echo $value['subject_code'] ?>">
 									<input type="hidden" class="subject_description<?php echo $value['id'] ?>" value="<?php echo $value['subject_description'] ?>">
 								</tr>
