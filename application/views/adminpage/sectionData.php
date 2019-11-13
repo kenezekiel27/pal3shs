@@ -190,7 +190,7 @@
 			<div class="modal" id="add_teachertosubject_form">
 				<div class="container teachertosubject" id="add_teachertosubject_form_body">
 					<br><br>
-					<center><p style="font-size: 20px; font-weight: lighter;">Add Adviser</p></center>
+					<center><p style="font-size: 20px; font-weight: lighter;">Add Teacher</p></center>
 					<span class="close close_form" data-dismiss="modal">&times;</span>
 					<hr>
 					<p class="add_teachertosubject_warning" style="font-weight: lighter"></p>
