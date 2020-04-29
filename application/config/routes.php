@@ -65,7 +65,7 @@ $route['section/(:any)'] = 'adminpage/openOneSection/$1';
 $route['pending-registration/(:any)'] = 'adminpage/student_info/$1';
 $route['pending-registration1/(:any)'] = 'adminpage/teacher_info/$1';
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'homepage/pages';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 // $route['about'] = 'homepage/about';
