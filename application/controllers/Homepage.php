@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-header('Access-Control-Allow-Origin: *');
-if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-	header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-	header('Access-Control-Allow-Headers: Content-Type');
-	exit;
-}
+
 class Homepage extends CI_Controller {
 
 	/**
@@ -24,7 +19,7 @@ class Homepage extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 		
-	public function pages_get($page = 'home'){
+	public function pages($page = 'home'){
 		if ($page == "about-mission" || $page == "about-vision" || $page == "about-history" ) {
 			$page = "about";
 		}
